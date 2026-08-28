@@ -3,7 +3,7 @@ name: Daily MLB Data Update
 on:
   schedule:
     # Runs at 16:00 UTC, which is 11:00 AM Central Daylight Time (CDT)
-    - cron: '0 16 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch: # Adds a button so you can manually run it anytime
 
 jobs:
