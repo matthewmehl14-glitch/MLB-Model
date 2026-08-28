@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Matchup Predictor & Spider Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0B1120;
+            --card-bg: #131E32;
+            --border-color: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --cyan-team: #00B4D8;
+            --red-team: #FF4D4D;
+            --gold: #F59E0B;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 860px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h2 {
+            margin: 0 0 4px 0;
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0 0 16px 0;
+        }
+
+        /* Single Matchup Dropdown */
+        .controls {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .select-group {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .select-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* Monte Carlo Prediction Dashboard */
+        .prediction-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .prob-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-prob-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .team-prob-box.right {
+            text-align: right;
+        }
+
+        .prob-val {
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .prob-name {
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: bold;
+        }
+
+        .fair-line {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .pitcher-info {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: #0f172a;
+            padding: 6px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px solid #1e293b;
+        }
+
+        /* Win Probability Bar */
+        .prob-bar-container {
+            height: 12px;
+            width: 100%;
+            background-color: var(--red-team);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .prob-bar-fill {
+            height: 100%;
+            background-color: var(--cyan-team);
+            transition: width 0.5s ease-in-out;
+        }
+
+        .total-banner {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .total-banner span {
+            color: var(--text-main);
+            font-weight: bold;
+        }
+
+        /* Chart */
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <h2>Matchup Prediction Engine</h2>
+            <p class="subtitle" id="date-subtitle">Loading Daily Slate...</p>
+        </div>
+
+        <div class="controls">
+            <div class="select-group">
+                <label>Select Today's Game</label>
+                <select id="game-select"></select>
+            </div>
+        </div>
+
+        <!-- Monte Carlo Win Probability Box -->
+        <div class="prediction-card">
+            <div class="card-header">
+                <span>Monte Carlo Projection (10,000 Sims)</span>
+                <span id="proj-total-badge">Proj. Total: --</span>
+            </div>
+
+            <div class="prob-row">
+                <!-- Away Team (Cyan) -->
+                <div class="team-prob-box">
+                    <span class="prob-val" id="away-prob" style="color: var(--cyan-team)">--%</span>
+                    <span class="prob-name" id="away-name">Away Team</span>
+                    <span class="fair-line" id="away-line">Fair Line: --</span>
+                    <div>
+                        <span class="pitcher-info" id="away-pitcher">SP: -- (ERA: --)</span>
+                    </div>
+                </div>
+                
+                <!-- Home Team (Red) -->
+                <div class="team-prob-box right">
+                    <span class="prob-val" id="home-prob" style="color: var(--red-team)">--%</span>
+                    <span class="prob-name" id="home-name">Home Team</span>
+                    <span class="fair-line" id="home-line">Fair Line: --</span>
+                    <div>
+                        <span class="pitcher-info" id="home-pitcher">SP: -- (ERA: --)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prob-bar-container">
+                <div class="prob-bar-fill" id="prob-bar" style="width: 50%;"></div>
+            </div>
+
+            <div class="total-banner">
+                Projected Score: <span id="away-proj-runs">0</span> - <span id="home-proj-runs">0</span>
+            </div>
+        </div>
+
+        <!-- Spider Comparison Chart -->
+        <div class="chart-container">
+            <canvas id="spiderChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let teams = {};
+        let todaysGames = [];
+        let leagueMax = {};
+        let spiderChart = null;
+
+        const statsToChart = ['R', 'H', '2B', '3B', 'HR', 'RBI', 'BB', 'SB', 'AVG', 'OBP', 'SLG', 'OPS'];
+        let currentAwayRaw = [];
+        let currentHomeRaw = [];
+
+        const gameSelect = document.getElementById('game-select');
+
+        // Convert probability to American Moneyline
+        function probToMoneyline(prob) {
+            const p = prob / 100;
+            if (p >= 0.5) {
+                return Math.round((-100 * p) / (1 - p)).toString();
+            } else {
+                return `+${Math.round((100 * (1 - p)) / p)}`;
+            }
+        }
+
+        // 1. Fetch JSON Data
+        fetch('./data.json')
+            .then(res => res.json())
+            .then(data => {
+                teams = data.teams;
+                todaysGames = data.todays_games || [];
+                
+                document.getElementById('date-subtitle').textContent = `Slate for ${data.date} (10,000 Sims per game)`;
+                
+                if (todaysGames.length === 0) {
+                    gameSelect.innerHTML = '<option>No games scheduled today</option>';
+                    return;
+                }
+                
+                calculateLeagueMaximums();
+                populateDropdown();
+                initChart();
+                updateDashboard();
+            })
+            .catch(err => {
+                console.error("Error loading JSON:", err);
+                document.getElementById('date-subtitle').textContent = "Error loading data.";
+            });
+
+        function calculateLeagueMaximums() {
+            statsToChart.forEach(stat => {
+                let max = 0;
+                for (let t in teams) {
+                    if (teams[t][stat] > max) max = teams[t][stat];
+                }
+                leagueMax[stat] = max || 1;
+            });
+        }
+
+        function populateDropdown() {
+            gameSelect.innerHTML = '';
+            todaysGames.forEach((game, index) => {
+                const opt = document.createElement('option');
+                opt.value = index; // Store the array index as the value
+                const away = teams[game.away_team].name;
+                const home = teams[game.home_team].name;
+                opt.textContent = `${away} @ ${home}`;
+                gameSelect.appendChild(opt);
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('spiderChart').getContext('2d');
+            spiderChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: statsToChart,
+                    datasets: [
+                        {
+                            label: 'Away Offense',
+                            data: [],
+                            backgroundColor: 'rgba(0, 180, 216, 0.35)',
+                            borderColor: '#00B4D8',
+                            pointBackgroundColor: '#00B4D8',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Home Offense',
+                            data: [],
+                            backgroundColor: 'rgba(255, 77, 77, 0.35)',
+                            borderColor: '#FF4D4D',
+                            pointBackgroundColor: '#FF4D4D',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                display: true,
+                                color: '#64748b',
+                                backdropColor: 'transparent',
+                                callback: val => val + '%'
+                            },
+                            grid: { color: '#1E293B' },
+                            angleLines: { color: '#1E293B' },
+                            pointLabels: {
+                                color: '#E2E8F0',
+                                font: { size: 12, weight: 'bold' }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const raw = context.datasetIndex === 0 ? currentAwayRaw[context.dataIndex] : currentHomeRaw[context.dataIndex];
+                                    return `${context.dataset.label}: ${raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateDashboard() {
+            if (todaysGames.length === 0) return;
+            
+            const gameIndex = gameSelect.value;
+            const game = todaysGames[gameIndex];
+            
+            const awayTeam = teams[game.away_team];
+            const homeTeam = teams[game.home_team];
+            const sim = game.simulation;
+
+            // 1. Update Simulation Card
+            document.getElementById('away-name').textContent = awayTeam.name;
+            document.getElementById('home-name').textContent = homeTeam.name;
+            
+            document.getElementById('away-prob').textContent = `${sim.t1_win_prob}%`;
+            document.getElementById('home-prob').textContent = `${sim.t2_win_prob}%`;
+            
+            document.getElementById('away-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
+            document.getElementById('home-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
+            
+            // Pitcher Data injection
+            document.getElementById('away-pitcher').textContent = `SP: ${game.away_pitcher.name} (ERA: ${game.away_pitcher.era.toFixed(2)})`;
+            document.getElementById('home-pitcher').textContent = `SP: ${game.home_pitcher.name} (ERA: ${game.home_pitcher.era.toFixed(2)})`;
+
+            document.getElementById('prob-bar').style.width = `${sim.t1_win_prob}%`;
+            document.getElementById('proj-total-badge').textContent = `Proj. Total: ${sim.total_proj_runs}`;
+            document.getElementById('away-proj-runs').textContent = `${awayTeam.abbr} ${sim.t1_proj_runs}`;
+            document.getElementById('home-proj-runs').textContent = `${homeTeam.abbr} ${sim.t2_proj_runs}`;
+
+            // 2. Update Spider Chart (Offensive Metrics normalized)
+            currentAwayRaw = statsToChart.map(s => awayTeam[s]);
+            currentHomeRaw = statsToChart.map(s => homeTeam[s]);
+
+            const awayNorm = statsToChart.map(s => (awayTeam[s] / leagueMax[s]) * 100);
+            const homeNorm = statsToChart.map(s => (homeTeam[s] / leagueMax[s]) * 100);
+
+            spiderChart.data.datasets[0].label = awayTeam.name;
+            spiderChart.data.datasets[0].data = awayNorm;
+            
+            spiderChart.data.datasets[1].label = homeTeam.name;
+            spiderChart.data.datasets[1].data = homeNorm;
+            
+            spiderChart.update();
+        }
+
+        // Listen for user changing the selected game
+        gameSelect.addEventListener('change', updateDashboard);
+    </script>
+</body>
+</html>
