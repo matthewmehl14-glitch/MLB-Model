@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLB Matchup Predictor & Spider Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #0B1120;
+            --card-bg: #131E32;
+            --border-color: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --cyan-team: #00B4D8;
+            --red-team: #FF4D4D;
+            --gold: #F59E0B;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 860px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h2 {
+            margin: 0 0 4px 0;
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0 0 16px 0;
+        }
+
+        /* Dropdowns */
+        .controls {
+            display: flex;
+            gap: 16px;
+        }
+
+        .select-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .select-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Monte Carlo Prediction Dashboard */
+        .prediction-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .prob-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-prob-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .team-prob-box.right {
+            text-align: right;
+        }
+
+        .prob-val {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .prob-name {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .fair-line {
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        /* Win Probability Bar */
+        .prob-bar-container {
+            height: 10px;
+            width: 100%;
+            background-color: var(--red-team);
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .prob-bar-fill {
+            height: 100%;
+            background-color: var(--cyan-team);
+            transition: width 0.4s ease;
+        }
+
+        .total-banner {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .total-banner span {
+            color: var(--text-main);
+            font-weight: bold;
+        }
+
+        /* Chart */
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <h2>Matchup Prediction Engine</h2>
+            <p class="subtitle">10,000 Monte Carlo Simulations & Performance Radar</p>
+        </div>
+
+        <div class="controls">
+            <div class="select-group">
+                <label style="color: var(--cyan-team)">Team 1 (Cyan)</label>
+                <select id="team1-select"></select>
+            </div>
+            <div class="select-group">
+                <label style="color: var(--red-team)">Team 2 (Red)</label>
+                <select id="team2-select"></select>
+            </div>
+        </div>
+
+        <!-- Monte Carlo Win Probability Box -->
+        <div class="prediction-card">
+            <div class="card-header">
+                <span>Monte Carlo Projection (10,000 Sims)</span>
+                <span id="proj-total-badge">Proj. Total: --</span>
+            </div>
+
+            <div class="prob-row">
+                <div class="team-prob-box">
+                    <span class="prob-val" id="t1-prob" style="color: var(--cyan-team)">--%</span>
+                    <span class="prob-name" id="t1-card-name">Team 1</span>
+                    <span class="fair-line" id="t1-line">Fair Line: --</span>
+                </div>
+                <div class="team-prob-box right">
+                    <span class="prob-val" id="t2-prob" style="color: var(--red-team)">--%</span>
+                    <span class="prob-name" id="t2-card-name">Team 2</span>
+                    <span class="fair-line" id="t2-line">Fair Line: --</span>
+                </div>
+            </div>
+
+            <div class="prob-bar-container">
+                <div class="prob-bar-fill" id="prob-bar" style="width: 50%;"></div>
+            </div>
+
+            <div class="total-banner">
+                Projected Score: <span id="t1-proj-runs">0</span> - <span id="t2-proj-runs">0</span>
+            </div>
+        </div>
+
+        <!-- Spider Comparison Chart -->
+        <div class="chart-container">
+            <canvas id="spiderChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let rawJson = null;
+        let teams = {};
+        let matchups = {};
+        let leagueMax = {};
+        let spiderChart = null;
+
+        const statsToChart = ['R', 'H', '2B', '3B', 'HR', 'RBI', 'BB', 'SB', 'AVG', 'OBP', 'SLG', 'OPS'];
+        let currentTeam1Raw = [];
+        let currentTeam2Raw = [];
+
+        const team1Select = document.getElementById('team1-select');
+        const team2Select = document.getElementById('team2-select');
+
+        // Convert probability (0-100) to American Moneyline
+        function probToMoneyline(prob) {
+            const p = prob / 100;
+            if (p >= 0.5) {
+                const ml = Math.round((-100 * p) / (1 - p));
+                return ml.toString();
+            } else {
+                const ml = Math.round((100 * (1 - p)) / p);
+                return `+${ml}`;
+            }
+        }
+
+        // 1. Fetch JSON Data
+        fetch('./data.json')
+            .then(res => res.json())
+            .then(data => {
+                rawJson = data;
+                teams = data.teams;
+                matchups = data.matchups;
+                calculateLeagueMaximums();
+                populateDropdowns();
+                initChart();
+                updateDashboard();
+            })
+            .catch(err => console.error("Error loading JSON:", err));
+
+        function calculateLeagueMaximums() {
+            statsToChart.forEach(stat => {
+                let max = 0;
+                for (let t in teams) {
+                    if (teams[t][stat] > max) max = teams[t][stat];
+                }
+                leagueMax[stat] = max || 1;
+            });
+        }
+
+        function populateDropdowns() {
+            const teamKeys = Object.keys(teams).sort((a,b) => teams[a].name.localeCompare(teams[b].name));
+            team1Select.innerHTML = '';
+            team2Select.innerHTML = '';
+
+            teamKeys.forEach(abbr => {
+                const opt1 = document.createElement('option');
+                opt1.value = abbr;
+                opt1.textContent = teams[abbr].name;
+                team1Select.appendChild(opt1);
+
+                const opt2 = document.createElement('option');
+                opt2.value = abbr;
+                opt2.textContent = teams[abbr].name;
+                team2Select.appendChild(opt2);
+            });
+
+            // Set default selections
+            if (teamKeys.includes("CIN") && teamKeys.includes("CHC")) {
+                team1Select.value = "CIN";
+                team2Select.value = "CHC";
+            } else if (teamKeys.length > 1) {
+                team1Select.selectedIndex = 0;
+                team2Select.selectedIndex = 1;
+            }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('spiderChart').getContext('2d');
+            spiderChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: statsToChart,
+                    datasets: [
+                        {
+                            label: 'Team 1',
+                            data: [],
+                            backgroundColor: 'rgba(0, 180, 216, 0.35)',
+                            borderColor: '#00B4D8',
+                            pointBackgroundColor: '#00B4D8',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Team 2',
+                            data: [],
+                            backgroundColor: 'rgba(255, 77, 77, 0.35)',
+                            borderColor: '#FF4D4D',
+                            pointBackgroundColor: '#FF4D4D',
+                            pointBorderColor: '#fff',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                display: true,
+                                color: '#64748b',
+                                backdropColor: 'transparent',
+                                callback: val => val + '%'
+                            },
+                            grid: { color: '#1E293B' },
+                            angleLines: { color: '#1E293B' },
+                            pointLabels: {
+                                color: '#E2E8F0',
+                                font: { size: 12, weight: 'bold' }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const raw = context.datasetIndex === 0 ? currentTeam1Raw[context.dataIndex] : currentTeam2Raw[context.dataIndex];
+                                    return `${context.dataset.label}: ${raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateDashboard() {
+            const t1Abbr = team1Select.value;
+            const t2Abbr = team2Select.value;
+
+            if (!teams[t1Abbr] || !teams[t2Abbr]) return;
+
+            const t1 = teams[t1Abbr];
+            const t2 = teams[t2Abbr];
+
+            // 1. Update Simulation Card
+            let sim = { t1_win_prob: 50.0, t2_win_prob: 50.0, t1_proj_runs: 0, t2_proj_runs: 0, total_proj_runs: 0 };
+            if (t1Abbr !== t2Abbr && matchups[t1Abbr] && matchups[t1Abbr][t2Abbr]) {
+                sim = matchups[t1Abbr][t2Abbr];
+            }
+
+            document.getElementById('t1-card-name').textContent = t1.name;
+            document.getElementById('t2-card-name').textContent = t2.name;
+            document.getElementById('t1-prob').textContent = `${sim.t1_win_prob}%`;
+            document.getElementById('t2-prob').textContent = `${sim.t2_win_prob}%`;
+            document.getElementById('t1-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
+            document.getElementById('t2-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
+            document.getElementById('prob-bar').style.width = `${sim.t1_win_prob}%`;
+            document.getElementById('proj-total-badge').textContent = `Proj. Total: ${sim.total_proj_runs}`;
+            document.getElementById('t1-proj-runs').textContent = `${t1.abbr} ${sim.t1_proj_runs}`;
+            document.getElementById('t2-proj-runs').textContent = `${t2.abbr} ${sim.t2_proj_runs}`;
+
+            // 2. Update Spider Chart
+            currentTeam1Raw = statsToChart.map(s => t1[s]);
+            currentTeam2Raw = statsToChart.map(s => t2[s]);
+
+            const t1Norm = statsToChart.map(s => (t1[s] / leagueMax[s]) * 100);
+            const t2Norm = statsToChart.map(s => (t2[s] / leagueMax[s]) * 100);
+
+            spiderChart.data.datasets[0].label = t1.name;
+            spiderChart.data.datasets[0].data = t1Norm;
+            spiderChart.data.datasets[1].label = t2.name;
+            spiderChart.data.datasets[1].data = t2Norm;
+            spiderChart.update();
+        }
+
+        team1Select.addEventListener('change', updateDashboard);
+        team2Select.addEventListener('change', updateDashboard);
+    </script>
+</body>
+</html>
