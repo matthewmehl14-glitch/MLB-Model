@@ -115,6 +115,25 @@
             "OPS": 0.729,
             "RS_per_game": 4.511278195488722
         },
+        "CHC": {
+            "name": "Chicago Cubs",
+            "abbr": "CHC",
+            "G": 135,
+            "R": 703,
+            "H": 1157,
+            "2B": 229,
+            "3B": 21,
+            "HR": 179,
+            "RBI": 664,
+            "BB": 570,
+            "SO": 1155,
+            "SB": 101,
+            "AVG": 0.249,
+            "OBP": 0.338,
+            "SLG": 0.423,
+            "OPS": 0.761,
+            "RS_per_game": 5.207407407407407
+        },
         "MIA": {
             "name": "Miami Marlins",
             "abbr": "MIA",
@@ -133,25 +152,6 @@
             "SLG": 0.399,
             "OPS": 0.725,
             "RS_per_game": 4.343283582089552
-        },
-        "CHC": {
-            "name": "Chicago Cubs",
-            "abbr": "CHC",
-            "G": 134,
-            "R": 695,
-            "H": 1144,
-            "2B": 225,
-            "3B": 21,
-            "HR": 177,
-            "RBI": 656,
-            "BB": 568,
-            "SO": 1148,
-            "SB": 100,
-            "AVG": 0.249,
-            "OBP": 0.338,
-            "SLG": 0.422,
-            "OPS": 0.76,
-            "RS_per_game": 5.186567164179104
         },
         "WSN": {
             "name": "Washington Nationals",
@@ -555,21 +555,21 @@
         "CIN": {
             "name": "Cincinnati Reds",
             "abbr": "CIN",
-            "G": 134,
-            "R": 548,
-            "H": 1010,
+            "G": 135,
+            "R": 558,
+            "H": 1023,
             "2B": 190,
             "3B": 12,
-            "HR": 173,
-            "RBI": 524,
-            "BB": 479,
-            "SO": 1272,
+            "HR": 177,
+            "RBI": 534,
+            "BB": 483,
+            "SO": 1282,
             "SB": 92,
-            "AVG": 0.227,
-            "OBP": 0.306,
-            "SLG": 0.392,
-            "OPS": 0.698,
-            "RS_per_game": 4.08955223880597
+            "AVG": 0.228,
+            "OBP": 0.307,
+            "SLG": 0.394,
+            "OPS": 0.701,
+            "RS_per_game": 4.133333333333334
         }
     },
     "todays_games": [
@@ -578,21 +578,21 @@
             "home_team": "CHC",
             "away_pitcher": {
                 "name": "Rhett Lowder",
-                "era": 5.13,
+                "era": 5.14,
                 "ra9": 5.3,
-                "k9": 6.98
+                "k9": 7.07
             },
             "home_pitcher": {
                 "name": "David Peterson",
-                "era": 5.17,
-                "ra9": 5.7,
-                "k9": 7.83
+                "era": 5.11,
+                "ra9": 5.62,
+                "k9": 7.95
             },
             "simulation": {
-                "t1_win_prob": 38.9,
-                "t2_win_prob": 61.1,
-                "t1_proj_runs": 5.25,
-                "t2_proj_runs": 6.13,
+                "t1_win_prob": 37.1,
+                "t2_win_prob": 62.9,
+                "t1_proj_runs": 5.21,
+                "t2_proj_runs": 6.17,
                 "total_proj_runs": 11.4
             }
         },
@@ -612,10 +612,10 @@
                 "k9": 10.07
             },
             "simulation": {
-                "t1_win_prob": 75.3,
-                "t2_win_prob": 24.7,
-                "t1_proj_runs": 4.9,
-                "t2_proj_runs": 3.2,
+                "t1_win_prob": 75.2,
+                "t2_win_prob": 24.8,
+                "t1_proj_runs": 4.87,
+                "t2_proj_runs": 3.21,
                 "total_proj_runs": 8.1
             }
         },
@@ -635,10 +635,10 @@
                 "k9": 10.22
             },
             "simulation": {
-                "t1_win_prob": 87.7,
-                "t2_win_prob": 12.3,
-                "t1_proj_runs": 7.82,
-                "t2_proj_runs": 4.17,
+                "t1_win_prob": 88.1,
+                "t2_win_prob": 11.9,
+                "t1_proj_runs": 7.8,
+                "t2_proj_runs": 4.15,
                 "total_proj_runs": 12.0
             }
         },
@@ -658,11 +658,11 @@
                 "k9": 7.08
             },
             "simulation": {
-                "t1_win_prob": 60.6,
-                "t2_win_prob": 39.4,
-                "t1_proj_runs": 4.02,
-                "t2_proj_runs": 3.38,
-                "total_proj_runs": 7.4
+                "t1_win_prob": 60.8,
+                "t2_win_prob": 39.2,
+                "t1_proj_runs": 4.0,
+                "t2_proj_runs": 3.34,
+                "total_proj_runs": 7.3
             }
         },
         {
@@ -681,11 +681,11 @@
                 "k9": 11.18
             },
             "simulation": {
-                "t1_win_prob": 57.9,
-                "t2_win_prob": 42.1,
-                "t1_proj_runs": 3.91,
-                "t2_proj_runs": 3.43,
-                "total_proj_runs": 7.3
+                "t1_win_prob": 58.3,
+                "t2_win_prob": 41.7,
+                "t1_proj_runs": 3.92,
+                "t2_proj_runs": 3.44,
+                "total_proj_runs": 7.4
             }
         },
         {
@@ -704,21 +704,21 @@
                 "k9": 8.3
             },
             "simulation": {
-                "t1_win_prob": 48.9,
-                "t2_win_prob": 51.1,
-                "t1_proj_runs": 3.5,
-                "t2_proj_runs": 3.55,
-                "total_proj_runs": 7.0
+                "t1_win_prob": 50.4,
+                "t2_win_prob": 49.6,
+                "t1_proj_runs": 3.54,
+                "t2_proj_runs": 3.53,
+                "total_proj_runs": 7.1
             }
         },
         {
             "away_team": "SEA",
             "home_team": "TOR",
             "away_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Emerson Hancock",
+                "era": 3.37,
+                "ra9": 3.43,
+                "k9": 8.42
             },
             "home_pitcher": {
                 "name": "Dylan Cease",
@@ -727,11 +727,11 @@
                 "k9": 13.03
             },
             "simulation": {
-                "t1_win_prob": 22.7,
-                "t2_win_prob": 77.3,
-                "t1_proj_runs": 2.36,
-                "t2_proj_runs": 3.95,
-                "total_proj_runs": 6.3
+                "t1_win_prob": 37.1,
+                "t2_win_prob": 62.9,
+                "t1_proj_runs": 2.35,
+                "t2_proj_runs": 2.98,
+                "total_proj_runs": 5.3
             }
         },
         {
@@ -750,10 +750,10 @@
                 "k9": 7.28
             },
             "simulation": {
-                "t1_win_prob": 30.6,
-                "t2_win_prob": 69.4,
-                "t1_proj_runs": 4.03,
-                "t2_proj_runs": 5.38,
+                "t1_win_prob": 30.1,
+                "t2_win_prob": 69.9,
+                "t1_proj_runs": 4.05,
+                "t2_proj_runs": 5.4,
                 "total_proj_runs": 9.4
             }
         },
@@ -776,8 +776,8 @@
                 "t1_win_prob": 13.6,
                 "t2_win_prob": 86.4,
                 "t1_proj_runs": 2.58,
-                "t2_proj_runs": 5.21,
-                "total_proj_runs": 7.8
+                "t2_proj_runs": 5.28,
+                "total_proj_runs": 7.9
             }
         },
         {
@@ -796,11 +796,11 @@
                 "k9": 10.25
             },
             "simulation": {
-                "t1_win_prob": 29.9,
-                "t2_win_prob": 70.1,
-                "t1_proj_runs": 2.33,
-                "t2_proj_runs": 3.41,
-                "total_proj_runs": 5.7
+                "t1_win_prob": 29.1,
+                "t2_win_prob": 70.9,
+                "t1_proj_runs": 2.35,
+                "t2_proj_runs": 3.43,
+                "total_proj_runs": 5.8
             }
         },
         {
@@ -819,11 +819,11 @@
                 "k9": 8.9
             },
             "simulation": {
-                "t1_win_prob": 48.8,
-                "t2_win_prob": 51.2,
+                "t1_win_prob": 48.1,
+                "t2_win_prob": 51.9,
                 "t1_proj_runs": 5.96,
-                "t2_proj_runs": 6.08,
-                "total_proj_runs": 12.0
+                "t2_proj_runs": 6.14,
+                "total_proj_runs": 12.1
             }
         },
         {
@@ -842,10 +842,10 @@
                 "k9": 8.36
             },
             "simulation": {
-                "t1_win_prob": 75.4,
-                "t2_win_prob": 24.6,
-                "t1_proj_runs": 7.02,
-                "t2_proj_runs": 4.9,
+                "t1_win_prob": 75.0,
+                "t2_win_prob": 25.0,
+                "t1_proj_runs": 7.0,
+                "t2_proj_runs": 4.87,
                 "total_proj_runs": 11.9
             }
         },
@@ -865,11 +865,11 @@
                 "k9": 10.39
             },
             "simulation": {
-                "t1_win_prob": 26.4,
-                "t2_win_prob": 73.6,
-                "t1_proj_runs": 3.82,
-                "t2_proj_runs": 5.51,
-                "total_proj_runs": 9.3
+                "t1_win_prob": 27.9,
+                "t2_win_prob": 72.1,
+                "t1_proj_runs": 3.9,
+                "t2_proj_runs": 5.52,
+                "total_proj_runs": 9.4
             }
         },
         {
@@ -882,17 +882,17 @@
                 "k9": 7.22
             },
             "home_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Jacob Lopez",
+                "era": 4.98,
+                "ra9": 5.17,
+                "k9": 8.62
             },
             "simulation": {
-                "t1_win_prob": 57.7,
-                "t2_win_prob": 42.3,
-                "t1_proj_runs": 4.58,
-                "t2_proj_runs": 4.08,
-                "total_proj_runs": 8.7
+                "t1_win_prob": 66.9,
+                "t2_win_prob": 33.1,
+                "t1_proj_runs": 5.27,
+                "t2_proj_runs": 4.05,
+                "total_proj_runs": 9.3
             }
         },
         {
@@ -911,11 +911,11 @@
                 "k9": 7.44
             },
             "simulation": {
-                "t1_win_prob": 30.2,
-                "t2_win_prob": 69.8,
-                "t1_proj_runs": 3.6,
-                "t2_proj_runs": 4.93,
-                "total_proj_runs": 8.5
+                "t1_win_prob": 29.7,
+                "t2_win_prob": 70.3,
+                "t1_proj_runs": 3.61,
+                "t2_proj_runs": 4.95,
+                "total_proj_runs": 8.6
             }
         }
     ]
