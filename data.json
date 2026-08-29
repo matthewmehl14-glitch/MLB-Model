@@ -589,10 +589,10 @@
                 "k9": 9.61
             },
             "simulation": {
-                "t1_win_prob": 54.3,
-                "t2_win_prob": 45.7,
-                "t1_proj_runs": 3.83,
-                "t2_proj_runs": 3.59,
+                "t1_win_prob": 54.2,
+                "t2_win_prob": 45.8,
+                "t1_proj_runs": 3.82,
+                "t2_proj_runs": 3.58,
                 "total_proj_runs": 7.4
             }
         },
@@ -612,10 +612,10 @@
                 "k9": 8.24
             },
             "simulation": {
-                "t1_win_prob": 23.6,
-                "t2_win_prob": 76.4,
-                "t1_proj_runs": 2.81,
-                "t2_proj_runs": 4.49,
+                "t1_win_prob": 24.0,
+                "t2_win_prob": 76.0,
+                "t1_proj_runs": 2.83,
+                "t2_proj_runs": 4.48,
                 "total_proj_runs": 7.3
             }
         },
@@ -635,10 +635,10 @@
                 "k9": 5.99
             },
             "simulation": {
-                "t1_win_prob": 67.0,
-                "t2_win_prob": 33.0,
-                "t1_proj_runs": 3.91,
-                "t2_proj_runs": 2.94,
+                "t1_win_prob": 67.2,
+                "t2_win_prob": 32.8,
+                "t1_proj_runs": 3.94,
+                "t2_proj_runs": 2.95,
                 "total_proj_runs": 6.9
             }
         },
@@ -658,10 +658,10 @@
                 "k9": 6.15
             },
             "simulation": {
-                "t1_win_prob": 52.7,
-                "t2_win_prob": 47.3,
-                "t1_proj_runs": 5.13,
-                "t2_proj_runs": 4.94,
+                "t1_win_prob": 52.6,
+                "t2_win_prob": 47.4,
+                "t1_proj_runs": 5.15,
+                "t2_proj_runs": 4.95,
                 "total_proj_runs": 10.1
             }
         },
@@ -681,10 +681,10 @@
                 "k9": 8.19
             },
             "simulation": {
-                "t1_win_prob": 40.4,
-                "t2_win_prob": 59.6,
-                "t1_proj_runs": 3.38,
-                "t2_proj_runs": 3.92,
+                "t1_win_prob": 40.3,
+                "t2_win_prob": 59.7,
+                "t1_proj_runs": 3.37,
+                "t2_proj_runs": 3.91,
                 "total_proj_runs": 7.3
             }
         },
@@ -704,11 +704,11 @@
                 "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 38.7,
-                "t2_win_prob": 61.3,
-                "t1_proj_runs": 4.35,
-                "t2_proj_runs": 5.13,
-                "total_proj_runs": 9.5
+                "t1_win_prob": 39.2,
+                "t2_win_prob": 60.8,
+                "t1_proj_runs": 4.42,
+                "t2_proj_runs": 5.15,
+                "total_proj_runs": 9.6
             }
         },
         {
@@ -727,11 +727,11 @@
                 "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 35.1,
-                "t2_win_prob": 64.9,
-                "t1_proj_runs": 3.3,
-                "t2_proj_runs": 4.25,
-                "total_proj_runs": 7.6
+                "t1_win_prob": 34.3,
+                "t2_win_prob": 65.7,
+                "t1_proj_runs": 3.28,
+                "t2_proj_runs": 4.22,
+                "total_proj_runs": 7.5
             }
         },
         {
@@ -752,9 +752,9 @@
             "simulation": {
                 "t1_win_prob": 42.3,
                 "t2_win_prob": 57.7,
-                "t1_proj_runs": 4.54,
+                "t1_proj_runs": 4.57,
                 "t2_proj_runs": 5.09,
-                "total_proj_runs": 9.6
+                "total_proj_runs": 9.7
             }
         },
         {
@@ -773,11 +773,11 @@
                 "k9": 8.0
             },
             "simulation": {
-                "t1_win_prob": 56.7,
-                "t2_win_prob": 43.3,
-                "t1_proj_runs": 4.57,
-                "t2_proj_runs": 4.15,
-                "total_proj_runs": 8.7
+                "t1_win_prob": 56.5,
+                "t2_win_prob": 43.5,
+                "t1_proj_runs": 4.6,
+                "t2_proj_runs": 4.17,
+                "total_proj_runs": 8.8
             }
         },
         {
@@ -796,10 +796,10 @@
                 "k9": 10.23
             },
             "simulation": {
-                "t1_win_prob": 41.6,
-                "t2_win_prob": 58.4,
-                "t1_proj_runs": 3.73,
-                "t2_proj_runs": 4.27,
+                "t1_win_prob": 42.0,
+                "t2_win_prob": 58.0,
+                "t1_proj_runs": 3.74,
+                "t2_proj_runs": 4.23,
                 "total_proj_runs": 8.0
             }
         },
@@ -819,10 +819,10 @@
                 "k9": 8.14
             },
             "simulation": {
-                "t1_win_prob": 54.9,
-                "t2_win_prob": 45.1,
-                "t1_proj_runs": 3.48,
-                "t2_proj_runs": 3.22,
+                "t1_win_prob": 54.7,
+                "t2_win_prob": 45.3,
+                "t1_proj_runs": 3.46,
+                "t2_proj_runs": 3.19,
                 "total_proj_runs": 6.7
             }
         },
@@ -842,10 +842,10 @@
                 "k9": 10.17
             },
             "simulation": {
-                "t1_win_prob": 17.1,
-                "t2_win_prob": 82.9,
-                "t1_proj_runs": 3.93,
-                "t2_proj_runs": 6.65,
+                "t1_win_prob": 17.9,
+                "t2_win_prob": 82.1,
+                "t1_proj_runs": 3.97,
+                "t2_proj_runs": 6.62,
                 "total_proj_runs": 10.6
             }
         },
@@ -865,10 +865,10 @@
                 "k9": 5.3
             },
             "simulation": {
-                "t1_win_prob": 21.1,
-                "t2_win_prob": 78.9,
-                "t1_proj_runs": 2.78,
-                "t2_proj_runs": 4.71,
+                "t1_win_prob": 20.1,
+                "t2_win_prob": 79.9,
+                "t1_proj_runs": 2.77,
+                "t2_proj_runs": 4.76,
                 "total_proj_runs": 7.5
             }
         },
@@ -888,11 +888,11 @@
                 "k9": 6.63
             },
             "simulation": {
-                "t1_win_prob": 13.1,
-                "t2_win_prob": 86.9,
-                "t1_proj_runs": 3.65,
-                "t2_proj_runs": 6.85,
-                "total_proj_runs": 10.5
+                "t1_win_prob": 13.2,
+                "t2_win_prob": 86.8,
+                "t1_proj_runs": 3.59,
+                "t2_proj_runs": 6.83,
+                "total_proj_runs": 10.4
             }
         },
         {
@@ -911,10 +911,10 @@
                 "k9": 8.89
             },
             "simulation": {
-                "t1_win_prob": 47.9,
-                "t2_win_prob": 52.1,
-                "t1_proj_runs": 3.83,
-                "t2_proj_runs": 3.96,
+                "t1_win_prob": 48.6,
+                "t2_win_prob": 51.4,
+                "t1_proj_runs": 3.85,
+                "t2_proj_runs": 3.93,
                 "total_proj_runs": 7.8
             }
         },
@@ -936,9 +936,9 @@
             "simulation": {
                 "t1_win_prob": 81.7,
                 "t2_win_prob": 18.3,
-                "t1_proj_runs": 7.33,
-                "t2_proj_runs": 4.52,
-                "total_proj_runs": 11.9
+                "t1_proj_runs": 7.3,
+                "t2_proj_runs": 4.49,
+                "total_proj_runs": 11.8
             }
         },
         {
@@ -957,10 +957,10 @@
                 "k9": 6.68
             },
             "simulation": {
-                "t1_win_prob": 92.3,
-                "t2_win_prob": 7.7,
+                "t1_win_prob": 92.1,
+                "t2_win_prob": 7.9,
                 "t1_proj_runs": 6.49,
-                "t2_proj_runs": 2.68,
+                "t2_proj_runs": 2.7,
                 "total_proj_runs": 9.2
             }
         }
