@@ -1,119 +1,119 @@
 {
-    "date": "2026-08-28",
+    "date": "2026-08-29",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
             "abbr": "TBR",
-            "G": 133,
-            "R": 595,
-            "H": 1159,
-            "2B": 188,
+            "G": 134,
+            "R": 604,
+            "H": 1170,
+            "2B": 189,
             "3B": 20,
-            "HR": 136,
-            "RBI": 566,
-            "BB": 429,
-            "SO": 930,
-            "SB": 128,
+            "HR": 138,
+            "RBI": 574,
+            "BB": 431,
+            "SO": 936,
+            "SB": 131,
             "AVG": 0.26,
             "OBP": 0.329,
-            "SLG": 0.402,
-            "OPS": 0.731,
-            "RS_per_game": 4.473684210526316
+            "SLG": 0.403,
+            "OPS": 0.732,
+            "RS_per_game": 4.507462686567164
         },
         "LAD": {
             "name": "Los Angeles Dodgers",
             "abbr": "LAD",
-            "G": 134,
-            "R": 661,
-            "H": 1165,
+            "G": 135,
+            "R": 663,
+            "H": 1174,
             "2B": 217,
             "3B": 15,
             "HR": 168,
-            "RBI": 625,
-            "BB": 495,
-            "SO": 1054,
-            "SB": 54,
+            "RBI": 627,
+            "BB": 504,
+            "SO": 1063,
+            "SB": 55,
             "AVG": 0.258,
-            "OBP": 0.335,
-            "SLG": 0.424,
+            "OBP": 0.336,
+            "SLG": 0.423,
             "OPS": 0.759,
-            "RS_per_game": 4.932835820895522
+            "RS_per_game": 4.911111111111111
         },
         "MIL": {
             "name": "Milwaukee Brewers",
             "abbr": "MIL",
-            "G": 134,
-            "R": 668,
-            "H": 1157,
-            "2B": 234,
+            "G": 135,
+            "R": 674,
+            "H": 1171,
+            "2B": 236,
             "3B": 22,
             "HR": 123,
-            "RBI": 629,
-            "BB": 553,
-            "SO": 1117,
-            "SB": 133,
-            "AVG": 0.255,
-            "OBP": 0.338,
-            "SLG": 0.397,
-            "OPS": 0.735,
-            "RS_per_game": 4.985074626865671
+            "RBI": 635,
+            "BB": 557,
+            "SO": 1119,
+            "SB": 134,
+            "AVG": 0.256,
+            "OBP": 0.339,
+            "SLG": 0.398,
+            "OPS": 0.737,
+            "RS_per_game": 4.992592592592593
         },
         "COL": {
             "name": "Colorado Rockies",
             "abbr": "COL",
-            "G": 134,
-            "R": 637,
-            "H": 1147,
-            "2B": 243,
+            "G": 135,
+            "R": 641,
+            "H": 1159,
+            "2B": 244,
             "3B": 26,
             "HR": 151,
-            "RBI": 612,
-            "BB": 433,
-            "SO": 1163,
+            "RBI": 616,
+            "BB": 436,
+            "SO": 1168,
             "SB": 94,
-            "AVG": 0.252,
-            "OBP": 0.323,
-            "SLG": 0.417,
+            "AVG": 0.253,
+            "OBP": 0.324,
+            "SLG": 0.416,
             "OPS": 0.74,
-            "RS_per_game": 4.753731343283582
+            "RS_per_game": 4.7481481481481485
         },
         "PIT": {
             "name": "Pittsburgh Pirates",
             "abbr": "PIT",
-            "G": 135,
-            "R": 657,
-            "H": 1172,
+            "G": 136,
+            "R": 658,
+            "H": 1178,
             "2B": 204,
             "3B": 14,
             "HR": 158,
-            "RBI": 627,
-            "BB": 479,
-            "SO": 1278,
+            "RBI": 628,
+            "BB": 481,
+            "SO": 1289,
             "SB": 111,
             "AVG": 0.252,
             "OBP": 0.329,
-            "SLG": 0.404,
-            "OPS": 0.733,
-            "RS_per_game": 4.866666666666666
+            "SLG": 0.403,
+            "OPS": 0.732,
+            "RS_per_game": 4.838235294117647
         },
         "BOS": {
             "name": "Boston Red Sox",
             "abbr": "BOS",
-            "G": 133,
+            "G": 134,
             "R": 600,
-            "H": 1115,
-            "2B": 241,
+            "H": 1120,
+            "2B": 243,
             "3B": 22,
             "HR": 136,
             "RBI": 573,
-            "BB": 428,
-            "SO": 1071,
+            "BB": 434,
+            "SO": 1080,
             "SB": 97,
-            "AVG": 0.25,
+            "AVG": 0.249,
             "OBP": 0.324,
-            "SLG": 0.405,
-            "OPS": 0.729,
-            "RS_per_game": 4.511278195488722
+            "SLG": 0.404,
+            "OPS": 0.728,
+            "RS_per_game": 4.477611940298507
         },
         "CHC": {
             "name": "Chicago Cubs",
@@ -137,420 +137,420 @@
         "MIA": {
             "name": "Miami Marlins",
             "abbr": "MIA",
-            "G": 134,
-            "R": 582,
-            "H": 1109,
-            "2B": 210,
+            "G": 135,
+            "R": 584,
+            "H": 1114,
+            "2B": 211,
             "3B": 28,
-            "HR": 134,
-            "RBI": 556,
-            "BB": 459,
-            "SO": 1094,
-            "SB": 140,
+            "HR": 135,
+            "RBI": 558,
+            "BB": 464,
+            "SO": 1098,
+            "SB": 141,
             "AVG": 0.249,
             "OBP": 0.326,
             "SLG": 0.399,
             "OPS": 0.725,
-            "RS_per_game": 4.343283582089552
+            "RS_per_game": 4.325925925925926
+        },
+        "ATL": {
+            "name": "Atlanta Braves",
+            "abbr": "ATL",
+            "G": 135,
+            "R": 631,
+            "H": 1133,
+            "2B": 217,
+            "3B": 9,
+            "HR": 172,
+            "RBI": 605,
+            "BB": 391,
+            "SO": 1094,
+            "SB": 72,
+            "AVG": 0.248,
+            "OBP": 0.312,
+            "SLG": 0.413,
+            "OPS": 0.725,
+            "RS_per_game": 4.674074074074074
         },
         "WSN": {
             "name": "Washington Nationals",
             "abbr": "WSN",
-            "G": 136,
-            "R": 704,
-            "H": 1155,
-            "2B": 232,
-            "3B": 27,
-            "HR": 188,
-            "RBI": 671,
-            "BB": 473,
-            "SO": 1130,
+            "G": 137,
+            "R": 713,
+            "H": 1162,
+            "2B": 234,
+            "3B": 28,
+            "HR": 190,
+            "RBI": 678,
+            "BB": 478,
+            "SO": 1138,
             "SB": 146,
             "AVG": 0.248,
             "OBP": 0.325,
-            "SLG": 0.431,
-            "OPS": 0.756,
-            "RS_per_game": 5.176470588235294
+            "SLG": 0.432,
+            "OPS": 0.757,
+            "RS_per_game": 5.204379562043796
         },
         "SFG": {
             "name": "San Francisco Giants",
             "abbr": "SFG",
-            "G": 134,
-            "R": 546,
-            "H": 1127,
-            "2B": 223,
+            "G": 135,
+            "R": 551,
+            "H": 1131,
+            "2B": 224,
             "3B": 25,
-            "HR": 150,
-            "RBI": 525,
-            "BB": 354,
-            "SO": 1067,
-            "SB": 60,
+            "HR": 152,
+            "RBI": 530,
+            "BB": 357,
+            "SO": 1072,
+            "SB": 61,
             "AVG": 0.248,
             "OBP": 0.307,
-            "SLG": 0.407,
-            "OPS": 0.714,
-            "RS_per_game": 4.074626865671642
+            "SLG": 0.408,
+            "OPS": 0.715,
+            "RS_per_game": 4.0814814814814815
         },
         "KCR": {
             "name": "Kansas City Royals",
             "abbr": "KCR",
-            "G": 135,
-            "R": 578,
-            "H": 1120,
-            "2B": 240,
+            "G": 136,
+            "R": 581,
+            "H": 1129,
+            "2B": 243,
             "3B": 18,
-            "HR": 139,
-            "RBI": 550,
-            "BB": 427,
-            "SO": 1061,
+            "HR": 140,
+            "RBI": 553,
+            "BB": 429,
+            "SO": 1070,
             "SB": 109,
             "AVG": 0.248,
             "OBP": 0.316,
             "SLG": 0.401,
             "OPS": 0.717,
-            "RS_per_game": 4.281481481481482
-        },
-        "ATL": {
-            "name": "Atlanta Braves",
-            "abbr": "ATL",
-            "G": 134,
-            "R": 625,
-            "H": 1119,
-            "2B": 214,
-            "3B": 9,
-            "HR": 171,
-            "RBI": 599,
-            "BB": 390,
-            "SO": 1088,
-            "SB": 72,
-            "AVG": 0.247,
-            "OBP": 0.311,
-            "SLG": 0.412,
-            "OPS": 0.723,
-            "RS_per_game": 4.664179104477612
-        },
-        "OAK": {
-            "name": "Athletics",
-            "abbr": "OAK",
-            "G": 134,
-            "R": 585,
-            "H": 1115,
-            "2B": 210,
-            "3B": 13,
-            "HR": 158,
-            "RBI": 560,
-            "BB": 442,
-            "SO": 1148,
-            "SB": 68,
-            "AVG": 0.245,
-            "OBP": 0.319,
-            "SLG": 0.402,
-            "OPS": 0.721,
-            "RS_per_game": 4.365671641791045
-        },
-        "MIN": {
-            "name": "Minnesota Twins",
-            "abbr": "MIN",
-            "G": 134,
-            "R": 615,
-            "H": 1108,
-            "2B": 219,
-            "3B": 19,
-            "HR": 155,
-            "RBI": 587,
-            "BB": 431,
-            "SO": 1072,
-            "SB": 76,
-            "AVG": 0.245,
-            "OBP": 0.319,
-            "SLG": 0.405,
-            "OPS": 0.724,
-            "RS_per_game": 4.58955223880597
+            "RS_per_game": 4.272058823529412
         },
         "TOR": {
             "name": "Toronto Blue Jays",
             "abbr": "TOR",
-            "G": 135,
-            "R": 529,
-            "H": 1116,
-            "2B": 216,
+            "G": 136,
+            "R": 537,
+            "H": 1128,
+            "2B": 218,
             "3B": 8,
-            "HR": 126,
-            "RBI": 506,
-            "BB": 368,
-            "SO": 976,
-            "SB": 65,
+            "HR": 129,
+            "RBI": 514,
+            "BB": 370,
+            "SO": 979,
+            "SB": 66,
+            "AVG": 0.246,
+            "OBP": 0.307,
+            "SLG": 0.382,
+            "OPS": 0.689,
+            "RS_per_game": 3.948529411764706
+        },
+        "MIN": {
+            "name": "Minnesota Twins",
+            "abbr": "MIN",
+            "G": 135,
+            "R": 619,
+            "H": 1120,
+            "2B": 220,
+            "3B": 19,
+            "HR": 157,
+            "RBI": 591,
+            "BB": 433,
+            "SO": 1079,
+            "SB": 77,
+            "AVG": 0.246,
+            "OBP": 0.319,
+            "SLG": 0.406,
+            "OPS": 0.725,
+            "RS_per_game": 4.5851851851851855
+        },
+        "OAK": {
+            "name": "Athletics",
+            "abbr": "OAK",
+            "G": 135,
+            "R": 587,
+            "H": 1122,
+            "2B": 210,
+            "3B": 13,
+            "HR": 159,
+            "RBI": 562,
+            "BB": 443,
+            "SO": 1152,
+            "SB": 69,
             "AVG": 0.245,
-            "OBP": 0.306,
-            "SLG": 0.379,
-            "OPS": 0.685,
-            "RS_per_game": 3.9185185185185185
+            "OBP": 0.319,
+            "SLG": 0.401,
+            "OPS": 0.72,
+            "RS_per_game": 4.348148148148148
         },
         "ARI": {
             "name": "Arizona Diamondbacks",
             "abbr": "ARI",
-            "G": 135,
-            "R": 606,
-            "H": 1099,
-            "2B": 229,
+            "G": 136,
+            "R": 612,
+            "H": 1108,
+            "2B": 232,
             "3B": 35,
-            "HR": 132,
-            "RBI": 578,
-            "BB": 453,
-            "SO": 975,
+            "HR": 135,
+            "RBI": 584,
+            "BB": 454,
+            "SO": 979,
             "SB": 93,
-            "AVG": 0.243,
-            "OBP": 0.316,
-            "SLG": 0.397,
-            "OPS": 0.713,
-            "RS_per_game": 4.488888888888889
-        },
-        "TEX": {
-            "name": "Texas Rangers",
-            "abbr": "TEX",
-            "G": 134,
-            "R": 543,
-            "H": 1080,
-            "2B": 196,
-            "3B": 21,
-            "HR": 149,
-            "RBI": 523,
-            "BB": 439,
-            "SO": 1139,
-            "SB": 63,
-            "AVG": 0.243,
+            "AVG": 0.244,
             "OBP": 0.317,
-            "SLG": 0.396,
-            "OPS": 0.713,
-            "RS_per_game": 4.052238805970149
+            "SLG": 0.4,
+            "OPS": 0.717,
+            "RS_per_game": 4.5
         },
         "PHI": {
             "name": "Philadelphia Phillies",
             "abbr": "PHI",
-            "G": 134,
-            "R": 608,
-            "H": 1089,
+            "G": 135,
+            "R": 609,
+            "H": 1097,
             "2B": 195,
             "3B": 21,
             "HR": 161,
-            "RBI": 589,
-            "BB": 426,
-            "SO": 1124,
+            "RBI": 590,
+            "BB": 427,
+            "SO": 1129,
             "SB": 95,
-            "AVG": 0.242,
+            "AVG": 0.243,
             "OBP": 0.312,
-            "SLG": 0.403,
-            "OPS": 0.715,
-            "RS_per_game": 4.537313432835821
+            "SLG": 0.402,
+            "OPS": 0.714,
+            "RS_per_game": 4.511111111111111
         },
         "HOU": {
             "name": "Houston Astros",
             "abbr": "HOU",
-            "G": 134,
-            "R": 613,
-            "H": 1093,
+            "G": 135,
+            "R": 616,
+            "H": 1097,
             "2B": 197,
             "3B": 15,
             "HR": 179,
-            "RBI": 583,
-            "BB": 445,
-            "SO": 1099,
-            "SB": 40,
+            "RBI": 586,
+            "BB": 451,
+            "SO": 1107,
+            "SB": 41,
             "AVG": 0.242,
             "OBP": 0.317,
-            "SLG": 0.412,
-            "OPS": 0.729,
-            "RS_per_game": 4.574626865671642
+            "SLG": 0.41,
+            "OPS": 0.727,
+            "RS_per_game": 4.562962962962963
+        },
+        "TEX": {
+            "name": "Texas Rangers",
+            "abbr": "TEX",
+            "G": 135,
+            "R": 544,
+            "H": 1082,
+            "2B": 196,
+            "3B": 21,
+            "HR": 150,
+            "RBI": 524,
+            "BB": 440,
+            "SO": 1151,
+            "SB": 63,
+            "AVG": 0.241,
+            "OBP": 0.316,
+            "SLG": 0.395,
+            "OPS": 0.711,
+            "RS_per_game": 4.029629629629629
         },
         "STL": {
             "name": "St. Louis Cardinals",
             "abbr": "STL",
-            "G": 135,
-            "R": 600,
-            "H": 1095,
-            "2B": 190,
+            "G": 136,
+            "R": 604,
+            "H": 1103,
+            "2B": 192,
             "3B": 14,
-            "HR": 141,
-            "RBI": 585,
-            "BB": 435,
-            "SO": 1060,
+            "HR": 142,
+            "RBI": 588,
+            "BB": 436,
+            "SO": 1068,
             "SB": 85,
             "AVG": 0.241,
-            "OBP": 0.317,
-            "SLG": 0.383,
-            "OPS": 0.7,
-            "RS_per_game": 4.444444444444445
-        },
-        "DET": {
-            "name": "Detroit Tigers",
-            "abbr": "DET",
-            "G": 133,
-            "R": 592,
-            "H": 1075,
-            "2B": 203,
-            "3B": 27,
-            "HR": 155,
-            "RBI": 564,
-            "BB": 466,
-            "SO": 1134,
-            "SB": 38,
-            "AVG": 0.24,
             "OBP": 0.316,
-            "SLG": 0.401,
-            "OPS": 0.717,
-            "RS_per_game": 4.451127819548872
+            "SLG": 0.383,
+            "OPS": 0.699,
+            "RS_per_game": 4.4411764705882355
         },
         "CHW": {
             "name": "Chicago White Sox",
             "abbr": "CHW",
-            "G": 133,
-            "R": 641,
-            "H": 1070,
-            "2B": 211,
+            "G": 134,
+            "R": 648,
+            "H": 1080,
+            "2B": 214,
             "3B": 13,
-            "HR": 178,
-            "RBI": 613,
-            "BB": 470,
-            "SO": 1214,
-            "SB": 73,
+            "HR": 179,
+            "RBI": 618,
+            "BB": 475,
+            "SO": 1221,
+            "SB": 74,
             "AVG": 0.239,
             "OBP": 0.32,
-            "SLG": 0.411,
-            "OPS": 0.731,
-            "RS_per_game": 4.819548872180451
+            "SLG": 0.412,
+            "OPS": 0.732,
+            "RS_per_game": 4.835820895522388
+        },
+        "DET": {
+            "name": "Detroit Tigers",
+            "abbr": "DET",
+            "G": 134,
+            "R": 593,
+            "H": 1080,
+            "2B": 205,
+            "3B": 28,
+            "HR": 155,
+            "RBI": 565,
+            "BB": 468,
+            "SO": 1146,
+            "SB": 38,
+            "AVG": 0.239,
+            "OBP": 0.315,
+            "SLG": 0.4,
+            "OPS": 0.715,
+            "RS_per_game": 4.425373134328358
         },
         "SDP": {
             "name": "San Diego Padres",
             "abbr": "SDP",
-            "G": 134,
-            "R": 569,
-            "H": 1047,
+            "G": 135,
+            "R": 573,
+            "H": 1051,
             "2B": 196,
             "3B": 12,
-            "HR": 148,
-            "RBI": 548,
-            "BB": 466,
-            "SO": 1084,
+            "HR": 149,
+            "RBI": 552,
+            "BB": 469,
+            "SO": 1089,
             "SB": 130,
-            "AVG": 0.238,
-            "OBP": 0.315,
-            "SLG": 0.388,
-            "OPS": 0.703,
-            "RS_per_game": 4.246268656716418
-        },
-        "BAL": {
-            "name": "Baltimore Orioles",
-            "abbr": "BAL",
-            "G": 134,
-            "R": 609,
-            "H": 1056,
-            "2B": 198,
-            "3B": 18,
-            "HR": 164,
-            "RBI": 589,
-            "BB": 499,
-            "SO": 1233,
-            "SB": 69,
             "AVG": 0.237,
-            "OBP": 0.318,
-            "SLG": 0.399,
-            "OPS": 0.717,
-            "RS_per_game": 4.544776119402985
+            "OBP": 0.315,
+            "SLG": 0.387,
+            "OPS": 0.702,
+            "RS_per_game": 4.2444444444444445
         },
         "CLE": {
             "name": "Cleveland Guardians",
             "abbr": "CLE",
-            "G": 134,
+            "G": 135,
             "R": 543,
-            "H": 1057,
+            "H": 1063,
             "2B": 202,
             "3B": 13,
             "HR": 124,
             "RBI": 520,
             "BB": 489,
-            "SO": 1086,
+            "SO": 1098,
             "SB": 129,
-            "AVG": 0.237,
+            "AVG": 0.236,
             "OBP": 0.315,
-            "SLG": 0.371,
-            "OPS": 0.686,
-            "RS_per_game": 4.052238805970149
+            "SLG": 0.369,
+            "OPS": 0.684,
+            "RS_per_game": 4.022222222222222
+        },
+        "BAL": {
+            "name": "Baltimore Orioles",
+            "abbr": "BAL",
+            "G": 135,
+            "R": 611,
+            "H": 1060,
+            "2B": 199,
+            "3B": 18,
+            "HR": 164,
+            "RBI": 590,
+            "BB": 503,
+            "SO": 1242,
+            "SB": 70,
+            "AVG": 0.236,
+            "OBP": 0.318,
+            "SLG": 0.398,
+            "OPS": 0.716,
+            "RS_per_game": 4.525925925925926
         },
         "NYM": {
             "name": "New York Mets",
             "abbr": "NYM",
-            "G": 134,
-            "R": 552,
-            "H": 1063,
-            "2B": 167,
+            "G": 135,
+            "R": 553,
+            "H": 1068,
+            "2B": 168,
             "3B": 17,
             "HR": 163,
-            "RBI": 528,
-            "BB": 428,
-            "SO": 1136,
+            "RBI": 529,
+            "BB": 429,
+            "SO": 1150,
             "SB": 71,
-            "AVG": 0.236,
-            "OBP": 0.306,
-            "SLG": 0.389,
-            "OPS": 0.695,
-            "RS_per_game": 4.119402985074627
+            "AVG": 0.235,
+            "OBP": 0.305,
+            "SLG": 0.388,
+            "OPS": 0.693,
+            "RS_per_game": 4.0962962962962965
         },
         "LAA": {
             "name": "Los Angeles Angels",
             "abbr": "LAA",
-            "G": 134,
-            "R": 548,
-            "H": 1054,
+            "G": 135,
+            "R": 551,
+            "H": 1057,
             "2B": 203,
             "3B": 12,
             "HR": 132,
-            "RBI": 528,
-            "BB": 418,
-            "SO": 1263,
+            "RBI": 529,
+            "BB": 422,
+            "SO": 1270,
             "SB": 74,
             "AVG": 0.235,
             "OBP": 0.31,
-            "SLG": 0.374,
-            "OPS": 0.684,
-            "RS_per_game": 4.08955223880597
+            "SLG": 0.373,
+            "OPS": 0.683,
+            "RS_per_game": 4.0814814814814815
         },
         "NYY": {
             "name": "New York Yankees",
             "abbr": "NYY",
-            "G": 133,
-            "R": 596,
-            "H": 1013,
-            "2B": 197,
+            "G": 134,
+            "R": 597,
+            "H": 1016,
+            "2B": 198,
             "3B": 17,
-            "HR": 183,
-            "RBI": 568,
-            "BB": 485,
-            "SO": 1226,
+            "HR": 184,
+            "RBI": 569,
+            "BB": 489,
+            "SO": 1237,
             "SB": 130,
-            "AVG": 0.231,
+            "AVG": 0.23,
             "OBP": 0.31,
-            "SLG": 0.408,
-            "OPS": 0.718,
-            "RS_per_game": 4.481203007518797
+            "SLG": 0.407,
+            "OPS": 0.717,
+            "RS_per_game": 4.455223880597015
         },
         "SEA": {
             "name": "Seattle Mariners",
             "abbr": "SEA",
-            "G": 134,
-            "R": 526,
-            "H": 1012,
-            "2B": 158,
+            "G": 135,
+            "R": 527,
+            "H": 1017,
+            "2B": 159,
             "3B": 13,
-            "HR": 155,
-            "RBI": 507,
-            "BB": 450,
-            "SO": 1159,
+            "HR": 156,
+            "RBI": 508,
+            "BB": 454,
+            "SO": 1168,
             "SB": 93,
             "AVG": 0.228,
             "OBP": 0.309,
-            "SLG": 0.375,
-            "OPS": 0.684,
-            "RS_per_game": 3.925373134328358
+            "SLG": 0.374,
+            "OPS": 0.683,
+            "RS_per_game": 3.903703703703704
         },
         "CIN": {
             "name": "Cincinnati Reds",
@@ -574,348 +574,394 @@
     },
     "todays_games": [
         {
-            "away_team": "CIN",
-            "home_team": "CHC",
+            "away_team": "BOS",
+            "home_team": "NYY",
             "away_pitcher": {
-                "name": "Rhett Lowder",
-                "era": 5.14,
-                "ra9": 5.3,
-                "k9": 7.07
-            },
-            "home_pitcher": {
-                "name": "David Peterson",
-                "era": 5.11,
-                "ra9": 5.62,
-                "k9": 7.95
-            },
-            "simulation": {
-                "t1_win_prob": 37.1,
-                "t2_win_prob": 62.9,
-                "t1_proj_runs": 5.21,
-                "t2_proj_runs": 6.17,
-                "total_proj_runs": 11.4
-            }
-        },
-        {
-            "away_team": "LAD",
-            "home_team": "DET",
-            "away_pitcher": {
-                "name": "Tarik Skubal",
-                "era": 2.91,
-                "ra9": 3.21,
-                "k9": 10.89
-            },
-            "home_pitcher": {
-                "name": "Drew Anderson",
-                "era": 4.09,
-                "ra9": 4.43,
-                "k9": 10.07
-            },
-            "simulation": {
-                "t1_win_prob": 75.2,
-                "t2_win_prob": 24.8,
-                "t1_proj_runs": 4.87,
-                "t2_proj_runs": 3.21,
-                "total_proj_runs": 8.1
-            }
-        },
-        {
-            "away_team": "MIA",
-            "home_team": "WSN",
-            "away_pitcher": {
-                "name": "Eury P\u00e9rez",
-                "era": 3.17,
-                "ra9": 3.6,
-                "k9": 9.66
-            },
-            "home_pitcher": {
-                "name": "Jackson Kent",
-                "era": 8.03,
-                "ra9": 8.03,
-                "k9": 10.22
-            },
-            "simulation": {
-                "t1_win_prob": 88.1,
-                "t2_win_prob": 11.9,
-                "t1_proj_runs": 7.8,
-                "t2_proj_runs": 4.15,
-                "total_proj_runs": 12.0
-            }
-        },
-        {
-            "away_team": "KCR",
-            "home_team": "CLE",
-            "away_pitcher": {
-                "name": "Michael Wacha",
+                "name": "Jake Bennett",
                 "era": 3.49,
-                "ra9": 3.71,
-                "k9": 6.97
+                "ra9": 3.59,
+                "k9": 6.88
             },
             "home_pitcher": {
-                "name": "Tanner Bibee",
-                "era": 3.97,
-                "ra9": 4.2,
-                "k9": 7.08
+                "name": "Carlos Rod\u00f3n",
+                "era": 3.15,
+                "ra9": 3.81,
+                "k9": 9.61
             },
             "simulation": {
-                "t1_win_prob": 60.8,
-                "t2_win_prob": 39.2,
-                "t1_proj_runs": 4.0,
-                "t2_proj_runs": 3.34,
-                "total_proj_runs": 7.3
-            }
-        },
-        {
-            "away_team": "HOU",
-            "home_team": "NYM",
-            "away_pitcher": {
-                "name": "Hunter Brown",
-                "era": 3.51,
-                "ra9": 3.75,
-                "k9": 9.2
-            },
-            "home_pitcher": {
-                "name": "Christian Scott",
-                "era": 3.73,
-                "ra9": 3.83,
-                "k9": 11.18
-            },
-            "simulation": {
-                "t1_win_prob": 58.3,
-                "t2_win_prob": 41.7,
-                "t1_proj_runs": 3.92,
-                "t2_proj_runs": 3.44,
+                "t1_win_prob": 54.2,
+                "t2_win_prob": 45.8,
+                "t1_proj_runs": 3.84,
+                "t2_proj_runs": 3.59,
                 "total_proj_runs": 7.4
-            }
-        },
-        {
-            "away_team": "SDP",
-            "home_team": "TBR",
-            "away_pitcher": {
-                "name": "Casey Mize",
-                "era": 3.44,
-                "ra9": 3.53,
-                "k9": 8.17
-            },
-            "home_pitcher": {
-                "name": "Shane McClanahan",
-                "era": 3.1,
-                "ra9": 3.69,
-                "k9": 8.3
-            },
-            "simulation": {
-                "t1_win_prob": 50.4,
-                "t2_win_prob": 49.6,
-                "t1_proj_runs": 3.54,
-                "t2_proj_runs": 3.53,
-                "total_proj_runs": 7.1
-            }
-        },
-        {
-            "away_team": "SEA",
-            "home_team": "TOR",
-            "away_pitcher": {
-                "name": "Emerson Hancock",
-                "era": 3.37,
-                "ra9": 3.43,
-                "k9": 8.42
-            },
-            "home_pitcher": {
-                "name": "Dylan Cease",
-                "era": 2.37,
-                "ra9": 2.68,
-                "k9": 13.03
-            },
-            "simulation": {
-                "t1_win_prob": 37.1,
-                "t2_win_prob": 62.9,
-                "t1_proj_runs": 2.35,
-                "t2_proj_runs": 2.98,
-                "total_proj_runs": 5.3
-            }
-        },
-        {
-            "away_team": "COL",
-            "home_team": "ATL",
-            "away_pitcher": {
-                "name": "Tomoyuki Sugano",
-                "era": 4.96,
-                "ra9": 5.18,
-                "k9": 5.25
-            },
-            "home_pitcher": {
-                "name": "Grant Holmes",
-                "era": 3.64,
-                "ra9": 3.78,
-                "k9": 7.28
-            },
-            "simulation": {
-                "t1_win_prob": 30.1,
-                "t2_win_prob": 69.9,
-                "t1_proj_runs": 4.05,
-                "t2_proj_runs": 5.4,
-                "total_proj_runs": 9.4
             }
         },
         {
             "away_team": "BOS",
             "home_team": "NYY",
             "away_pitcher": {
-                "name": "Patrick Sandoval",
-                "era": 4.54,
-                "ra9": 5.22,
-                "k9": 9.3
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
             },
             "home_pitcher": {
-                "name": "Cam Schlittler",
-                "era": 2.16,
-                "ra9": 2.56,
-                "k9": 10.99
+                "name": "Max Fried",
+                "era": 2.81,
+                "ra9": 2.81,
+                "k9": 8.24
             },
             "simulation": {
-                "t1_win_prob": 13.6,
-                "t2_win_prob": 86.4,
-                "t1_proj_runs": 2.58,
-                "t2_proj_runs": 5.28,
-                "total_proj_runs": 7.9
+                "t1_win_prob": 24.3,
+                "t2_win_prob": 75.7,
+                "t1_proj_runs": 2.85,
+                "t2_proj_runs": 4.47,
+                "total_proj_runs": 7.3
             }
         },
         {
-            "away_team": "TEX",
-            "home_team": "MIL",
+            "away_team": "LAD",
+            "home_team": "DET",
             "away_pitcher": {
-                "name": "Cody Bradford",
-                "era": 3.05,
-                "ra9": 3.05,
-                "k9": 5.66
+                "name": "Blake Snell",
+                "era": 2.57,
+                "ra9": 3.0,
+                "k9": 11.14
             },
             "home_pitcher": {
-                "name": "Logan Henderson",
-                "era": 2.6,
-                "ra9": 2.6,
-                "k9": 10.25
+                "name": "Keider Montero",
+                "era": 3.3,
+                "ra9": 3.57,
+                "k9": 5.99
             },
             "simulation": {
-                "t1_win_prob": 29.1,
-                "t2_win_prob": 70.9,
-                "t1_proj_runs": 2.35,
-                "t2_proj_runs": 3.43,
-                "total_proj_runs": 5.8
+                "t1_win_prob": 66.2,
+                "t2_win_prob": 33.8,
+                "t1_proj_runs": 3.91,
+                "t2_proj_runs": 2.97,
+                "total_proj_runs": 6.9
             }
         },
         {
             "away_team": "CHW",
             "home_team": "MIN",
             "away_pitcher": {
-                "name": "Luis Castillo",
-                "era": 5.19,
-                "ra9": 5.95,
-                "k9": 8.01
+                "name": "Erick Fedde",
+                "era": 4.18,
+                "ra9": 4.79,
+                "k9": 6.39
             },
             "home_pitcher": {
-                "name": "Dean Kremer",
-                "era": 5.22,
-                "ra9": 5.52,
-                "k9": 8.9
+                "name": "Bailey Ober",
+                "era": 4.49,
+                "ra9": 4.74,
+                "k9": 6.15
             },
             "simulation": {
-                "t1_win_prob": 48.1,
-                "t2_win_prob": 51.9,
-                "t1_proj_runs": 5.96,
-                "t2_proj_runs": 6.14,
-                "total_proj_runs": 12.1
+                "t1_win_prob": 53.2,
+                "t2_win_prob": 46.8,
+                "t1_proj_runs": 5.15,
+                "t2_proj_runs": 4.91,
+                "total_proj_runs": 10.1
             }
         },
         {
             "away_team": "PIT",
             "home_team": "STL",
             "away_pitcher": {
-                "name": "Jared Jones",
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
+            },
+            "home_pitcher": {
+                "name": "Kyle Leahy",
+                "era": 3.13,
+                "ra9": 3.13,
+                "k9": 8.19
+            },
+            "simulation": {
+                "t1_win_prob": 33.3,
+                "t2_win_prob": 66.7,
+                "t1_proj_runs": 3.42,
+                "t2_proj_runs": 4.46,
+                "total_proj_runs": 7.9
+            }
+        },
+        {
+            "away_team": "CIN",
+            "home_team": "CHC",
+            "away_pitcher": {
+                "name": "Andrew Abbott",
+                "era": 4.15,
+                "ra9": 4.4,
+                "k9": 7.06
+            },
+            "home_pitcher": {
+                "name": "Kevin Gausman",
+                "era": 4.37,
+                "ra9": 4.73,
+                "k9": 8.92
+            },
+            "simulation": {
+                "t1_win_prob": 40.1,
+                "t2_win_prob": 59.9,
+                "t1_proj_runs": 4.39,
+                "t2_proj_runs": 5.1,
+                "total_proj_runs": 9.5
+            }
+        },
+        {
+            "away_team": "SEA",
+            "home_team": "TOR",
+            "away_pitcher": {
+                "name": "Kade Anderson",
                 "era": 4.76,
-                "ra9": 4.9,
-                "k9": 10.19
+                "ra9": 4.76,
+                "k9": 7.94
             },
             "home_pitcher": {
-                "name": "Quinn Mathews",
-                "era": 6.43,
-                "ra9": 6.43,
-                "k9": 8.36
+                "name": "Jos\u00e9 Soriano",
+                "era": 3.43,
+                "ra9": 3.74,
+                "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 75.0,
-                "t2_win_prob": 25.0,
-                "t1_proj_runs": 7.0,
-                "t2_proj_runs": 4.87,
-                "total_proj_runs": 11.9
-            }
-        },
-        {
-            "away_team": "PHI",
-            "home_team": "LAA",
-            "away_pitcher": {
-                "name": "Andrew Painter",
-                "era": 6.04,
-                "ra9": 6.04,
-                "k9": 7.7
-            },
-            "home_pitcher": {
-                "name": "Reid Detmers",
-                "era": 3.62,
-                "ra9": 3.81,
-                "k9": 10.39
-            },
-            "simulation": {
-                "t1_win_prob": 27.9,
-                "t2_win_prob": 72.1,
-                "t1_proj_runs": 3.9,
-                "t2_proj_runs": 5.52,
-                "total_proj_runs": 9.4
-            }
-        },
-        {
-            "away_team": "BAL",
-            "home_team": "OAK",
-            "away_pitcher": {
-                "name": "Brandon Young",
-                "era": 3.5,
-                "ra9": 4.16,
-                "k9": 7.22
-            },
-            "home_pitcher": {
-                "name": "Jacob Lopez",
-                "era": 4.98,
-                "ra9": 5.17,
-                "k9": 8.62
-            },
-            "simulation": {
-                "t1_win_prob": 66.9,
-                "t2_win_prob": 33.1,
-                "t1_proj_runs": 5.27,
-                "t2_proj_runs": 4.05,
-                "total_proj_runs": 9.3
+                "t1_win_prob": 33.8,
+                "t2_win_prob": 66.2,
+                "t1_proj_runs": 3.25,
+                "t2_proj_runs": 4.21,
+                "total_proj_runs": 7.5
             }
         },
         {
             "away_team": "ARI",
             "home_team": "SFG",
             "away_pitcher": {
-                "name": "Kohl Drake",
-                "era": 5.4,
-                "ra9": 5.4,
-                "k9": 7.02
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
             },
             "home_pitcher": {
-                "name": "Blade Tidwell",
-                "era": 3.58,
-                "ra9": 3.58,
-                "k9": 7.44
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
             },
             "simulation": {
-                "t1_win_prob": 29.7,
-                "t2_win_prob": 70.3,
-                "t1_proj_runs": 3.61,
-                "t2_proj_runs": 4.95,
+                "t1_win_prob": 56.2,
+                "t2_win_prob": 43.8,
+                "t1_proj_runs": 4.54,
+                "t2_proj_runs": 4.13,
+                "total_proj_runs": 8.7
+            }
+        },
+        {
+            "away_team": "ARI",
+            "home_team": "SFG",
+            "away_pitcher": {
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
+            },
+            "home_pitcher": {
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
+            },
+            "simulation": {
+                "t1_win_prob": 57.3,
+                "t2_win_prob": 42.7,
+                "t1_proj_runs": 4.55,
+                "t2_proj_runs": 4.09,
                 "total_proj_runs": 8.6
+            }
+        },
+        {
+            "away_team": "MIA",
+            "home_team": "WSN",
+            "away_pitcher": {
+                "name": "Sandy Alcantara",
+                "era": 3.38,
+                "ra9": 3.63,
+                "k9": 6.71
+            },
+            "home_pitcher": {
+                "name": "Cade Cavalli",
+                "era": 3.21,
+                "ra9": 3.87,
+                "k9": 10.23
+            },
+            "simulation": {
+                "t1_win_prob": 42.0,
+                "t2_win_prob": 58.0,
+                "t1_proj_runs": 3.76,
+                "t2_proj_runs": 4.24,
+                "total_proj_runs": 8.0
+            }
+        },
+        {
+            "away_team": "KCR",
+            "home_team": "CLE",
+            "away_pitcher": {
+                "name": "Daniel Lynch IV",
+                "era": 2.93,
+                "ra9": 3.55,
+                "k9": 6.63
+            },
+            "home_pitcher": {
+                "name": "Foster Griffin",
+                "era": 3.19,
+                "ra9": 3.62,
+                "k9": 8.14
+            },
+            "simulation": {
+                "t1_win_prob": 54.7,
+                "t2_win_prob": 45.3,
+                "t1_proj_runs": 3.45,
+                "t2_proj_runs": 3.2,
+                "total_proj_runs": 6.6
+            }
+        },
+        {
+            "away_team": "HOU",
+            "home_team": "NYM",
+            "away_pitcher": {
+                "name": "Bennett Sousa",
+                "era": 6.27,
+                "ra9": 7.23,
+                "k9": 10.13
+            },
+            "home_pitcher": {
+                "name": "Nolan McLean",
+                "era": 3.21,
+                "ra9": 3.87,
+                "k9": 10.17
+            },
+            "simulation": {
+                "t1_win_prob": 17.6,
+                "t2_win_prob": 82.4,
+                "t1_proj_runs": 3.98,
+                "t2_proj_runs": 6.66,
+                "total_proj_runs": 10.6
+            }
+        },
+        {
+            "away_team": "SDP",
+            "home_team": "TBR",
+            "away_pitcher": {
+                "name": "Walker Buehler",
+                "era": 4.63,
+                "ra9": 4.7,
+                "k9": 7.69
+            },
+            "home_pitcher": {
+                "name": "Nick Martinez",
+                "era": 2.93,
+                "ra9": 2.93,
+                "k9": 5.3
+            },
+            "simulation": {
+                "t1_win_prob": 20.5,
+                "t2_win_prob": 79.5,
+                "t1_proj_runs": 2.78,
+                "t2_proj_runs": 4.73,
+                "total_proj_runs": 7.5
+            }
+        },
+        {
+            "away_team": "COL",
+            "home_team": "ATL",
+            "away_pitcher": {
+                "name": "Ryan Feltner",
+                "era": 6.08,
+                "ra9": 6.54,
+                "k9": 6.45
+            },
+            "home_pitcher": {
+                "name": "Mart\u00edn P\u00e9rez",
+                "era": 3.12,
+                "ra9": 3.43,
+                "k9": 6.63
+            },
+            "simulation": {
+                "t1_win_prob": 13.7,
+                "t2_win_prob": 86.3,
+                "t1_proj_runs": 3.67,
+                "t2_proj_runs": 6.85,
+                "total_proj_runs": 10.5
+            }
+        },
+        {
+            "away_team": "TEX",
+            "home_team": "MIL",
+            "away_pitcher": {
+                "name": "Cal Quantrill",
+                "era": 2.9,
+                "ra9": 3.55,
+                "k9": 6.45
+            },
+            "home_pitcher": {
+                "name": "Shane Drohan",
+                "era": 3.84,
+                "ra9": 4.27,
+                "k9": 8.89
+            },
+            "simulation": {
+                "t1_win_prob": 48.8,
+                "t2_win_prob": 51.2,
+                "t1_proj_runs": 3.88,
+                "t2_proj_runs": 3.96,
+                "total_proj_runs": 7.8
+            }
+        },
+        {
+            "away_team": "BAL",
+            "home_team": "OAK",
+            "away_pitcher": {
+                "name": "Shane Baz",
+                "era": 4.04,
+                "ra9": 4.64,
+                "k9": 8.03
+            },
+            "home_pitcher": {
+                "name": "TBD",
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 8.0
+            },
+            "simulation": {
+                "t1_win_prob": 51.4,
+                "t2_win_prob": 48.6,
+                "t1_proj_runs": 4.61,
+                "t2_proj_runs": 4.5,
+                "total_proj_runs": 9.1
+            }
+        },
+        {
+            "away_team": "PHI",
+            "home_team": "LAA",
+            "away_pitcher": {
+                "name": "Cristopher S\u00e1nchez",
+                "era": 2.62,
+                "ra9": 2.94,
+                "k9": 10.37
+            },
+            "home_pitcher": {
+                "name": "Ryan Johnson",
+                "era": 5.75,
+                "ra9": 6.42,
+                "k9": 6.68
+            },
+            "simulation": {
+                "t1_win_prob": 92.1,
+                "t2_win_prob": 7.9,
+                "t1_proj_runs": 6.47,
+                "t2_proj_runs": 2.68,
+                "total_proj_runs": 9.2
             }
         }
     ]
