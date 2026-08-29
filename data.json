@@ -191,25 +191,6 @@
             "OPS": 0.757,
             "RS_per_game": 5.204379562043796
         },
-        "SFG": {
-            "name": "San Francisco Giants",
-            "abbr": "SFG",
-            "G": 135,
-            "R": 551,
-            "H": 1131,
-            "2B": 224,
-            "3B": 25,
-            "HR": 152,
-            "RBI": 530,
-            "BB": 357,
-            "SO": 1072,
-            "SB": 61,
-            "AVG": 0.248,
-            "OBP": 0.307,
-            "SLG": 0.408,
-            "OPS": 0.715,
-            "RS_per_game": 4.0814814814814815
-        },
         "KCR": {
             "name": "Kansas City Royals",
             "abbr": "KCR",
@@ -228,6 +209,25 @@
             "SLG": 0.401,
             "OPS": 0.717,
             "RS_per_game": 4.272058823529412
+        },
+        "SFG": {
+            "name": "San Francisco Giants",
+            "abbr": "SFG",
+            "G": 135,
+            "R": 552,
+            "H": 1132,
+            "2B": 224,
+            "3B": 25,
+            "HR": 152,
+            "RBI": 531,
+            "BB": 358,
+            "SO": 1078,
+            "SB": 61,
+            "AVG": 0.247,
+            "OBP": 0.306,
+            "SLG": 0.407,
+            "OPS": 0.713,
+            "RS_per_game": 4.088888888888889
         },
         "TOR": {
             "name": "Toronto Blue Jays",
@@ -271,58 +271,58 @@
             "name": "Athletics",
             "abbr": "OAK",
             "G": 135,
-            "R": 587,
-            "H": 1122,
+            "R": 588,
+            "H": 1124,
             "2B": 210,
             "3B": 13,
             "HR": 159,
-            "RBI": 562,
+            "RBI": 563,
             "BB": 443,
-            "SO": 1152,
+            "SO": 1155,
             "SB": 69,
             "AVG": 0.245,
             "OBP": 0.319,
             "SLG": 0.401,
             "OPS": 0.72,
-            "RS_per_game": 4.348148148148148
+            "RS_per_game": 4.355555555555555
         },
         "ARI": {
             "name": "Arizona Diamondbacks",
             "abbr": "ARI",
             "G": 136,
-            "R": 612,
-            "H": 1108,
+            "R": 616,
+            "H": 1111,
             "2B": 232,
             "3B": 35,
             "HR": 135,
-            "RBI": 584,
-            "BB": 454,
-            "SO": 979,
-            "SB": 93,
+            "RBI": 588,
+            "BB": 455,
+            "SO": 984,
+            "SB": 95,
             "AVG": 0.244,
-            "OBP": 0.317,
-            "SLG": 0.4,
-            "OPS": 0.717,
-            "RS_per_game": 4.5
+            "OBP": 0.316,
+            "SLG": 0.399,
+            "OPS": 0.715,
+            "RS_per_game": 4.529411764705882
         },
         "PHI": {
             "name": "Philadelphia Phillies",
             "abbr": "PHI",
             "G": 135,
-            "R": 609,
-            "H": 1097,
+            "R": 613,
+            "H": 1100,
             "2B": 195,
             "3B": 21,
-            "HR": 161,
-            "RBI": 590,
-            "BB": 427,
+            "HR": 162,
+            "RBI": 594,
+            "BB": 429,
             "SO": 1129,
             "SB": 95,
             "AVG": 0.243,
-            "OBP": 0.312,
-            "SLG": 0.402,
-            "OPS": 0.714,
-            "RS_per_game": 4.511111111111111
+            "OBP": 0.313,
+            "SLG": 0.403,
+            "OPS": 0.716,
+            "RS_per_game": 4.54074074074074
         },
         "HOU": {
             "name": "Houston Astros",
@@ -438,6 +438,25 @@
             "OPS": 0.702,
             "RS_per_game": 4.2444444444444445
         },
+        "BAL": {
+            "name": "Baltimore Orioles",
+            "abbr": "BAL",
+            "G": 135,
+            "R": 613,
+            "H": 1062,
+            "2B": 199,
+            "3B": 18,
+            "HR": 164,
+            "RBI": 592,
+            "BB": 505,
+            "SO": 1245,
+            "SB": 70,
+            "AVG": 0.236,
+            "OBP": 0.318,
+            "SLG": 0.398,
+            "OPS": 0.716,
+            "RS_per_game": 4.54074074074074
+        },
         "CLE": {
             "name": "Cleveland Guardians",
             "abbr": "CLE",
@@ -456,25 +475,6 @@
             "SLG": 0.369,
             "OPS": 0.684,
             "RS_per_game": 4.022222222222222
-        },
-        "BAL": {
-            "name": "Baltimore Orioles",
-            "abbr": "BAL",
-            "G": 135,
-            "R": 611,
-            "H": 1060,
-            "2B": 199,
-            "3B": 18,
-            "HR": 164,
-            "RBI": 590,
-            "BB": 503,
-            "SO": 1242,
-            "SB": 70,
-            "AVG": 0.236,
-            "OBP": 0.318,
-            "SLG": 0.398,
-            "OPS": 0.716,
-            "RS_per_game": 4.525925925925926
         },
         "NYM": {
             "name": "New York Mets",
@@ -506,12 +506,12 @@
             "HR": 132,
             "RBI": 529,
             "BB": 422,
-            "SO": 1270,
+            "SO": 1272,
             "SB": 74,
             "AVG": 0.235,
-            "OBP": 0.31,
+            "OBP": 0.309,
             "SLG": 0.373,
-            "OPS": 0.683,
+            "OPS": 0.682,
             "RS_per_game": 4.0814814814814815
         },
         "NYY": {
@@ -589,9 +589,9 @@
                 "k9": 9.61
             },
             "simulation": {
-                "t1_win_prob": 54.2,
-                "t2_win_prob": 45.8,
-                "t1_proj_runs": 3.84,
+                "t1_win_prob": 54.3,
+                "t2_win_prob": 45.7,
+                "t1_proj_runs": 3.83,
                 "t2_proj_runs": 3.59,
                 "total_proj_runs": 7.4
             }
@@ -612,10 +612,10 @@
                 "k9": 8.24
             },
             "simulation": {
-                "t1_win_prob": 24.3,
-                "t2_win_prob": 75.7,
-                "t1_proj_runs": 2.85,
-                "t2_proj_runs": 4.47,
+                "t1_win_prob": 23.6,
+                "t2_win_prob": 76.4,
+                "t1_proj_runs": 2.81,
+                "t2_proj_runs": 4.49,
                 "total_proj_runs": 7.3
             }
         },
@@ -635,10 +635,10 @@
                 "k9": 5.99
             },
             "simulation": {
-                "t1_win_prob": 66.2,
-                "t2_win_prob": 33.8,
+                "t1_win_prob": 67.0,
+                "t2_win_prob": 33.0,
                 "t1_proj_runs": 3.91,
-                "t2_proj_runs": 2.97,
+                "t2_proj_runs": 2.94,
                 "total_proj_runs": 6.9
             }
         },
@@ -658,10 +658,10 @@
                 "k9": 6.15
             },
             "simulation": {
-                "t1_win_prob": 53.2,
-                "t2_win_prob": 46.8,
-                "t1_proj_runs": 5.15,
-                "t2_proj_runs": 4.91,
+                "t1_win_prob": 52.7,
+                "t2_win_prob": 47.3,
+                "t1_proj_runs": 5.13,
+                "t2_proj_runs": 4.94,
                 "total_proj_runs": 10.1
             }
         },
@@ -669,10 +669,10 @@
             "away_team": "PIT",
             "home_team": "STL",
             "away_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Lake Bachar",
+                "era": 3.7,
+                "ra9": 3.95,
+                "k9": 9.25
             },
             "home_pitcher": {
                 "name": "Kyle Leahy",
@@ -681,11 +681,11 @@
                 "k9": 8.19
             },
             "simulation": {
-                "t1_win_prob": 33.3,
-                "t2_win_prob": 66.7,
-                "t1_proj_runs": 3.42,
-                "t2_proj_runs": 4.46,
-                "total_proj_runs": 7.9
+                "t1_win_prob": 40.4,
+                "t2_win_prob": 59.6,
+                "t1_proj_runs": 3.38,
+                "t2_proj_runs": 3.92,
+                "total_proj_runs": 7.3
             }
         },
         {
@@ -704,10 +704,10 @@
                 "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 40.1,
-                "t2_win_prob": 59.9,
-                "t1_proj_runs": 4.39,
-                "t2_proj_runs": 5.1,
+                "t1_win_prob": 38.7,
+                "t2_win_prob": 61.3,
+                "t1_proj_runs": 4.35,
+                "t2_proj_runs": 5.13,
                 "total_proj_runs": 9.5
             }
         },
@@ -727,21 +727,21 @@
                 "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 33.8,
-                "t2_win_prob": 66.2,
-                "t1_proj_runs": 3.25,
-                "t2_proj_runs": 4.21,
-                "total_proj_runs": 7.5
+                "t1_win_prob": 35.1,
+                "t2_win_prob": 64.9,
+                "t1_proj_runs": 3.3,
+                "t2_proj_runs": 4.25,
+                "total_proj_runs": 7.6
             }
         },
         {
             "away_team": "ARI",
             "home_team": "SFG",
             "away_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Merrill Kelly",
+                "era": 5.35,
+                "ra9": 5.55,
+                "k9": 5.88
             },
             "home_pitcher": {
                 "name": "TBD",
@@ -750,21 +750,21 @@
                 "k9": 8.0
             },
             "simulation": {
-                "t1_win_prob": 56.2,
-                "t2_win_prob": 43.8,
+                "t1_win_prob": 42.3,
+                "t2_win_prob": 57.7,
                 "t1_proj_runs": 4.54,
-                "t2_proj_runs": 4.13,
-                "total_proj_runs": 8.7
+                "t2_proj_runs": 5.09,
+                "total_proj_runs": 9.6
             }
         },
         {
             "away_team": "ARI",
             "home_team": "SFG",
             "away_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Mitch Bratt",
+                "era": 4.54,
+                "ra9": 4.54,
+                "k9": 6.35
             },
             "home_pitcher": {
                 "name": "TBD",
@@ -773,11 +773,11 @@
                 "k9": 8.0
             },
             "simulation": {
-                "t1_win_prob": 57.3,
-                "t2_win_prob": 42.7,
-                "t1_proj_runs": 4.55,
-                "t2_proj_runs": 4.09,
-                "total_proj_runs": 8.6
+                "t1_win_prob": 56.7,
+                "t2_win_prob": 43.3,
+                "t1_proj_runs": 4.57,
+                "t2_proj_runs": 4.15,
+                "total_proj_runs": 8.7
             }
         },
         {
@@ -796,10 +796,10 @@
                 "k9": 10.23
             },
             "simulation": {
-                "t1_win_prob": 42.0,
-                "t2_win_prob": 58.0,
-                "t1_proj_runs": 3.76,
-                "t2_proj_runs": 4.24,
+                "t1_win_prob": 41.6,
+                "t2_win_prob": 58.4,
+                "t1_proj_runs": 3.73,
+                "t2_proj_runs": 4.27,
                 "total_proj_runs": 8.0
             }
         },
@@ -819,11 +819,11 @@
                 "k9": 8.14
             },
             "simulation": {
-                "t1_win_prob": 54.7,
-                "t2_win_prob": 45.3,
-                "t1_proj_runs": 3.45,
-                "t2_proj_runs": 3.2,
-                "total_proj_runs": 6.6
+                "t1_win_prob": 54.9,
+                "t2_win_prob": 45.1,
+                "t1_proj_runs": 3.48,
+                "t2_proj_runs": 3.22,
+                "total_proj_runs": 6.7
             }
         },
         {
@@ -842,10 +842,10 @@
                 "k9": 10.17
             },
             "simulation": {
-                "t1_win_prob": 17.6,
-                "t2_win_prob": 82.4,
-                "t1_proj_runs": 3.98,
-                "t2_proj_runs": 6.66,
+                "t1_win_prob": 17.1,
+                "t2_win_prob": 82.9,
+                "t1_proj_runs": 3.93,
+                "t2_proj_runs": 6.65,
                 "total_proj_runs": 10.6
             }
         },
@@ -865,10 +865,10 @@
                 "k9": 5.3
             },
             "simulation": {
-                "t1_win_prob": 20.5,
-                "t2_win_prob": 79.5,
+                "t1_win_prob": 21.1,
+                "t2_win_prob": 78.9,
                 "t1_proj_runs": 2.78,
-                "t2_proj_runs": 4.73,
+                "t2_proj_runs": 4.71,
                 "total_proj_runs": 7.5
             }
         },
@@ -888,9 +888,9 @@
                 "k9": 6.63
             },
             "simulation": {
-                "t1_win_prob": 13.7,
-                "t2_win_prob": 86.3,
-                "t1_proj_runs": 3.67,
+                "t1_win_prob": 13.1,
+                "t2_win_prob": 86.9,
+                "t1_proj_runs": 3.65,
                 "t2_proj_runs": 6.85,
                 "total_proj_runs": 10.5
             }
@@ -911,9 +911,9 @@
                 "k9": 8.89
             },
             "simulation": {
-                "t1_win_prob": 48.8,
-                "t2_win_prob": 51.2,
-                "t1_proj_runs": 3.88,
+                "t1_win_prob": 47.9,
+                "t2_win_prob": 52.1,
+                "t1_proj_runs": 3.83,
                 "t2_proj_runs": 3.96,
                 "total_proj_runs": 7.8
             }
@@ -928,17 +928,17 @@
                 "k9": 8.03
             },
             "home_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Jack Perkins",
+                "era": 6.68,
+                "ra9": 7.17,
+                "k9": 10.36
             },
             "simulation": {
-                "t1_win_prob": 51.4,
-                "t2_win_prob": 48.6,
-                "t1_proj_runs": 4.61,
-                "t2_proj_runs": 4.5,
-                "total_proj_runs": 9.1
+                "t1_win_prob": 81.7,
+                "t2_win_prob": 18.3,
+                "t1_proj_runs": 7.33,
+                "t2_proj_runs": 4.52,
+                "total_proj_runs": 11.9
             }
         },
         {
@@ -957,9 +957,9 @@
                 "k9": 6.68
             },
             "simulation": {
-                "t1_win_prob": 92.1,
-                "t2_win_prob": 7.9,
-                "t1_proj_runs": 6.47,
+                "t1_win_prob": 92.3,
+                "t2_win_prob": 7.7,
+                "t1_proj_runs": 6.49,
                 "t2_proj_runs": 2.68,
                 "total_proj_runs": 9.2
             }
