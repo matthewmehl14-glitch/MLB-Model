@@ -1,5 +1,6 @@
 {
     "date": "2026-08-30",
+    "last_updated": "2026-08-30T13:33:54.933492Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -589,11 +590,11 @@
                 "k9": 8.5
             },
             "simulation": {
-                "t1_win_prob": 24.7,
-                "t2_win_prob": 75.3,
-                "t1_proj_runs": 3.63,
-                "t2_proj_runs": 5.44,
-                "total_proj_runs": 9.1
+                "t1_win_prob": 24.5,
+                "t2_win_prob": 75.5,
+                "t1_proj_runs": 3.61,
+                "t2_proj_runs": 5.43,
+                "total_proj_runs": 9.0
             }
         },
         {
@@ -612,9 +613,9 @@
                 "k9": 8.52
             },
             "simulation": {
-                "t1_win_prob": 85.1,
-                "t2_win_prob": 14.9,
-                "t1_proj_runs": 4.72,
+                "t1_win_prob": 85.7,
+                "t2_win_prob": 14.3,
+                "t1_proj_runs": 4.75,
                 "t2_proj_runs": 2.33,
                 "total_proj_runs": 7.1
             }
@@ -635,10 +636,10 @@
                 "k9": 8.93
             },
             "simulation": {
-                "t1_win_prob": 74.5,
-                "t2_win_prob": 25.5,
-                "t1_proj_runs": 5.3,
-                "t2_proj_runs": 3.59,
+                "t1_win_prob": 75.3,
+                "t2_win_prob": 24.7,
+                "t1_proj_runs": 5.32,
+                "t2_proj_runs": 3.55,
                 "total_proj_runs": 8.9
             }
         },
@@ -658,10 +659,10 @@
                 "k9": 6.48
             },
             "simulation": {
-                "t1_win_prob": 87.7,
-                "t2_win_prob": 12.3,
-                "t1_proj_runs": 6.1,
-                "t2_proj_runs": 2.98,
+                "t1_win_prob": 88.9,
+                "t2_win_prob": 11.1,
+                "t1_proj_runs": 6.17,
+                "t2_proj_runs": 2.95,
                 "total_proj_runs": 9.1
             }
         },
@@ -681,9 +682,9 @@
                 "k9": 9.06
             },
             "simulation": {
-                "t1_win_prob": 19.4,
-                "t2_win_prob": 80.6,
-                "t1_proj_runs": 2.62,
+                "t1_win_prob": 19.1,
+                "t2_win_prob": 80.9,
+                "t1_proj_runs": 2.63,
                 "t2_proj_runs": 4.62,
                 "total_proj_runs": 7.2
             }
@@ -704,11 +705,11 @@
                 "k9": 6.91
             },
             "simulation": {
-                "t1_win_prob": 81.9,
-                "t2_win_prob": 18.1,
-                "t1_proj_runs": 5.27,
-                "t2_proj_runs": 2.98,
-                "total_proj_runs": 8.3
+                "t1_win_prob": 82.0,
+                "t2_win_prob": 18.0,
+                "t1_proj_runs": 5.29,
+                "t2_proj_runs": 2.95,
+                "total_proj_runs": 8.2
             }
         },
         {
@@ -727,10 +728,10 @@
                 "k9": 9.17
             },
             "simulation": {
-                "t1_win_prob": 34.6,
-                "t2_win_prob": 65.4,
-                "t1_proj_runs": 2.89,
-                "t2_proj_runs": 3.76,
+                "t1_win_prob": 36.3,
+                "t2_win_prob": 63.7,
+                "t1_proj_runs": 2.95,
+                "t2_proj_runs": 3.73,
                 "total_proj_runs": 6.7
             }
         },
@@ -750,11 +751,11 @@
                 "k9": 7.64
             },
             "simulation": {
-                "t1_win_prob": 74.7,
-                "t2_win_prob": 25.3,
-                "t1_proj_runs": 5.78,
-                "t2_proj_runs": 3.91,
-                "total_proj_runs": 9.7
+                "t1_win_prob": 74.6,
+                "t2_win_prob": 25.4,
+                "t1_proj_runs": 5.7,
+                "t2_proj_runs": 3.88,
+                "total_proj_runs": 9.6
             }
         },
         {
@@ -775,9 +776,9 @@
             "simulation": {
                 "t1_win_prob": 39.9,
                 "t2_win_prob": 60.1,
-                "t1_proj_runs": 4.31,
-                "t2_proj_runs": 4.99,
-                "total_proj_runs": 9.3
+                "t1_proj_runs": 4.27,
+                "t2_proj_runs": 4.95,
+                "total_proj_runs": 9.2
             }
         },
         {
@@ -796,11 +797,11 @@
                 "k9": 9.21
             },
             "simulation": {
-                "t1_win_prob": 80.3,
-                "t2_win_prob": 19.7,
-                "t1_proj_runs": 6.28,
-                "t2_proj_runs": 3.86,
-                "total_proj_runs": 10.1
+                "t1_win_prob": 79.7,
+                "t2_win_prob": 20.3,
+                "t1_proj_runs": 6.27,
+                "t2_proj_runs": 3.94,
+                "total_proj_runs": 10.2
             }
         },
         {
@@ -819,10 +820,10 @@
                 "k9": 6.39
             },
             "simulation": {
-                "t1_win_prob": 7.1,
-                "t2_win_prob": 92.9,
-                "t1_proj_runs": 3.08,
-                "t2_proj_runs": 7.27,
+                "t1_win_prob": 7.6,
+                "t2_win_prob": 92.4,
+                "t1_proj_runs": 3.11,
+                "t2_proj_runs": 7.21,
                 "total_proj_runs": 10.3
             }
         },
@@ -842,11 +843,11 @@
                 "k9": 7.0
             },
             "simulation": {
-                "t1_win_prob": 74.1,
-                "t2_win_prob": 25.9,
-                "t1_proj_runs": 6.68,
+                "t1_win_prob": 74.8,
+                "t2_win_prob": 25.2,
+                "t1_proj_runs": 6.74,
                 "t2_proj_runs": 4.74,
-                "total_proj_runs": 11.4
+                "total_proj_runs": 11.5
             }
         },
         {
@@ -865,9 +866,9 @@
                 "k9": 9.25
             },
             "simulation": {
-                "t1_win_prob": 87.7,
-                "t2_win_prob": 12.3,
-                "t1_proj_runs": 6.37,
+                "t1_win_prob": 88.1,
+                "t2_win_prob": 11.9,
+                "t1_proj_runs": 6.32,
                 "t2_proj_runs": 3.18,
                 "total_proj_runs": 9.5
             }
@@ -888,10 +889,10 @@
                 "k9": 8.92
             },
             "simulation": {
-                "t1_win_prob": 50.3,
-                "t2_win_prob": 49.7,
-                "t1_proj_runs": 3.63,
-                "t2_proj_runs": 3.6,
+                "t1_win_prob": 51.0,
+                "t2_win_prob": 49.0,
+                "t1_proj_runs": 3.64,
+                "t2_proj_runs": 3.58,
                 "total_proj_runs": 7.2
             }
         }
