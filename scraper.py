@@ -159,6 +159,7 @@ def generate_mlb_json():
 
     output_data = {
         "date": today_str,
+        "last_updated": datetime.utcnow().isoformat() + "Z",
         "teams": teams,
         "todays_games": todays_games
     }
