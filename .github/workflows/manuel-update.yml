@@ -23,6 +23,8 @@ jobs:
         run: pip install requests numpy
 
       - name: Run Python Scraper
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scraper.py
 
       - name: Commit and Push New Data
