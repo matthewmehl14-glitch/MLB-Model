@@ -38,6 +38,10 @@ def get_pinnacle_odds(api_key):
                 away_abbr = TEAM_MAPPING[away]
                 matchup_key = f"{away_abbr}@{home_abbr}"
                 
+                # Prevents overwriting today's game with tomorrow's empty data
+                if matchup_key in odds_dict:
+                    continue
+                
                 game_odds = {'h2h': {}, 'totals': {}}
                 
                 for book in game.get('bookmakers', []):
@@ -151,7 +155,7 @@ def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, total_line=None, iteration
 def generate_mlb_json():
     season = 2026
     today_str = datetime.now().strftime('%Y-%m-%d')
-    print(f"Fetching 2026 MLB stats and parsing schedule for {today_str}...")
+    print(f"Fetching {season} MLB stats and parsing schedule for {today_str}...")
     
     # Init The Odds API
     api_key = os.environ.get("ODDS_API_KEY")
@@ -265,3 +269,4 @@ def generate_mlb_json():
 
 if __name__ == "__main__":
     generate_mlb_json()
+
