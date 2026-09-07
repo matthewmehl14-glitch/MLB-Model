@@ -362,7 +362,8 @@
             el.className = `ev-tag ${evValue > 0 ? 'ev-positive' : 'ev-negative'}`;
         }
 
-        fetch('./data.json')
+        // Cache-busting fetch request to bypass mobile browser caching
+        fetch('./data.json?t=' + new Date().getTime(), { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
                 if (data.last_updated) {
@@ -485,7 +486,6 @@
             document.getElementById('away-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
             document.getElementById('home-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
             
-            // Pinnacle Data Processing
             if (mkt) {
                 document.getElementById('away-pinny').textContent = `PINN: ${mkt.away_ml > 0 ? '+' : ''}${mkt.away_ml || 'N/A'}`;
                 setEV('away-ev', mkt.away_ev);
