@@ -1,3 +1,4 @@
+import os
 import requests
 import json
 import numpy as np
@@ -17,16 +18,75 @@ TEAM_MAPPING = {
     "Washington Nationals": "WSN"
 }
 
+def get_pinnacle_odds(api_key):
+    """Fetch live Pinnacle ML and Totals from The Odds API"""
+    if not api_key:
+        return {}
+    
+    url = f"https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?apiKey={api_key}&bookmakers=pinnacle&markets=h2h,totals&oddsFormat=american"
+    try:
+        res = requests.get(url)
+        res.raise_for_status()
+        data = res.json()
+        
+        odds_dict = {}
+        for game in data:
+            home = game.get('home_team')
+            away = game.get('away_team')
+            if home in TEAM_MAPPING and away in TEAM_MAPPING:
+                home_abbr = TEAM_MAPPING[home]
+                away_abbr = TEAM_MAPPING[away]
+                matchup_key = f"{away_abbr}@{home_abbr}"
+                
+                game_odds = {'h2h': {}, 'totals': {}}
+                
+                for book in game.get('bookmakers', []):
+                    if book['key'] == 'pinnacle':
+                        for market in book.get('markets', []):
+                            if market['key'] == 'h2h':
+                                for out in market['outcomes']:
+                                    if out['name'] == home:
+                                        game_odds['h2h']['home'] = out['price']
+                                    elif out['name'] == away:
+                                        game_odds['h2h']['away'] = out['price']
+                            elif market['key'] == 'totals':
+                                for out in market['outcomes']:
+                                    if out['name'] == 'Over':
+                                        game_odds['totals']['over'] = out['price']
+                                        game_odds['totals']['point'] = out.get('point')
+                                    elif out['name'] == 'Under':
+                                        game_odds['totals']['under'] = out['price']
+                
+                odds_dict[matchup_key] = game_odds
+        return odds_dict
+    except Exception as e:
+        print(f"Warning: Could not fetch Odds API ({e})")
+        return {}
+
+def american_to_decimal(am_odds):
+    """Convert American odds to decimal for EV calculations"""
+    if am_odds > 0:
+        return (am_odds / 100.0) + 1.0
+    else:
+        return (100.0 / abs(am_odds)) + 1.0
+
+def calculate_ev(prob_pct, am_odds, push_pct=0.0):
+    """True EV calculation accounting for integer pushes"""
+    if not am_odds or prob_pct == 0: return None
+    prob = prob_pct / 100.0
+    p_push = push_pct / 100.0
+    dec = american_to_decimal(am_odds)
+    ev = (prob * dec) - 1.0 + p_push
+    return round(ev * 100, 1)
+
 def get_pitcher_stats(pitcher_id, season):
     """Fetch 2026 season stats for a specific pitcher"""
     if not pitcher_id:
-        # League average fallback if no probable pitcher is announced
         return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0}
         
     url = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}/stats?stats=season&group=pitching&season={season}"
     res = requests.get(url).json()
     
-    # Also get the pitcher's name
     person_url = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}"
     person_res = requests.get(person_url).json()
     name = person_res['people'][0]['fullName'] if 'people' in person_res else "Unknown"
@@ -36,24 +96,20 @@ def get_pitcher_stats(pitcher_id, season):
         era = float(stats.get('era', 4.50))
         k9 = float(stats.get('strikeoutsPer9Inn', 8.0))
         
-        # Calculate true Runs Allowed per 9 (includes unearned runs, better for simulation)
         runs = int(stats.get('runs', 0))
         ip_str = str(stats.get('inningsPitched', '0.0'))
-        
-        # Handle baseball's thirds of an inning notation (e.g., 50.1 = 50.333)
         ip_parts = ip_str.split('.')
         ip = float(ip_parts[0])
         if len(ip_parts) > 1:
             ip += float(ip_parts[1]) / 3.0
             
         ra9 = (runs / ip * 9) if ip > 0 else era
-        
         return {"name": name, "era": era, "ra9": round(ra9, 2), "k9": k9}
         
     return {"name": name, "era": 4.50, "ra9": 4.50, "k9": 8.0}
 
-def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, iterations=10000):
-    """10,000-run Monte Carlo simulation using Poisson run generation"""
+def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, total_line=None, iterations=10000):
+    """Monte Carlo array processing including specific Over/Under targeting"""
     t1_exp = (t1_rs * t2_ra) / lg_rpg if lg_rpg > 0 else (t1_rs + t2_ra) / 2
     t2_exp = (t2_rs * t1_ra) / lg_rpg if lg_rpg > 0 else (t2_rs + t1_ra) / 2
     
@@ -65,26 +121,42 @@ def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, iterations=10000):
     t2_decisive = t2_sims[decisive]
     
     if len(t1_decisive) == 0:
-        return {"t1_win_prob": 50.0, "t2_win_prob": 50.0, "t1_proj_runs": 0, "t2_proj_runs": 0, "total_proj_runs": 0}
+        return {"t1_win_prob": 50.0, "t2_win_prob": 50.0, "t1_proj_runs": 0, "t2_proj_runs": 0, "total_proj_runs": 0, "ou_probs": {"over_prob": 0, "under_prob": 0, "push_prob": 0}}
         
     t1_win_pct = (np.sum(t1_decisive > t2_decisive) / len(t1_decisive)) * 100
     t2_win_pct = 100.0 - t1_win_pct
+    
+    total_sims = t1_sims + t2_sims
+    total_proj_runs = round(float(np.mean(total_sims)), 1)
+    
+    ou_probs = {"over_prob": 0, "under_prob": 0, "push_prob": 0}
+    if total_line:
+        over = np.sum(total_sims > total_line)
+        under = np.sum(total_sims < total_line)
+        push = np.sum(total_sims == total_line)
+        
+        ou_probs["over_prob"] = float(over / iterations)
+        ou_probs["under_prob"] = float(under / iterations)
+        ou_probs["push_prob"] = float(push / iterations)
     
     return {
         "t1_win_prob": round(float(t1_win_pct), 1),
         "t2_win_prob": round(float(t2_win_pct), 1),
         "t1_proj_runs": round(float(np.mean(t1_sims)), 2),
         "t2_proj_runs": round(float(np.mean(t2_sims)), 2),
-        "total_proj_runs": round(float(np.mean(t1_sims + t2_sims)), 1)
+        "total_proj_runs": total_proj_runs,
+        "ou_probs": ou_probs
     }
 
 def generate_mlb_json():
     season = 2026
-    # Force the script to dynamically grab today's date for the slate
     today_str = datetime.now().strftime('%Y-%m-%d')
     print(f"Fetching 2026 MLB stats and parsing schedule for {today_str}...")
     
-    # 1. Fetch Offensive Team Stats
+    # Init The Odds API
+    api_key = os.environ.get("ODDS_API_KEY")
+    pinnacle_data = get_pinnacle_odds(api_key)
+    
     hit_url = f"https://statsapi.mlb.com/api/v1/teams/stats?season={season}&stats=season&group=hitting&sportIds=1"
     hit_data = requests.get(hit_url).json()
     
@@ -119,13 +191,12 @@ def generate_mlb_json():
                 
     league_rpg = total_runs_scored / total_games_played if total_games_played > 0 else 4.5
     
-    # 2. Fetch Today's Schedule and Probable Pitchers
     schedule_url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={today_str}&hydrate=probablePitcher"
     schedule_data = requests.get(schedule_url).json()
     
     todays_games = []
     
-    print("Isolating starting pitching matchups...")
+    print("Isolating starting pitching matchups and mapping API odds...")
     if 'dates' in schedule_data and len(schedule_data['dates']) > 0:
         for game in schedule_data['dates'][0]['games']:
             away_name = game['teams']['away']['team']['name']
@@ -138,23 +209,46 @@ def generate_mlb_json():
                 away_pitcher_id = game['teams']['away'].get('probablePitcher', {}).get('id')
                 home_pitcher_id = game['teams']['home'].get('probablePitcher', {}).get('id')
                 
-                # Fetch specific metrics for today's starters
                 away_pitcher = get_pitcher_stats(away_pitcher_id, season)
                 home_pitcher = get_pitcher_stats(home_pitcher_id, season)
                 
-                # 3. Run Monte Carlo using specific Starter RA9 instead of Team ERA
+                matchup_key = f"{away_abbr}@{home_abbr}"
+                pinny = pinnacle_data.get(matchup_key, {})
+                total_line = pinny.get('totals', {}).get('point')
+                
                 sim_res = simulate_game(
                     teams[away_abbr]["RS_per_game"], away_pitcher["ra9"],
                     teams[home_abbr]["RS_per_game"], home_pitcher["ra9"],
-                    league_rpg
+                    league_rpg,
+                    total_line
                 )
+                
+                market_data = None
+                if pinny:
+                    away_ml = pinny.get('h2h', {}).get('away')
+                    home_ml = pinny.get('h2h', {}).get('home')
+                    over_odds = pinny.get('totals', {}).get('over')
+                    under_odds = pinny.get('totals', {}).get('under')
+                    
+                    market_data = {
+                        "away_ml": away_ml,
+                        "home_ml": home_ml,
+                        "away_ev": calculate_ev(sim_res["t1_win_prob"], away_ml),
+                        "home_ev": calculate_ev(sim_res["t2_win_prob"], home_ml),
+                        "total_line": total_line,
+                        "over_odds": over_odds,
+                        "under_odds": under_odds,
+                        "over_ev": calculate_ev(sim_res["ou_probs"]["over_prob"] * 100, over_odds, sim_res["ou_probs"]["push_prob"] * 100) if over_odds and total_line else None,
+                        "under_ev": calculate_ev(sim_res["ou_probs"]["under_prob"] * 100, under_odds, sim_res["ou_probs"]["push_prob"] * 100) if under_odds and total_line else None
+                    }
                 
                 todays_games.append({
                     "away_team": away_abbr,
                     "home_team": home_abbr,
                     "away_pitcher": away_pitcher,
                     "home_pitcher": home_pitcher,
-                    "simulation": sim_res
+                    "simulation": sim_res,
+                    "market_data": market_data
                 })
 
     output_data = {
@@ -167,7 +261,7 @@ def generate_mlb_json():
     with open('data.json', 'w') as f:
         json.dump(output_data, f, indent=4)
         
-    print(f"Success! Model updated with pitching splits for {len(todays_games)} games on the slate.")
+    print(f"Success! Model updated for {len(todays_games)} games on the slate.")
 
 if __name__ == "__main__":
     generate_mlb_json()
