@@ -1,6 +1,6 @@
 {
     "date": "2026-09-07",
-    "last_updated": "2026-09-07T16:03:51.132049Z",
+    "last_updated": "2026-09-07T16:50:48.046246Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -592,9 +592,9 @@
             "simulation": {
                 "t1_win_prob": 47.8,
                 "t2_win_prob": 52.2,
-                "t1_proj_runs": 3.61,
-                "t2_proj_runs": 3.75,
-                "total_proj_runs": 7.4
+                "t1_proj_runs": 3.57,
+                "t2_proj_runs": 3.73,
+                "total_proj_runs": 7.3
             }
         },
         {
@@ -613,10 +613,10 @@
                 "k9": 9.64
             },
             "simulation": {
-                "t1_win_prob": 29.0,
-                "t2_win_prob": 71.0,
-                "t1_proj_runs": 3.84,
-                "t2_proj_runs": 5.3,
+                "t1_win_prob": 29.2,
+                "t2_win_prob": 70.8,
+                "t1_proj_runs": 3.81,
+                "t2_proj_runs": 5.25,
                 "total_proj_runs": 9.1
             }
         },
@@ -636,10 +636,10 @@
                 "k9": 6.45
             },
             "simulation": {
-                "t1_win_prob": 31.1,
-                "t2_win_prob": 68.9,
-                "t1_proj_runs": 5.0,
-                "t2_proj_runs": 6.55,
+                "t1_win_prob": 30.1,
+                "t2_win_prob": 69.9,
+                "t1_proj_runs": 4.95,
+                "t2_proj_runs": 6.54,
                 "total_proj_runs": 11.5
             }
         },
@@ -659,11 +659,11 @@
                 "k9": 8.23
             },
             "simulation": {
-                "t1_win_prob": 41.7,
-                "t2_win_prob": 58.3,
-                "t1_proj_runs": 4.13,
-                "t2_proj_runs": 4.7,
-                "total_proj_runs": 8.8
+                "t1_win_prob": 40.5,
+                "t2_win_prob": 59.5,
+                "t1_proj_runs": 4.12,
+                "t2_proj_runs": 4.73,
+                "total_proj_runs": 8.9
             }
         },
         {
@@ -684,8 +684,8 @@
             "simulation": {
                 "t1_win_prob": 87.7,
                 "t2_win_prob": 12.3,
-                "t1_proj_runs": 4.32,
-                "t2_proj_runs": 1.85,
+                "t1_proj_runs": 4.35,
+                "t2_proj_runs": 1.86,
                 "total_proj_runs": 6.2
             }
         },
@@ -705,11 +705,11 @@
                 "k9": 8.52
             },
             "simulation": {
-                "t1_win_prob": 61.1,
-                "t2_win_prob": 38.9,
+                "t1_win_prob": 61.3,
+                "t2_win_prob": 38.7,
                 "t1_proj_runs": 5.69,
-                "t2_proj_runs": 4.87,
-                "total_proj_runs": 10.6
+                "t2_proj_runs": 4.83,
+                "total_proj_runs": 10.5
             }
         },
         {
@@ -728,11 +728,11 @@
                 "k9": 7.39
             },
             "simulation": {
-                "t1_win_prob": 25.5,
-                "t2_win_prob": 74.5,
-                "t1_proj_runs": 2.86,
-                "t2_proj_runs": 4.41,
-                "total_proj_runs": 7.3
+                "t1_win_prob": 25.0,
+                "t2_win_prob": 75.0,
+                "t1_proj_runs": 2.82,
+                "t2_proj_runs": 4.39,
+                "total_proj_runs": 7.2
             }
         },
         {
@@ -751,10 +751,10 @@
                 "k9": 13.5
             },
             "simulation": {
-                "t1_win_prob": 44.4,
-                "t2_win_prob": 55.6,
-                "t1_proj_runs": 5.2,
-                "t2_proj_runs": 5.63,
+                "t1_win_prob": 43.9,
+                "t2_win_prob": 56.1,
+                "t1_proj_runs": 5.19,
+                "t2_proj_runs": 5.62,
                 "total_proj_runs": 10.8
             }
         },
@@ -774,10 +774,10 @@
                 "k9": 7.16
             },
             "simulation": {
-                "t1_win_prob": 58.4,
-                "t2_win_prob": 41.6,
-                "t1_proj_runs": 4.48,
-                "t2_proj_runs": 3.96,
+                "t1_win_prob": 58.3,
+                "t2_win_prob": 41.7,
+                "t1_proj_runs": 4.49,
+                "t2_proj_runs": 3.94,
                 "total_proj_runs": 8.4
             }
         },
@@ -797,11 +797,11 @@
                 "k9": 8.0
             },
             "simulation": {
-                "t1_win_prob": 63.4,
-                "t2_win_prob": 36.6,
-                "t1_proj_runs": 4.22,
+                "t1_win_prob": 64.3,
+                "t2_win_prob": 35.7,
+                "t1_proj_runs": 4.3,
                 "t2_proj_runs": 3.4,
-                "total_proj_runs": 7.6
+                "total_proj_runs": 7.7
             }
         },
         {
@@ -820,11 +820,11 @@
                 "k9": 8.83
             },
             "simulation": {
-                "t1_win_prob": 81.1,
-                "t2_win_prob": 18.9,
-                "t1_proj_runs": 4.45,
-                "t2_proj_runs": 2.47,
-                "total_proj_runs": 6.9
+                "t1_win_prob": 80.9,
+                "t2_win_prob": 19.1,
+                "t1_proj_runs": 4.51,
+                "t2_proj_runs": 2.49,
+                "total_proj_runs": 7.0
             }
         }
     ]
