@@ -274,14 +274,12 @@
                 <span id="proj-total-badge">Proj. Total: --</span>
             </div>
             
-            <!-- Warning banner that displays if lineups aren't out yet -->
             <div id="unconfirmed-banner" style="display: none;">
                 <h3 style="color: var(--red-team); margin: 0 0 5px 0; font-size: 15px; text-transform: uppercase;">Lineups Not Released</h3>
                 <p style="color: var(--text-muted); font-size: 12px; margin: 0;">The official starting 9 has not been posted yet. The simulation will run automatically once both teams submit their lineups.</p>
             </div>
 
             <div class="prob-row">
-                <!-- Away Team -->
                 <div class="team-prob-box">
                     <span class="prob-val" id="away-prob" style="color: var(--cyan-team)">--%</span>
                     <span class="prob-name" id="away-name">Away Team</span>
@@ -297,7 +295,6 @@
                     </div>
                 </div>
                 
-                <!-- Home Team -->
                 <div class="team-prob-box right">
                     <span class="prob-val" id="home-prob" style="color: var(--red-team)">--%</span>
                     <span class="prob-name" id="home-name">Home Team</span>
@@ -345,7 +342,6 @@
     <script>
         let teams = {};
         let todaysGames = [];
-        let leagueMax = {};
         let spiderChart = null;
 
         const statsToChart = ['R', 'H', '2B', '3B', 'HR', 'RBI', 'BB', 'SB', 'AVG', 'OBP', 'SLG', 'OPS'];
@@ -389,7 +385,6 @@
                     return;
                 }
                 
-                calculateLeagueMaximums();
                 populateDropdown();
                 initChart();
                 updateDashboard();
@@ -399,16 +394,6 @@
                 document.getElementById('date-subtitle').textContent = "Error loading data.";
             });
 
-        function calculateLeagueMaximums() {
-            statsToChart.forEach(stat => {
-                let max = 0;
-                for (let t in teams) {
-                    if (teams[t][stat] > max) max = teams[t][stat];
-                }
-                leagueMax[stat] = max || 1;
-            });
-        }
-
         function populateDropdown() {
             gameSelect.innerHTML = '';
             todaysGames.forEach((game, index) => {
@@ -416,11 +401,8 @@
                 opt.value = index; 
                 const away = teams[game.away_team].name;
                 const home = teams[game.home_team].name;
-                
-                // Add a small tag if lineup is missing
                 const statusTag = game.lineup_confirmed ? '' : ' (Pending Lineup)';
                 opt.textContent = `${away} @ ${home}${statusTag}`;
-                
                 gameSelect.appendChild(opt);
             });
         }
@@ -450,8 +432,10 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
+                                    const stat = statsToChart[context.dataIndex];
                                     const raw = context.datasetIndex === 0 ? currentAwayRaw[context.dataIndex] : currentHomeRaw[context.dataIndex];
-                                    return `${context.dataset.label}: ${raw}`;
+                                    const isRateStat = ['AVG', 'OBP', 'SLG', 'OPS'].includes(stat);
+                                    return `${context.dataset.label}: ${raw}${isRateStat ? '' : '/G'}`;
                                 }
                             }
                         }
@@ -493,16 +477,27 @@
 
                 currentAwayRaw = statsToChart.map(s => game.away_offense[s]);
                 currentHomeRaw = statsToChart.map(s => game.home_offense[s]);
-                const awayNorm = statsToChart.map(s => (game.away_offense[s] / leagueMax[s]) * 100);
-                const homeNorm = statsToChart.map(s => (game.home_offense[s] / leagueMax[s]) * 100);
+                
+                // Direct Head-to-Head Scaling
+                const awayNorm = statsToChart.map(s => {
+                    const a = game.away_offense[s];
+                    const h = game.home_offense[s];
+                    const max = Math.max(a, h);
+                    return max > 0 ? (a / max) * 100 : 0;
+                });
+                const homeNorm = statsToChart.map(s => {
+                    const a = game.away_offense[s];
+                    const h = game.home_offense[s];
+                    const max = Math.max(a, h);
+                    return max > 0 ? (h / max) * 100 : 0;
+                });
 
-                spiderChart.data.datasets[0].label = `${awayTeam.name} (Lineup)`;
+                spiderChart.data.datasets[0].label = `${awayTeam.name} (Starting 9)`;
                 spiderChart.data.datasets[0].data = awayNorm;
-                spiderChart.data.datasets[1].label = `${homeTeam.name} (Lineup)`;
+                spiderChart.data.datasets[1].label = `${homeTeam.name} (Starting 9)`;
                 spiderChart.data.datasets[1].data = homeNorm;
                 spiderChart.update();
             } else {
-                // Display the banner and set numbers to N/A
                 document.getElementById('unconfirmed-banner').style.display = 'block';
                 document.getElementById('chart-container').style.display = 'none';
                 
@@ -517,7 +512,6 @@
                 document.getElementById('home-proj-runs').textContent = `N/A`;
             }
             
-            // Pinnacle Data Processing
             if (mkt) {
                 document.getElementById('away-pinny').textContent = `PINN: ${mkt.away_ml > 0 ? '+' : ''}${mkt.away_ml || 'N/A'}`;
                 setEV('away-ev', mkt.away_ev);
