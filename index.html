@@ -156,7 +156,6 @@
             margin-bottom: 4px;
         }
         
-        /* New Pinnacle & EV CSS */
         .pinny-box {
             display: flex;
             align-items: center;
@@ -241,6 +240,15 @@
             padding: 20px;
             position: relative;
         }
+        
+        #unconfirmed-banner {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 77, 77, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -264,6 +272,12 @@
             <div class="card-header">
                 <span>Monte Carlo Projection (10,000 Sims)</span>
                 <span id="proj-total-badge">Proj. Total: --</span>
+            </div>
+            
+            <!-- Warning banner that displays if lineups aren't out yet -->
+            <div id="unconfirmed-banner" style="display: none;">
+                <h3 style="color: var(--red-team); margin: 0 0 5px 0; font-size: 15px; text-transform: uppercase;">Lineups Not Released</h3>
+                <p style="color: var(--text-muted); font-size: 12px; margin: 0;">The official starting 9 has not been posted yet. The simulation will run automatically once both teams submit their lineups.</p>
             </div>
 
             <div class="prob-row">
@@ -308,7 +322,6 @@
                 Projected Score: <span id="away-proj-runs">0</span> - <span id="home-proj-runs">0</span>
             </div>
             
-            <!-- Pinnacle Total Market Display -->
             <div id="pinnacle-total-container" class="total-banner" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px; display: none;">
                 <div style="font-size: 11px; color: var(--gold); font-weight: bold; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Pinnacle Total Market</div>
                 <div style="display: flex; justify-content: center; gap: 20px;">
@@ -324,7 +337,7 @@
             </div>
         </div>
 
-        <div class="chart-container">
+        <div class="chart-container" id="chart-container">
             <canvas id="spiderChart"></canvas>
         </div>
     </div>
@@ -343,11 +356,8 @@
 
         function probToMoneyline(prob) {
             const p = prob / 100;
-            if (p >= 0.5) {
-                return Math.round((-100 * p) / (1 - p)).toString();
-            } else {
-                return `+${Math.round((100 * (1 - p)) / p)}`;
-            }
+            if (p >= 0.5) return Math.round((-100 * p) / (1 - p)).toString();
+            else return `+${Math.round((100 * (1 - p)) / p)}`;
         }
         
         function setEV(elementId, evValue) {
@@ -362,7 +372,6 @@
             el.className = `ev-tag ${evValue > 0 ? 'ev-positive' : 'ev-negative'}`;
         }
 
-        // Cache-busting fetch request to bypass mobile browser caching
         fetch('./data.json?t=' + new Date().getTime(), { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
@@ -373,7 +382,6 @@
                 
                 teams = data.teams;
                 todaysGames = data.todays_games || [];
-                
                 document.getElementById('date-subtitle').textContent = `Slate for ${data.date} (10,000 Sims per game)`;
                 
                 if (todaysGames.length === 0) {
@@ -408,7 +416,11 @@
                 opt.value = index; 
                 const away = teams[game.away_team].name;
                 const home = teams[game.home_team].name;
-                opt.textContent = `${away} @ ${home}`;
+                
+                // Add a small tag if lineup is missing
+                const statusTag = game.lineup_confirmed ? '' : ' (Pending Lineup)';
+                opt.textContent = `${away} @ ${home}${statusTag}`;
+                
                 gameSelect.appendChild(opt);
             });
         }
@@ -420,24 +432,8 @@
                 data: {
                     labels: statsToChart,
                     datasets: [
-                        {
-                            label: 'Away Offense',
-                            data: [],
-                            backgroundColor: 'rgba(0, 180, 216, 0.35)',
-                            borderColor: '#00B4D8',
-                            pointBackgroundColor: '#00B4D8',
-                            pointBorderColor: '#fff',
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'Home Offense',
-                            data: [],
-                            backgroundColor: 'rgba(255, 77, 77, 0.35)',
-                            borderColor: '#FF4D4D',
-                            pointBackgroundColor: '#FF4D4D',
-                            pointBorderColor: '#fff',
-                            borderWidth: 2
-                        }
+                        { label: 'Away Lineup', data: [], backgroundColor: 'rgba(0, 180, 216, 0.35)', borderColor: '#00B4D8', pointBackgroundColor: '#00B4D8', pointBorderColor: '#fff', borderWidth: 2 },
+                        { label: 'Home Lineup', data: [], backgroundColor: 'rgba(255, 77, 77, 0.35)', borderColor: '#FF4D4D', pointBackgroundColor: '#FF4D4D', pointBorderColor: '#fff', borderWidth: 2 }
                     ]
                 },
                 options: {
@@ -446,9 +442,7 @@
                         r: {
                             min: 0, max: 100,
                             ticks: { stepSize: 20, display: true, color: '#64748b', backdropColor: 'transparent', callback: val => val + '%' },
-                            grid: { color: '#1E293B' },
-                            angleLines: { color: '#1E293B' },
-                            pointLabels: { color: '#E2E8F0', font: { size: 12, weight: 'bold' } }
+                            grid: { color: '#1E293B' }, angleLines: { color: '#1E293B' }, pointLabels: { color: '#E2E8F0', font: { size: 12, weight: 'bold' } }
                         }
                     },
                     plugins: {
@@ -476,20 +470,57 @@
             const homeTeam = teams[game.home_team];
             const sim = game.simulation;
             const mkt = game.market_data;
+            const isConfirmed = game.lineup_confirmed;
 
             document.getElementById('away-name').textContent = awayTeam.name;
             document.getElementById('home-name').textContent = homeTeam.name;
+            document.getElementById('away-pitcher').textContent = `SP: ${game.away_pitcher.name} (ERA: ${game.away_pitcher.era.toFixed(2)})`;
+            document.getElementById('home-pitcher').textContent = `SP: ${game.home_pitcher.name} (ERA: ${game.home_pitcher.era.toFixed(2)})`;
+
+            if (isConfirmed && sim) {
+                document.getElementById('unconfirmed-banner').style.display = 'none';
+                document.getElementById('chart-container').style.display = 'block';
+                
+                document.getElementById('away-prob').textContent = `${sim.t1_win_prob}%`;
+                document.getElementById('home-prob').textContent = `${sim.t2_win_prob}%`;
+                document.getElementById('away-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
+                document.getElementById('home-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
+                
+                document.getElementById('prob-bar').style.width = `${sim.t1_win_prob}%`;
+                document.getElementById('proj-total-badge').textContent = `Proj. Total: ${sim.total_proj_runs}`;
+                document.getElementById('away-proj-runs').textContent = `${awayTeam.abbr} ${sim.t1_proj_runs}`;
+                document.getElementById('home-proj-runs').textContent = `${homeTeam.abbr} ${sim.t2_proj_runs}`;
+
+                currentAwayRaw = statsToChart.map(s => game.away_offense[s]);
+                currentHomeRaw = statsToChart.map(s => game.home_offense[s]);
+                const awayNorm = statsToChart.map(s => (game.away_offense[s] / leagueMax[s]) * 100);
+                const homeNorm = statsToChart.map(s => (game.home_offense[s] / leagueMax[s]) * 100);
+
+                spiderChart.data.datasets[0].label = `${awayTeam.name} (Lineup)`;
+                spiderChart.data.datasets[0].data = awayNorm;
+                spiderChart.data.datasets[1].label = `${homeTeam.name} (Lineup)`;
+                spiderChart.data.datasets[1].data = homeNorm;
+                spiderChart.update();
+            } else {
+                // Display the banner and set numbers to N/A
+                document.getElementById('unconfirmed-banner').style.display = 'block';
+                document.getElementById('chart-container').style.display = 'none';
+                
+                document.getElementById('away-prob').textContent = `--%`;
+                document.getElementById('home-prob').textContent = `--%`;
+                document.getElementById('away-line').textContent = `Fair Line: PENDING`;
+                document.getElementById('home-line').textContent = `Fair Line: PENDING`;
+                
+                document.getElementById('prob-bar').style.width = `50%`;
+                document.getElementById('proj-total-badge').textContent = `Proj. Total: --`;
+                document.getElementById('away-proj-runs').textContent = `N/A`;
+                document.getElementById('home-proj-runs').textContent = `N/A`;
+            }
             
-            document.getElementById('away-prob').textContent = `${sim.t1_win_prob}%`;
-            document.getElementById('home-prob').textContent = `${sim.t2_win_prob}%`;
-            
-            document.getElementById('away-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
-            document.getElementById('home-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
-            
+            // Pinnacle Data Processing
             if (mkt) {
                 document.getElementById('away-pinny').textContent = `PINN: ${mkt.away_ml > 0 ? '+' : ''}${mkt.away_ml || 'N/A'}`;
                 setEV('away-ev', mkt.away_ev);
-                
                 document.getElementById('home-pinny').textContent = `PINN: ${mkt.home_ml > 0 ? '+' : ''}${mkt.home_ml || 'N/A'}`;
                 setEV('home-ev', mkt.home_ev);
 
@@ -497,7 +528,6 @@
                     document.getElementById('pinnacle-total-container').style.display = 'block';
                     document.getElementById('over-pinny').textContent = `O ${mkt.total_line} (${mkt.over_odds > 0 ? '+' : ''}${mkt.over_odds || 'N/A'})`;
                     setEV('over-ev', mkt.over_ev);
-                    
                     document.getElementById('under-pinny').textContent = `U ${mkt.total_line} (${mkt.under_odds > 0 ? '+' : ''}${mkt.under_odds || 'N/A'})`;
                     setEV('under-ev', mkt.under_ev);
                 } else {
@@ -510,30 +540,9 @@
                 setEV('home-ev', null);
                 document.getElementById('pinnacle-total-container').style.display = 'none';
             }
-            
-            document.getElementById('away-pitcher').textContent = `SP: ${game.away_pitcher.name} (ERA: ${game.away_pitcher.era.toFixed(2)})`;
-            document.getElementById('home-pitcher').textContent = `SP: ${game.home_pitcher.name} (ERA: ${game.home_pitcher.era.toFixed(2)})`;
-
-            document.getElementById('prob-bar').style.width = `${sim.t1_win_prob}%`;
-            document.getElementById('proj-total-badge').textContent = `Proj. Total: ${sim.total_proj_runs}`;
-            document.getElementById('away-proj-runs').textContent = `${awayTeam.abbr} ${sim.t1_proj_runs}`;
-            document.getElementById('home-proj-runs').textContent = `${homeTeam.abbr} ${sim.t2_proj_runs}`;
-
-            currentAwayRaw = statsToChart.map(s => awayTeam[s]);
-            currentHomeRaw = statsToChart.map(s => homeTeam[s]);
-
-            const awayNorm = statsToChart.map(s => (awayTeam[s] / leagueMax[s]) * 100);
-            const homeNorm = statsToChart.map(s => (homeTeam[s] / leagueMax[s]) * 100);
-
-            spiderChart.data.datasets[0].label = awayTeam.name;
-            spiderChart.data.datasets[0].data = awayNorm;
-            spiderChart.data.datasets[1].label = homeTeam.name;
-            spiderChart.data.datasets[1].data = homeNorm;
-            spiderChart.update();
         }
 
         gameSelect.addEventListener('change', updateDashboard);
     </script>
 </body>
 </html>
-
