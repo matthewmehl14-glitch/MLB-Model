@@ -19,7 +19,6 @@ TEAM_MAPPING = {
 }
 
 def get_pinnacle_odds(api_key):
-    """Fetch live Pinnacle ML and Totals from The Odds API"""
     if not api_key: return {}
     url = f"https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?apiKey={api_key}&bookmakers=pinnacle&markets=h2h,totals&oddsFormat=american"
     try:
@@ -34,9 +33,7 @@ def get_pinnacle_odds(api_key):
                 home_abbr = TEAM_MAPPING[home]
                 away_abbr = TEAM_MAPPING[away]
                 matchup_key = f"{away_abbr}@{home_abbr}"
-                
-                if matchup_key in odds_dict:
-                    continue
+                if matchup_key in odds_dict: continue
                 
                 game_odds = {'h2h': {}, 'totals': {}}
                 for book in game.get('bookmakers', []):
@@ -72,8 +69,7 @@ def calculate_ev(prob_pct, am_odds, push_pct=0.0):
     return round(ev * 100, 1)
 
 def get_pitcher_stats(pitcher_id, season):
-    if not pitcher_id:
-        return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0}
+    if not pitcher_id: return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0}
     url = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}/stats?stats=season&group=pitching&season={season}"
     res = requests.get(url).json()
     person_url = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}"
@@ -94,35 +90,50 @@ def get_pitcher_stats(pitcher_id, season):
     return {"name": name, "era": 4.50, "ra9": 4.50, "k9": 8.0}
 
 def agg_lineup_stats(lineup_array, player_hit_stats):
-    """Aggregates individual player stats to build a team profile for the Spider Chart and Sim"""
-    agg = {"G": 0, "R": 0, "H": 0, "2B": 0, "3B": 0, "HR": 0, "RBI": 0, "BB": 0, "SO": 0, "SB": 0, "AB": 0, "PA": 0, "TB": 0}
+    """Calculates pure 9-man combined per-game averages"""
+    agg_rates = {"AB": 0, "PA": 0, "H": 0, "BB": 0, "TB": 0}
+    pg = {"R": 0.0, "H": 0.0, "2B": 0.0, "3B": 0.0, "HR": 0.0, "RBI": 0.0, "BB": 0.0, "SB": 0.0}
+    
     for p in lineup_array:
         pid = p.get('id')
         s = player_hit_stats.get(pid, {})
-        agg["G"] += s.get('gamesPlayed', 0)
-        agg["R"] += s.get('runs', 0)
-        agg["H"] += s.get('hits', 0)
-        agg["2B"] += s.get('doubles', 0)
-        agg["3B"] += s.get('triples', 0)
-        agg["HR"] += s.get('homeRuns', 0)
-        agg["RBI"] += s.get('rbi', 0)
-        agg["BB"] += s.get('baseOnBalls', 0)
-        agg["SO"] += s.get('strikeOuts', 0)
-        agg["SB"] += s.get('stolenBases', 0)
-        agg["AB"] += s.get('atBats', 0)
-        agg["PA"] += s.get('plateAppearances', 0)
-        agg["TB"] += s.get('totalBases', 0)
+        g = s.get('gamesPlayed', 0)
+        
+        if g > 0:
+            pg["R"] += s.get('runs', 0) / g
+            pg["H"] += s.get('hits', 0) / g
+            pg["2B"] += s.get('doubles', 0) / g
+            pg["3B"] += s.get('triples', 0) / g
+            pg["HR"] += s.get('homeRuns', 0) / g
+            pg["RBI"] += s.get('rbi', 0) / g
+            pg["BB"] += s.get('baseOnBalls', 0) / g
+            pg["SB"] += s.get('stolenBases', 0) / g
+            
+        agg_rates["AB"] += s.get('atBats', 0)
+        agg_rates["PA"] += s.get('plateAppearances', 0)
+        agg_rates["H"] += s.get('hits', 0)
+        agg_rates["BB"] += s.get('baseOnBalls', 0)
+        agg_rates["TB"] += s.get('totalBases', 0)
     
-    avg = agg["H"] / agg["AB"] if agg["AB"] > 0 else 0
-    obp = (agg["H"] + agg["BB"]) / agg["PA"] if agg["PA"] > 0 else 0
-    slg = agg["TB"] / agg["AB"] if agg["AB"] > 0 else 0
+    avg = agg_rates["H"] / agg_rates["AB"] if agg_rates["AB"] > 0 else 0
+    obp = (agg_rates["H"] + agg_rates["BB"]) / agg_rates["PA"] if agg_rates["PA"] > 0 else 0
+    slg = agg_rates["TB"] / agg_rates["AB"] if agg_rates["AB"] > 0 else 0
     ops = obp + slg
     
     return {
-        "R": agg["R"], "H": agg["H"], "2B": agg["2B"], "3B": agg["3B"],
-        "HR": agg["HR"], "RBI": agg["RBI"], "BB": agg["BB"], "SB": agg["SB"],
-        "AVG": round(avg, 3), "OBP": round(obp, 3), "SLG": round(slg, 3), "OPS": round(ops, 3),
-        "RS_per_game": (agg["R"] / agg["G"]) * 9 if agg["G"] > 0 else 4.5
+        "R": round(pg["R"], 2), 
+        "H": round(pg["H"], 2), 
+        "2B": round(pg["2B"], 2), 
+        "3B": round(pg["3B"], 2),
+        "HR": round(pg["HR"], 2), 
+        "RBI": round(pg["RBI"], 2), 
+        "BB": round(pg["BB"], 2), 
+        "SB": round(pg["SB"], 2),
+        "AVG": round(avg, 3), 
+        "OBP": round(obp, 3), 
+        "SLG": round(slg, 3), 
+        "OPS": round(ops, 3),
+        "RS_per_game": round(pg["R"], 2) if pg["R"] > 0 else 4.5
     }
 
 def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, total_line=None, iterations=10000):
@@ -169,7 +180,8 @@ def generate_mlb_json():
     api_key = os.environ.get("ODDS_API_KEY")
     pinnacle_data = get_pinnacle_odds(api_key)
     
-    player_stats_url = f"https://statsapi.mlb.com/api/v1/stats?stats=season&group=hitting&playerPool=all&season={season}&sportIds=1"
+    # Updated to limit=10000 to catch every player
+    player_stats_url = f"https://statsapi.mlb.com/api/v1/stats?stats=season&group=hitting&playerPool=all&season={season}&sportIds=1&limit=10000"
     player_res = requests.get(player_stats_url).json()
     player_hit_stats = {}
     if 'stats' in player_res and len(player_res['stats']) > 0:
@@ -195,20 +207,10 @@ def generate_mlb_json():
                 r = int(s.get('runs', 0))
                 total_runs_scored += r
                 total_games_played += g
-                teams[abbr] = {
-                    "name": name, "abbr": abbr,
-                    "G": g, "R": r, "H": int(s.get('hits', 0)),
-                    "2B": int(s.get('doubles', 0)), "3B": int(s.get('triples', 0)),
-                    "HR": int(s.get('homeRuns', 0)), "RBI": int(s.get('rbi', 0)),
-                    "BB": int(s.get('baseOnBalls', 0)), "SO": int(s.get('strikeOuts', 0)),
-                    "SB": int(s.get('stolenBases', 0)), "AVG": float(s.get('avg', '.000')),
-                    "OBP": float(s.get('obp', '.000')), "SLG": float(s.get('slg', '.000')),
-                    "OPS": float(s.get('ops', '.000'))
-                }
+                teams[abbr] = { "name": name, "abbr": abbr }
                 
     league_rpg = total_runs_scored / total_games_played if total_games_played > 0 else 4.5
     
-    # Notice the hydration now includes 'lineups'
     schedule_url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={today_str}&hydrate=probablePitcher,lineups"
     schedule_data = requests.get(schedule_url).json()
     todays_games = []
@@ -269,33 +271,20 @@ def generate_mlb_json():
                         market_data["over_ev"] = calculate_ev(sim_res["ou_probs"]["over_prob"] * 100, over_odds, sim_res["ou_probs"]["push_prob"] * 100) if over_odds and total_line else None
                         market_data["under_ev"] = calculate_ev(sim_res["ou_probs"]["under_prob"] * 100, under_odds, sim_res["ou_probs"]["push_prob"] * 100) if under_odds and total_line else None
                     else:
-                        market_data["away_ev"] = None
-                        market_data["home_ev"] = None
-                        market_data["over_ev"] = None
-                        market_data["under_ev"] = None
+                        market_data["away_ev"] = None; market_data["home_ev"] = None
+                        market_data["over_ev"] = None; market_data["under_ev"] = None
                 
                 todays_games.append({
-                    "away_team": away_abbr,
-                    "home_team": home_abbr,
-                    "away_pitcher": away_pitcher,
-                    "home_pitcher": home_pitcher,
+                    "away_team": away_abbr, "home_team": home_abbr,
+                    "away_pitcher": away_pitcher, "home_pitcher": home_pitcher,
                     "lineup_confirmed": lineups_confirmed,
-                    "away_offense": away_offense,
-                    "home_offense": home_offense,
-                    "simulation": sim_res,
-                    "market_data": market_data
+                    "away_offense": away_offense, "home_offense": home_offense,
+                    "simulation": sim_res, "market_data": market_data
                 })
 
-    output_data = {
-        "date": today_str,
-        "last_updated": datetime.utcnow().isoformat() + "Z",
-        "teams": teams,
-        "todays_games": todays_games
-    }
+    output_data = { "date": today_str, "last_updated": datetime.utcnow().isoformat() + "Z", "teams": teams, "todays_games": todays_games }
     
-    with open('data.json', 'w') as f:
-        json.dump(output_data, f, indent=4)
-        
+    with open('data.json', 'w') as f: json.dump(output_data, f, indent=4)
     print(f"Success! Model updated for {len(todays_games)} games on the slate.")
 
 if __name__ == "__main__":
