@@ -1,6 +1,6 @@
 {
     "date": "2026-09-09",
-    "last_updated": "2026-09-09T18:48:22.291296Z",
+    "last_updated": "2026-09-09T20:42:04.794518Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -34,13 +34,13 @@
             "name": "Boston Red Sox",
             "abbr": "BOS"
         },
-        "WSN": {
-            "name": "Washington Nationals",
-            "abbr": "WSN"
-        },
         "SFG": {
             "name": "San Francisco Giants",
             "abbr": "SFG"
+        },
+        "WSN": {
+            "name": "Washington Nationals",
+            "abbr": "WSN"
         },
         "MIA": {
             "name": "Miami Marlins",
@@ -129,69 +129,69 @@
             "home_team": "DET",
             "away_pitcher": {
                 "name": "Zebby Matthews",
-                "era": 4.69,
-                "ra9": 5.08,
-                "k9": 7.46
+                "era": 4.98,
+                "ra9": 5.35,
+                "k9": 7.47
             },
             "home_pitcher": {
                 "name": "Keider Montero",
-                "era": 3.52,
-                "ra9": 3.78,
-                "k9": 6.04
+                "era": 3.55,
+                "ra9": 3.8,
+                "k9": 6.0
             },
             "lineup_confirmed": true,
             "away_offense": {
-                "R": 4.13,
-                "H": 7.5,
-                "2B": 1.56,
+                "R": 4.07,
+                "H": 7.4,
+                "2B": 1.53,
                 "3B": 0.1,
                 "HR": 1.06,
-                "RBI": 4.18,
-                "BB": 2.98,
-                "SB": 0.53,
-                "AVG": 0.25,
+                "RBI": 4.11,
+                "BB": 3.01,
+                "SB": 0.52,
+                "AVG": 0.249,
                 "OBP": 0.305,
                 "SLG": 0.413,
                 "OPS": 0.718,
-                "RS_per_game": 4.13
+                "RS_per_game": 4.07
             },
             "home_offense": {
-                "R": 3.29,
-                "H": 6.91,
-                "2B": 1.3,
-                "3B": 0.23,
+                "R": 3.38,
+                "H": 6.81,
+                "2B": 1.33,
+                "3B": 0.22,
                 "HR": 0.79,
-                "RBI": 3.68,
-                "BB": 2.63,
-                "SB": 0.46,
-                "AVG": 0.26,
+                "RBI": 3.66,
+                "BB": 2.74,
+                "SB": 0.44,
+                "AVG": 0.259,
                 "OBP": 0.325,
                 "SLG": 0.427,
-                "OPS": 0.751,
-                "RS_per_game": 3.29
+                "OPS": 0.752,
+                "RS_per_game": 3.38
             },
             "simulation": {
-                "t1_win_prob": 45.4,
-                "t2_win_prob": 54.6,
-                "t1_proj_runs": 3.47,
-                "t2_proj_runs": 3.75,
-                "total_proj_runs": 7.2,
+                "t1_win_prob": 39.9,
+                "t2_win_prob": 60.1,
+                "t1_proj_runs": 3.46,
+                "t2_proj_runs": 4.06,
+                "total_proj_runs": 7.5,
                 "ou_probs": {
-                    "over_prob": 0.2956,
-                    "under_prob": 0.7044,
+                    "over_prob": 0.2292,
+                    "under_prob": 0.7708,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": 113,
-                "home_ml": -122,
-                "total_line": 8.5,
-                "over_odds": -108,
-                "under_odds": -104,
-                "away_ev": -3.3,
-                "home_ev": -0.6,
-                "over_ev": -43.1,
-                "under_ev": 38.2
+                "away_ml": 922,
+                "home_ml": -1584,
+                "total_line": 9.5,
+                "over_odds": 112,
+                "under_odds": -130,
+                "away_ev": 307.8,
+                "home_ev": -36.1,
+                "over_ev": -51.4,
+                "under_ev": 36.4
             }
         },
         {
@@ -199,69 +199,69 @@
             "home_team": "OAK",
             "away_pitcher": {
                 "name": "Braydon Fisher",
-                "era": 3.2,
-                "ra9": 4.09,
-                "k9": 8.7
+                "era": 3.15,
+                "ra9": 4.04,
+                "k9": 8.71
             },
             "home_pitcher": {
                 "name": "Brady Basso",
-                "era": 4.32,
-                "ra9": 4.59,
-                "k9": 6.48
+                "era": 3.86,
+                "ra9": 4.1,
+                "k9": 6.75
             },
             "lineup_confirmed": true,
             "away_offense": {
-                "R": 3.56,
-                "H": 7.7,
-                "2B": 1.27,
+                "R": 3.51,
+                "H": 7.67,
+                "2B": 1.29,
                 "3B": 0.06,
-                "HR": 0.73,
-                "RBI": 3.33,
-                "BB": 2.51,
-                "SB": 0.48,
+                "HR": 0.72,
+                "RBI": 3.28,
+                "BB": 2.5,
+                "SB": 0.47,
                 "AVG": 0.254,
                 "OBP": 0.302,
-                "SLG": 0.385,
-                "OPS": 0.688,
-                "RS_per_game": 3.56
+                "SLG": 0.384,
+                "OPS": 0.687,
+                "RS_per_game": 3.51
             },
             "home_offense": {
-                "R": 3.69,
-                "H": 6.85,
-                "2B": 1.19,
+                "R": 3.67,
+                "H": 6.81,
+                "2B": 1.18,
                 "3B": 0.1,
-                "HR": 0.98,
-                "RBI": 3.27,
-                "BB": 2.15,
+                "HR": 0.97,
+                "RBI": 3.22,
+                "BB": 2.13,
                 "SB": 0.5,
-                "AVG": 0.252,
-                "OBP": 0.306,
-                "SLG": 0.405,
-                "OPS": 0.711,
-                "RS_per_game": 3.69
+                "AVG": 0.251,
+                "OBP": 0.305,
+                "SLG": 0.404,
+                "OPS": 0.71,
+                "RS_per_game": 3.67
             },
             "simulation": {
-                "t1_win_prob": 55.4,
-                "t2_win_prob": 44.6,
-                "t1_proj_runs": 3.66,
-                "t2_proj_runs": 3.35,
-                "total_proj_runs": 7.0,
+                "t1_win_prob": 47.7,
+                "t2_win_prob": 52.3,
+                "t1_proj_runs": 3.2,
+                "t2_proj_runs": 3.32,
+                "total_proj_runs": 6.5,
                 "ou_probs": {
-                    "over_prob": 0.1669,
-                    "under_prob": 0.8331,
-                    "push_prob": 0.0
+                    "over_prob": 0.6354,
+                    "under_prob": 0.2212,
+                    "push_prob": 0.1434
                 }
             },
             "market_data": {
-                "away_ml": -155,
-                "home_ml": 142,
-                "total_line": 9.5,
+                "away_ml": 347,
+                "home_ml": -469,
+                "total_line": 5.0,
                 "over_odds": 104,
-                "under_odds": -117,
-                "away_ev": -8.9,
-                "home_ev": 7.9,
-                "over_ev": -66.0,
-                "under_ev": 54.5
+                "under_odds": -130,
+                "away_ev": 113.2,
+                "home_ev": -36.5,
+                "over_ev": 44.0,
+                "under_ev": -46.5
             }
         },
         {
@@ -269,69 +269,69 @@
             "home_team": "SFG",
             "away_pitcher": {
                 "name": "Andre Pallante",
-                "era": 3.51,
-                "ra9": 3.64,
-                "k9": 6.26
+                "era": 3.52,
+                "ra9": 3.65,
+                "k9": 6.36
             },
             "home_pitcher": {
                 "name": "Blade Tidwell",
-                "era": 4.43,
-                "ra9": 4.43,
-                "k9": 7.59
+                "era": 4.73,
+                "ra9": 4.93,
+                "k9": 7.49
             },
             "lineup_confirmed": true,
             "away_offense": {
-                "R": 4.24,
-                "H": 7.4,
+                "R": 4.16,
+                "H": 7.18,
                 "2B": 1.16,
-                "3B": 0.1,
-                "HR": 1.08,
-                "RBI": 4.5,
-                "BB": 2.86,
-                "SB": 0.43,
-                "AVG": 0.249,
+                "3B": 0.08,
+                "HR": 1.17,
+                "RBI": 4.62,
+                "BB": 2.68,
+                "SB": 0.42,
+                "AVG": 0.251,
                 "OBP": 0.308,
-                "SLG": 0.391,
-                "OPS": 0.699,
-                "RS_per_game": 4.24
+                "SLG": 0.4,
+                "OPS": 0.709,
+                "RS_per_game": 4.16
             },
             "home_offense": {
-                "R": 3.14,
-                "H": 5.83,
-                "2B": 1.12,
+                "R": 3.09,
+                "H": 5.76,
+                "2B": 1.1,
                 "3B": 0.13,
-                "HR": 0.61,
-                "RBI": 2.73,
-                "BB": 2.44,
-                "SB": 0.56,
-                "AVG": 0.25,
+                "HR": 0.6,
+                "RBI": 2.68,
+                "BB": 2.39,
+                "SB": 0.55,
+                "AVG": 0.251,
                 "OBP": 0.308,
                 "SLG": 0.389,
                 "OPS": 0.697,
-                "RS_per_game": 3.14
+                "RS_per_game": 3.09
             },
             "simulation": {
-                "t1_win_prob": 76.7,
-                "t2_win_prob": 23.3,
-                "t1_proj_runs": 4.18,
-                "t2_proj_runs": 2.57,
-                "total_proj_runs": 6.8,
+                "t1_win_prob": 81.9,
+                "t2_win_prob": 18.1,
+                "t1_proj_runs": 4.59,
+                "t2_proj_runs": 2.5,
+                "total_proj_runs": 7.1,
                 "ou_probs": {
-                    "over_prob": 0.241,
-                    "under_prob": 0.6379,
-                    "push_prob": 0.1211
+                    "over_prob": 0.06,
+                    "under_prob": 0.8942,
+                    "push_prob": 0.0458
                 }
             },
             "market_data": {
-                "away_ml": -114,
-                "home_ml": 106,
-                "total_line": 8.0,
-                "over_odds": -105,
-                "under_odds": -107,
-                "away_ev": 44.0,
-                "home_ev": -52.0,
-                "over_ev": -40.8,
-                "under_ev": 35.5
+                "away_ml": -438,
+                "home_ml": 328,
+                "total_line": 11.0,
+                "over_odds": 102,
+                "under_odds": -127,
+                "away_ev": 0.6,
+                "home_ev": -22.5,
+                "over_ev": -83.3,
+                "under_ev": 64.4
             }
         },
         {
@@ -339,69 +339,69 @@
             "home_team": "SDP",
             "away_pitcher": {
                 "name": "Jackson Kent",
-                "era": 5.55,
-                "ra9": 5.92,
-                "k9": 7.77
+                "era": 5.19,
+                "ra9": 5.54,
+                "k9": 7.27
             },
             "home_pitcher": {
                 "name": "Walker Buehler",
-                "era": 4.56,
-                "ra9": 4.62,
-                "k9": 7.72
+                "era": 4.49,
+                "ra9": 4.55,
+                "k9": 7.87
             },
             "lineup_confirmed": true,
             "away_offense": {
-                "R": 4.65,
-                "H": 7.7,
-                "2B": 1.75,
+                "R": 4.54,
+                "H": 7.49,
+                "2B": 1.69,
                 "3B": 0.13,
-                "HR": 1.38,
-                "RBI": 4.21,
-                "BB": 2.76,
-                "SB": 1.04,
-                "AVG": 0.251,
+                "HR": 1.32,
+                "RBI": 4.13,
+                "BB": 2.74,
+                "SB": 1.03,
+                "AVG": 0.25,
                 "OBP": 0.313,
-                "SLG": 0.43,
-                "OPS": 0.744,
-                "RS_per_game": 4.65
+                "SLG": 0.429,
+                "OPS": 0.742,
+                "RS_per_game": 4.54
             },
             "home_offense": {
-                "R": 3.81,
-                "H": 7.18,
-                "2B": 1.09,
+                "R": 3.75,
+                "H": 7.14,
+                "2B": 1.08,
                 "3B": 0.13,
-                "HR": 0.97,
-                "RBI": 3.75,
-                "BB": 2.9,
-                "SB": 0.9,
+                "HR": 0.96,
+                "RBI": 3.7,
+                "BB": 2.87,
+                "SB": 0.88,
                 "AVG": 0.251,
                 "OBP": 0.316,
                 "SLG": 0.414,
-                "OPS": 0.729,
-                "RS_per_game": 3.81
+                "OPS": 0.73,
+                "RS_per_game": 3.75
             },
             "simulation": {
-                "t1_win_prob": 47.6,
-                "t2_win_prob": 52.4,
-                "t1_proj_runs": 4.84,
-                "t2_proj_runs": 5.01,
-                "total_proj_runs": 9.8,
+                "t1_win_prob": 49.9,
+                "t2_win_prob": 50.1,
+                "t1_proj_runs": 4.61,
+                "t2_proj_runs": 4.64,
+                "total_proj_runs": 9.3,
                 "ou_probs": {
-                    "over_prob": 0.6511,
-                    "under_prob": 0.3489,
+                    "over_prob": 0.8129,
+                    "under_prob": 0.1871,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": 156,
-                "home_ml": -171,
-                "total_line": 8.5,
-                "over_odds": -114,
-                "under_odds": 101,
-                "away_ev": 21.9,
-                "home_ev": -17.0,
-                "over_ev": 22.2,
-                "under_ev": -29.9
+                "away_ml": 174,
+                "home_ml": -216,
+                "total_line": 6.5,
+                "over_odds": -115,
+                "under_odds": -105,
+                "away_ev": 36.7,
+                "home_ev": -26.7,
+                "over_ev": 52.0,
+                "under_ev": -63.5
             }
         },
         {
@@ -409,69 +409,69 @@
             "home_team": "SEA",
             "away_pitcher": {
                 "name": "Cody Bradford",
-                "era": 4.45,
-                "ra9": 4.45,
-                "k9": 4.75
+                "era": 4.5,
+                "ra9": 4.5,
+                "k9": 4.78
             },
             "home_pitcher": {
                 "name": "Kade Anderson",
-                "era": 5.4,
-                "ra9": 5.4,
-                "k9": 6.6
+                "era": 5.29,
+                "ra9": 5.29,
+                "k9": 6.88
             },
             "lineup_confirmed": true,
             "away_offense": {
-                "R": 3.61,
-                "H": 7.14,
-                "2B": 1.36,
-                "3B": 0.13,
-                "HR": 1.07,
-                "RBI": 3.72,
-                "BB": 2.66,
-                "SB": 0.33,
+                "R": 3.57,
+                "H": 7.08,
+                "2B": 1.35,
+                "3B": 0.12,
+                "HR": 1.06,
+                "RBI": 3.69,
+                "BB": 2.62,
+                "SB": 0.32,
                 "AVG": 0.249,
                 "OBP": 0.306,
                 "SLG": 0.422,
-                "OPS": 0.728,
-                "RS_per_game": 3.61
+                "OPS": 0.729,
+                "RS_per_game": 3.57
             },
             "home_offense": {
-                "R": 4.02,
-                "H": 7.39,
-                "2B": 1.27,
+                "R": 4.0,
+                "H": 7.33,
+                "2B": 1.26,
                 "3B": 0.05,
-                "HR": 1.07,
-                "RBI": 3.52,
-                "BB": 3.76,
+                "HR": 1.06,
+                "RBI": 3.5,
+                "BB": 3.74,
                 "SB": 0.67,
                 "AVG": 0.24,
                 "OBP": 0.313,
-                "SLG": 0.387,
-                "OPS": 0.7,
-                "RS_per_game": 4.02
+                "SLG": 0.386,
+                "OPS": 0.699,
+                "RS_per_game": 4.0
             },
             "simulation": {
-                "t1_win_prob": 55.3,
-                "t2_win_prob": 44.7,
-                "t1_proj_runs": 4.36,
-                "t2_proj_runs": 4.02,
-                "total_proj_runs": 8.4,
+                "t1_win_prob": 53.4,
+                "t2_win_prob": 46.6,
+                "t1_proj_runs": 4.26,
+                "t2_proj_runs": 4.03,
+                "total_proj_runs": 8.3,
                 "ou_probs": {
-                    "over_prob": 0.4572,
-                    "under_prob": 0.4019,
-                    "push_prob": 0.1409
+                    "over_prob": 0.5836,
+                    "under_prob": 0.2808,
+                    "push_prob": 0.1356
                 }
             },
             "market_data": {
-                "away_ml": 133,
-                "home_ml": -145,
-                "total_line": 8.0,
-                "over_odds": -110,
+                "away_ml": -129,
+                "home_ml": 106,
+                "total_line": 7.0,
+                "over_odds": -122,
                 "under_odds": -102,
-                "away_ev": 28.8,
-                "home_ev": -24.5,
-                "over_ev": 1.4,
-                "under_ev": -6.3
+                "away_ev": -5.2,
+                "home_ev": -4.0,
+                "over_ev": 19.8,
+                "under_ev": -30.8
             }
         },
         {
@@ -497,8 +497,8 @@
                 "away_ml": -110,
                 "home_ml": 102,
                 "total_line": 8.5,
-                "over_odds": -114,
-                "under_odds": 101,
+                "over_odds": -109,
+                "under_odds": -103,
                 "away_ev": null,
                 "home_ev": null,
                 "over_ev": null,
@@ -520,20 +520,59 @@
                 "ra9": 2.88,
                 "k9": 10.27
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.3,
+                "H": 7.6,
+                "2B": 1.46,
+                "3B": 0.12,
+                "HR": 1.25,
+                "RBI": 3.88,
+                "BB": 2.89,
+                "SB": 0.33,
+                "AVG": 0.251,
+                "OBP": 0.312,
+                "SLG": 0.434,
+                "OPS": 0.746,
+                "RS_per_game": 4.3
+            },
+            "home_offense": {
+                "R": 4.26,
+                "H": 8.07,
+                "2B": 1.46,
+                "3B": 0.17,
+                "HR": 1.05,
+                "RBI": 3.97,
+                "BB": 3.0,
+                "SB": 0.67,
+                "AVG": 0.261,
+                "OBP": 0.323,
+                "SLG": 0.424,
+                "OPS": 0.747,
+                "RS_per_game": 4.26
+            },
+            "simulation": {
+                "t1_win_prob": 40.1,
+                "t2_win_prob": 59.9,
+                "t1_proj_runs": 2.78,
+                "t2_proj_runs": 3.34,
+                "total_proj_runs": 6.1,
+                "ou_probs": {
+                    "over_prob": 0.1652,
+                    "under_prob": 0.7293,
+                    "push_prob": 0.1055
+                }
+            },
             "market_data": {
-                "away_ml": 137,
-                "home_ml": -149,
+                "away_ml": 128,
+                "home_ml": -139,
                 "total_line": 8.0,
                 "over_odds": -113,
-                "under_odds": 100,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "under_odds": 101,
+                "away_ev": -8.6,
+                "home_ev": 3.0,
+                "over_ev": -58.3,
+                "under_ev": 57.1
             }
         },
         {
@@ -551,20 +590,59 @@
                 "ra9": 4.42,
                 "k9": 6.17
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.19,
+                "H": 7.73,
+                "2B": 1.26,
+                "3B": 0.16,
+                "HR": 1.12,
+                "RBI": 3.8,
+                "BB": 3.17,
+                "SB": 0.67,
+                "AVG": 0.25,
+                "OBP": 0.312,
+                "SLG": 0.405,
+                "OPS": 0.717,
+                "RS_per_game": 4.19
+            },
+            "home_offense": {
+                "R": 3.77,
+                "H": 6.92,
+                "2B": 1.42,
+                "3B": 0.18,
+                "HR": 1.09,
+                "RBI": 4.08,
+                "BB": 2.71,
+                "SB": 0.66,
+                "AVG": 0.25,
+                "OBP": 0.308,
+                "SLG": 0.423,
+                "OPS": 0.731,
+                "RS_per_game": 3.77
+            },
+            "simulation": {
+                "t1_win_prob": 35.3,
+                "t2_win_prob": 64.7,
+                "t1_proj_runs": 4.14,
+                "t2_proj_runs": 5.18,
+                "total_proj_runs": 9.3,
+                "ou_probs": {
+                    "over_prob": 0.5818,
+                    "under_prob": 0.4182,
+                    "push_prob": 0.0
+                }
+            },
             "market_data": {
-                "away_ml": 109,
-                "home_ml": -118,
+                "away_ml": 110,
+                "home_ml": -119,
                 "total_line": 8.5,
                 "over_odds": -119,
                 "under_odds": 106,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ev": -25.9,
+                "home_ev": 19.1,
+                "over_ev": 7.1,
+                "under_ev": -13.9
             }
         },
         {
@@ -582,20 +660,59 @@
                 "ra9": 3.43,
                 "k9": 7.31
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 2.87,
+                "H": 5.53,
+                "2B": 1.04,
+                "3B": 0.11,
+                "HR": 0.71,
+                "RBI": 2.75,
+                "BB": 2.34,
+                "SB": 0.49,
+                "AVG": 0.229,
+                "OBP": 0.286,
+                "SLG": 0.378,
+                "OPS": 0.664,
+                "RS_per_game": 2.87
+            },
+            "home_offense": {
+                "R": 3.9,
+                "H": 7.15,
+                "2B": 1.56,
+                "3B": 0.15,
+                "HR": 0.87,
+                "RBI": 3.48,
+                "BB": 3.51,
+                "SB": 0.74,
+                "AVG": 0.241,
+                "OBP": 0.306,
+                "SLG": 0.398,
+                "OPS": 0.704,
+                "RS_per_game": 3.9
+            },
+            "simulation": {
+                "t1_win_prob": 10.8,
+                "t2_win_prob": 89.2,
+                "t1_proj_runs": 2.19,
+                "t2_proj_runs": 5.02,
+                "total_proj_runs": 7.2,
+                "ou_probs": {
+                    "over_prob": 0.1906,
+                    "under_prob": 0.705,
+                    "push_prob": 0.1044
+                }
+            },
             "market_data": {
                 "away_ml": 189,
-                "home_ml": -208,
+                "home_ml": -209,
                 "total_line": 9.0,
                 "over_odds": -118,
                 "under_odds": 105,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ev": -68.8,
+                "home_ev": 31.9,
+                "over_ev": -54.3,
+                "under_ev": 55.0
             }
         },
         {
@@ -613,20 +730,59 @@
                 "ra9": 5.02,
                 "k9": 8.78
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.03,
+                "H": 7.38,
+                "2B": 1.6,
+                "3B": 0.26,
+                "HR": 1.16,
+                "RBI": 4.37,
+                "BB": 2.74,
+                "SB": 0.59,
+                "AVG": 0.264,
+                "OBP": 0.321,
+                "SLG": 0.461,
+                "OPS": 0.782,
+                "RS_per_game": 4.03
+            },
+            "home_offense": {
+                "R": 4.18,
+                "H": 7.12,
+                "2B": 1.22,
+                "3B": 0.14,
+                "HR": 1.34,
+                "RBI": 4.09,
+                "BB": 3.25,
+                "SB": 0.7,
+                "AVG": 0.246,
+                "OBP": 0.314,
+                "SLG": 0.44,
+                "OPS": 0.753,
+                "RS_per_game": 4.18
+            },
+            "simulation": {
+                "t1_win_prob": 41.2,
+                "t2_win_prob": 58.8,
+                "t1_proj_runs": 4.49,
+                "t2_proj_runs": 5.09,
+                "total_proj_runs": 9.6,
+                "ou_probs": {
+                    "over_prob": 0.4899,
+                    "under_prob": 0.5101,
+                    "push_prob": 0.0
+                }
+            },
             "market_data": {
-                "away_ml": 213,
-                "home_ml": -236,
+                "away_ml": 212,
+                "home_ml": -235,
                 "total_line": 9.5,
-                "over_odds": 105,
-                "under_odds": -118,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "over_odds": 102,
+                "under_odds": -115,
+                "away_ev": 28.5,
+                "home_ev": -16.2,
+                "over_ev": -1.0,
+                "under_ev": -4.6
             }
         },
         {
@@ -639,25 +795,64 @@
                 "k9": 9.64
             },
             "home_pitcher": {
-                "name": "TBD",
-                "era": 4.5,
-                "ra9": 4.5,
-                "k9": 8.0
+                "name": "Reynaldo L\u00f3pez",
+                "era": 3.64,
+                "ra9": 4.14,
+                "k9": 8.29
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.31,
+                "H": 7.92,
+                "2B": 1.03,
+                "3B": 0.14,
+                "HR": 1.12,
+                "RBI": 4.01,
+                "BB": 2.99,
+                "SB": 0.94,
+                "AVG": 0.271,
+                "OBP": 0.329,
+                "SLG": 0.426,
+                "OPS": 0.756,
+                "RS_per_game": 4.31
+            },
+            "home_offense": {
+                "R": 4.44,
+                "H": 8.14,
+                "2B": 1.54,
+                "3B": 0.05,
+                "HR": 1.34,
+                "RBI": 4.26,
+                "BB": 2.88,
+                "SB": 0.48,
+                "AVG": 0.254,
+                "OBP": 0.308,
+                "SLG": 0.429,
+                "OPS": 0.737,
+                "RS_per_game": 4.44
+            },
+            "simulation": {
+                "t1_win_prob": 32.0,
+                "t2_win_prob": 68.0,
+                "t1_proj_runs": 3.96,
+                "t2_proj_runs": 5.23,
+                "total_proj_runs": 9.2,
+                "ou_probs": {
+                    "over_prob": 0.5664,
+                    "under_prob": 0.3034,
+                    "push_prob": 0.1302
+                }
+            },
             "market_data": {
                 "away_ml": 112,
-                "home_ml": -122,
+                "home_ml": -121,
                 "total_line": 8.0,
-                "over_odds": -109,
-                "under_odds": -103,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "over_odds": -108,
+                "under_odds": -104,
+                "away_ev": -32.2,
+                "home_ev": 24.2,
+                "over_ev": 22.1,
+                "under_ev": -27.5
             }
         },
         {
@@ -675,20 +870,59 @@
                 "ra9": 4.05,
                 "k9": 6.21
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 3.66,
+                "H": 7.35,
+                "2B": 1.27,
+                "3B": 0.15,
+                "HR": 0.95,
+                "RBI": 4.04,
+                "BB": 2.71,
+                "SB": 0.5,
+                "AVG": 0.246,
+                "OBP": 0.307,
+                "SLG": 0.396,
+                "OPS": 0.703,
+                "RS_per_game": 3.66
+            },
+            "home_offense": {
+                "R": 3.92,
+                "H": 7.27,
+                "2B": 1.66,
+                "3B": 0.14,
+                "HR": 0.96,
+                "RBI": 3.56,
+                "BB": 3.01,
+                "SB": 0.68,
+                "AVG": 0.243,
+                "OBP": 0.304,
+                "SLG": 0.401,
+                "OPS": 0.705,
+                "RS_per_game": 3.92
+            },
+            "simulation": {
+                "t1_win_prob": 15.5,
+                "t2_win_prob": 84.5,
+                "t1_proj_runs": 3.29,
+                "t2_proj_runs": 5.97,
+                "total_proj_runs": 9.3,
+                "ou_probs": {
+                    "over_prob": 0.5777,
+                    "under_prob": 0.4223,
+                    "push_prob": 0.0
+                }
+            },
             "market_data": {
-                "away_ml": -112,
+                "away_ml": -113,
                 "home_ml": 104,
                 "total_line": 8.5,
                 "over_odds": -115,
                 "under_odds": 102,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ev": -70.8,
+                "home_ev": 72.4,
+                "over_ev": 8.0,
+                "under_ev": -14.7
             }
         },
         {
@@ -706,20 +940,59 @@
                 "ra9": 4.27,
                 "k9": 7.85
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.69,
+                "H": 8.16,
+                "2B": 1.52,
+                "3B": 0.1,
+                "HR": 1.31,
+                "RBI": 4.71,
+                "BB": 3.57,
+                "SB": 0.81,
+                "AVG": 0.263,
+                "OBP": 0.333,
+                "SLG": 0.432,
+                "OPS": 0.765,
+                "RS_per_game": 4.69
+            },
+            "home_offense": {
+                "R": 4.49,
+                "H": 7.02,
+                "2B": 1.53,
+                "3B": 0.12,
+                "HR": 1.22,
+                "RBI": 4.45,
+                "BB": 3.16,
+                "SB": 0.25,
+                "AVG": 0.245,
+                "OBP": 0.311,
+                "SLG": 0.43,
+                "OPS": 0.741,
+                "RS_per_game": 4.49
+            },
+            "simulation": {
+                "t1_win_prob": 59.5,
+                "t2_win_prob": 40.5,
+                "t1_proj_runs": 4.45,
+                "t2_proj_runs": 3.85,
+                "total_proj_runs": 8.3,
+                "ou_probs": {
+                    "over_prob": 0.321,
+                    "under_prob": 0.5536,
+                    "push_prob": 0.1254
+                }
+            },
             "market_data": {
-                "away_ml": 119,
-                "home_ml": -129,
+                "away_ml": 117,
+                "home_ml": -127,
                 "total_line": 9.0,
-                "over_odds": 107,
+                "over_odds": 106,
                 "under_odds": -120,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ev": 29.1,
+                "home_ev": -27.6,
+                "over_ev": -21.3,
+                "under_ev": 14.0
             }
         },
         {
@@ -737,20 +1010,59 @@
                 "ra9": 2.48,
                 "k9": 10.04
             },
-            "lineup_confirmed": false,
-            "away_offense": null,
-            "home_offense": null,
-            "simulation": null,
+            "lineup_confirmed": true,
+            "away_offense": {
+                "R": 4.68,
+                "H": 8.0,
+                "2B": 1.57,
+                "3B": 0.12,
+                "HR": 1.29,
+                "RBI": 4.55,
+                "BB": 3.87,
+                "SB": 0.6,
+                "AVG": 0.256,
+                "OBP": 0.332,
+                "SLG": 0.439,
+                "OPS": 0.77,
+                "RS_per_game": 4.68
+            },
+            "home_offense": {
+                "R": 4.47,
+                "H": 8.05,
+                "2B": 1.61,
+                "3B": 0.16,
+                "HR": 0.81,
+                "RBI": 4.3,
+                "BB": 3.42,
+                "SB": 0.83,
+                "AVG": 0.264,
+                "OBP": 0.332,
+                "SLG": 0.411,
+                "OPS": 0.743,
+                "RS_per_game": 4.47
+            },
+            "simulation": {
+                "t1_win_prob": 18.9,
+                "t2_win_prob": 81.1,
+                "t1_proj_runs": 2.6,
+                "t2_proj_runs": 4.7,
+                "total_proj_runs": 7.3,
+                "ou_probs": {
+                    "over_prob": 0.4431,
+                    "under_prob": 0.5569,
+                    "push_prob": 0.0
+                }
+            },
             "market_data": {
-                "away_ml": 113,
-                "home_ml": -122,
+                "away_ml": 114,
+                "home_ml": -124,
                 "total_line": 7.5,
                 "over_odds": -105,
                 "under_odds": -107,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ev": -59.6,
+                "home_ev": 46.5,
+                "over_ev": -13.5,
+                "under_ev": 7.7
             }
         },
         {
@@ -774,7 +1086,7 @@
             "simulation": null,
             "market_data": {
                 "away_ml": 243,
-                "home_ml": -272,
+                "home_ml": -273,
                 "total_line": 8.5,
                 "over_odds": -106,
                 "under_odds": -106,
