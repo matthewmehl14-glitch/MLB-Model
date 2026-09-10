@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import numpy as np
+import csv
 from datetime import datetime
 
 TEAM_MAPPING = {
@@ -180,7 +181,6 @@ def generate_mlb_json():
     api_key = os.environ.get("ODDS_API_KEY")
     pinnacle_data = get_pinnacle_odds(api_key)
     
-    # Updated to limit=10000 to catch every player
     player_stats_url = f"https://statsapi.mlb.com/api/v1/stats?stats=season&group=hitting&playerPool=all&season={season}&sportIds=1&limit=10000"
     player_res = requests.get(player_stats_url).json()
     player_hit_stats = {}
@@ -281,6 +281,85 @@ def generate_mlb_json():
                     "away_offense": away_offense, "home_offense": home_offense,
                     "simulation": sim_res, "market_data": market_data
                 })
+
+    # --- AUTOMATED SCORE TRACKING CSV LOGIC ---
+    csv_file = 'projections_history.csv'
+    headers = [
+        'Date', 'Away_Team', 'Home_Team', 'Game_Status', 'Lineups_Confirmed',
+        'Away_Win_Prob', 'Home_Win_Prob', 'Away_Proj_Runs', 'Home_Proj_Runs', 'Proj_Total',
+        'Pinnacle_Away_ML', 'Pinnacle_Home_ML', 'Pinnacle_Total_Line',
+        'Away_EV', 'Home_EV', 'Over_EV', 'Under_EV',
+        'Actual_Away_Runs', 'Actual_Home_Runs', 'Actual_Total'
+    ]
+    
+    existing_data = {}
+    
+    if os.path.exists(csv_file):
+        with open(csv_file, mode='r', newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                key = f"{row['Date']}_{row['Away_Team']}_{row['Home_Team']}"
+                existing_data[key] = row
+                
+    for game in todays_games:
+        key = f"{today_str}_{game['away_team']}_{game['home_team']}"
+        sim = game['simulation']
+        mkt = game['market_data'] or {}
+        prev = existing_data.get(key, {})
+        
+        existing_data[key] = {
+            'Date': today_str,
+            'Away_Team': game['away_team'],
+            'Home_Team': game['home_team'],
+            'Game_Status': prev.get('Game_Status', 'Scheduled'),
+            'Lineups_Confirmed': game['lineup_confirmed'],
+            'Away_Win_Prob': sim['t1_win_prob'] if sim else 'N/A',
+            'Home_Win_Prob': sim['t2_win_prob'] if sim else 'N/A',
+            'Away_Proj_Runs': sim['t1_proj_runs'] if sim else 'N/A',
+            'Home_Proj_Runs': sim['t2_proj_runs'] if sim else 'N/A',
+            'Proj_Total': sim['total_proj_runs'] if sim else 'N/A',
+            'Pinnacle_Away_ML': mkt.get('away_ml', 'N/A'),
+            'Pinnacle_Home_ML': mkt.get('home_ml', 'N/A'),
+            'Pinnacle_Total_Line': mkt.get('total_line', 'N/A'),
+            'Away_EV': mkt.get('away_ev', 'N/A'),
+            'Home_EV': mkt.get('home_ev', 'N/A'),
+            'Over_EV': mkt.get('over_ev', 'N/A'),
+            'Under_EV': mkt.get('under_ev', 'N/A'),
+            'Actual_Away_Runs': prev.get('Actual_Away_Runs', 'N/A'),
+            'Actual_Home_Runs': prev.get('Actual_Home_Runs', 'N/A'),
+            'Actual_Total': prev.get('Actual_Total', 'N/A')
+        }
+
+    dates_to_check = set([row['Date'] for row in existing_data.values() if row.get('Game_Status') != 'Final'])
+    
+    for d in dates_to_check:
+        score_url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={d}"
+        try:
+            score_data = requests.get(score_url).json()
+            if 'dates' in score_data and len(score_data['dates']) > 0:
+                for game in score_data['dates'][0]['games']:
+                    status = game['status']['statusCode']
+                    if status in ['F', 'O']:
+                        away_name = game['teams']['away']['team']['name']
+                        home_name = game['teams']['home']['team']['name']
+                        if away_name in TEAM_MAPPING and home_name in TEAM_MAPPING:
+                            k = f"{d}_{TEAM_MAPPING[away_name]}_{TEAM_MAPPING[home_name]}"
+                            if k in existing_data:
+                                a_score = game['teams']['away'].get('score', 0)
+                                h_score = game['teams']['home'].get('score', 0)
+                                existing_data[k]['Actual_Away_Runs'] = a_score
+                                existing_data[k]['Actual_Home_Runs'] = h_score
+                                existing_data[k]['Actual_Total'] = a_score + h_score
+                                existing_data[k]['Game_Status'] = 'Final'
+        except Exception as e:
+            print(f"Warning: Could not fetch final scores for {d} ({e})")
+            
+    with open(csv_file, mode='w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
+        for key in sorted(existing_data.keys()):
+            writer.writerow(existing_data[key])
+    # --- END SCORE TRACKING CSV LOGIC ---
 
     output_data = { "date": today_str, "last_updated": datetime.utcnow().isoformat() + "Z", "teams": teams, "todays_games": todays_games }
     
