@@ -155,7 +155,47 @@
             font-size: 13px;
             font-weight: 600;
             color: #cbd5e1;
+            margin-bottom: 4px;
+        }
+
+        /* Pinnacle Odds Integration */
+        .pinny-box {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
             margin-bottom: 8px;
+        }
+        
+        .team-prob-box.right .pinny-box {
+            justify-content: flex-end;
+        }
+        
+        .pinny-line {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .ev-tag {
+            font-size: 13px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+        
+        .ev-positive {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+        }
+        
+        .ev-negative {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
         }
 
         .pitcher-info {
@@ -237,6 +277,12 @@
                     <span class="prob-val" id="away-prob" style="color: var(--cyan-team)">--%</span>
                     <span class="prob-name" id="away-name">Away Team</span>
                     <span class="fair-line" id="away-line">Fair Line: --</span>
+                    
+                    <div class="pinny-box">
+                        <div class="pinny-line" id="away-pinny">PINN: --</div>
+                        <div class="ev-tag" id="away-ev">EV: --</div>
+                    </div>
+                    
                     <div>
                         <span class="pitcher-info" id="away-pitcher">SP: -- (ERA: --)</span>
                     </div>
@@ -247,6 +293,12 @@
                     <span class="prob-val" id="home-prob" style="color: var(--red-team)">--%</span>
                     <span class="prob-name" id="home-name">Home Team</span>
                     <span class="fair-line" id="home-line">Fair Line: --</span>
+                    
+                    <div class="pinny-box">
+                        <div class="pinny-line" id="home-pinny">PINN: --</div>
+                        <div class="ev-tag" id="home-ev">EV: --</div>
+                    </div>
+                    
                     <div>
                         <span class="pitcher-info" id="home-pitcher">SP: -- (ERA: --)</span>
                     </div>
@@ -259,6 +311,20 @@
 
             <div class="total-banner">
                 Projected Score: <span id="away-proj-runs">0</span> - <span id="home-proj-runs">0</span>
+            </div>
+            
+            <div id="pinnacle-total-container" class="total-banner" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px; display: none;">
+                <div style="font-size: 11px; color: var(--gold); font-weight: bold; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Pinnacle Total Market</div>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <div class="pinny-box" style="margin:0;">
+                        <div class="pinny-line" id="over-pinny">O --</div>
+                        <div class="ev-tag" id="over-ev">EV: --</div>
+                    </div>
+                    <div class="pinny-box" style="margin:0;">
+                        <div class="pinny-line" id="under-pinny">U --</div>
+                        <div class="ev-tag" id="under-ev">EV: --</div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -289,9 +355,21 @@
                 return `+${Math.round((100 * (1 - p)) / p)}`;
             }
         }
+        
+        function setEV(elementId, evValue) {
+            const el = document.getElementById(elementId);
+            if (evValue === null || evValue === undefined) {
+                el.textContent = "EV: N/A";
+                el.className = "ev-tag";
+                return;
+            }
+            const sign = evValue > 0 ? '+' : '';
+            el.textContent = `EV: ${sign}${evValue}%`;
+            el.className = `ev-tag ${evValue > 0 ? 'ev-positive' : 'ev-negative'}`;
+        }
 
-        // 1. Fetch JSON Data
-        fetch('./data.json')
+        // 1. Fetch JSON Data (with cache buster logic attached for mobile efficiency)
+        fetch('./data.json?t=' + new Date().getTime(), { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
                 
@@ -415,6 +493,7 @@
             const awayTeam = teams[game.away_team];
             const homeTeam = teams[game.home_team];
             const sim = game.simulation;
+            const mkt = game.market_data;
 
             // 1. Update Simulation Card
             document.getElementById('away-name').textContent = awayTeam.name;
@@ -425,6 +504,32 @@
 
             document.getElementById('away-line').textContent = `Fair Line: ${probToMoneyline(sim.t1_win_prob)}`;
             document.getElementById('home-line').textContent = `Fair Line: ${probToMoneyline(sim.t2_win_prob)}`;
+            
+            // Odds API parsing
+            if (mkt) {
+                document.getElementById('away-pinny').textContent = `PINN: ${mkt.away_ml > 0 ? '+' : ''}${mkt.away_ml || 'N/A'}`;
+                setEV('away-ev', mkt.away_ev);
+                
+                document.getElementById('home-pinny').textContent = `PINN: ${mkt.home_ml > 0 ? '+' : ''}${mkt.home_ml || 'N/A'}`;
+                setEV('home-ev', mkt.home_ev);
+
+                if (mkt.total_line) {
+                    document.getElementById('pinnacle-total-container').style.display = 'block';
+                    document.getElementById('over-pinny').textContent = `O ${mkt.total_line} (${mkt.over_odds > 0 ? '+' : ''}${mkt.over_odds || 'N/A'})`;
+                    setEV('over-ev', mkt.over_ev);
+                    
+                    document.getElementById('under-pinny').textContent = `U ${mkt.total_line} (${mkt.under_odds > 0 ? '+' : ''}${mkt.under_odds || 'N/A'})`;
+                    setEV('under-ev', mkt.under_ev);
+                } else {
+                    document.getElementById('pinnacle-total-container').style.display = 'none';
+                }
+            } else {
+                document.getElementById('away-pinny').textContent = 'PINN: N/A';
+                setEV('away-ev', null);
+                document.getElementById('home-pinny').textContent = 'PINN: N/A';
+                setEV('home-ev', null);
+                document.getElementById('pinnacle-total-container').style.display = 'none';
+            }
 
             // Pitcher Data injection
             document.getElementById('away-pitcher').textContent = `SP: ${game.away_pitcher.name} (ERA: ${game.away_pitcher.era.toFixed(2)})`;
@@ -455,5 +560,4 @@
         gameSelect.addEventListener('change', updateDashboard);
     </script>
 </body>
-</html>
 </html>
