@@ -1,6 +1,6 @@
 Date,Away_Team,Home_Team,Game_Status,Lineups_Confirmed,Away_Win_Prob,Home_Win_Prob,Away_Proj_Runs,Home_Proj_Runs,Proj_Total,Pinnacle_Away_ML,Pinnacle_Home_ML,Pinnacle_Total_Line,Away_EV,Home_EV,Over_EV,Under_EV,Actual_Away_Runs,Actual_Home_Runs,Actual_Total
-2026-09-10,COL,NYY,Scheduled,False,N/A,N/A,N/A,N/A,N/A,250,-281,8.5,,,,,N/A,N/A,N/A
-2026-09-10,HOU,PHI,Scheduled,True,19.9,80.1,3.07,5.21,8.3,109,-131,7.0,-58.4,41.2,24.3,-33.6,N/A,N/A,N/A
-2026-09-10,PIT,CHW,Scheduled,False,N/A,N/A,N/A,N/A,N/A,-104,-104,7.5,,,,,N/A,N/A,N/A
-2026-09-10,TBR,ATL,Scheduled,True,53.1,46.9,2.91,2.76,5.7,-102,-119,2.0,5.2,-13.7,83.0,-90.2,N/A,N/A,N/A
-2026-09-10,TEX,SEA,Scheduled,True,45.6,54.4,3.19,3.45,6.6,112,-121,7.0,-3.3,-0.6,-13.4,7.0,N/A,N/A,N/A
+2026-09-10,COL,NYY,Scheduled,True,13.2,86.8,2.73,5.52,8.2,241,-270,8.5,-55.0,18.9,-10.3,3.9,N/A,N/A,N/A
+2026-09-10,HOU,PHI,Final,True,20.1,79.9,3.0,5.07,8.1,N/A,N/A,N/A,N/A,N/A,N/A,N/A,2,1,3
+2026-09-10,PIT,CHW,Scheduled,True,3.3,96.7,1.12,4.78,5.9,104,-112,7.5,-93.3,83.0,-53.9,51.8,N/A,N/A,N/A
+2026-09-10,TBR,ATL,Final,True,53.9,46.1,2.93,2.74,5.7,N/A,N/A,N/A,N/A,N/A,N/A,N/A,1,3,4
+2026-09-10,TEX,SEA,Scheduled,True,49.4,50.6,3.21,3.25,6.5,-769,560,6.0,-44.2,234.0,1.4,-9.5,N/A,N/A,N/A
