@@ -19,8 +19,17 @@ TEAM_MAPPING = {
     "Washington Nationals": "WSN"
 }
 
+# 2026 Generalized Park Factors (Runs multiplier)
+PARK_FACTORS = {
+    "ARI": 0.99, "ATL": 1.01, "BAL": 0.96, "BOS": 1.08, "CHC": 1.02, "CHW": 1.01,
+    "CIN": 1.07, "CLE": 0.98, "COL": 1.31, "DET": 0.97, "HOU": 0.98, "KCR": 1.02,
+    "LAA": 1.02, "LAD": 1.01, "MIA": 0.96, "MIL": 0.99, "MIN": 1.00, "NYM": 0.95,
+    "NYY": 0.98, "OAK": 0.94, "PHI": 1.02, "PIT": 0.97, "SDP": 0.95, "SEA": 0.92,
+    "SFG": 0.95, "STL": 0.95, "TBR": 0.96, "TEX": 1.00, "TOR": 0.99, "WSN": 0.99
+}
+
 def get_pinnacle_odds(api_key):
-    """Fetch live Pinnacle ML and Totals from The Odds API"""
+    """Fetch live pre-game Pinnacle ML and Totals from The Odds API"""
     if not api_key: return {}
     url = f"https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?apiKey={api_key}&bookmakers=pinnacle&markets=h2h,totals&oddsFormat=american"
     try:
@@ -28,7 +37,16 @@ def get_pinnacle_odds(api_key):
         res.raise_for_status()
         data = res.json()
         odds_dict = {}
+        now_utc = datetime.utcnow()
+        
         for game in data:
+            # Check if game has already started
+            time_str = game.get('commence_time', '').replace('Z', '+00:00')
+            if time_str:
+                commence_time = datetime.fromisoformat(time_str).replace(tzinfo=None)
+                if commence_time < now_utc:
+                    continue  # Skip live games to prevent contaminated CSV EV flags
+                    
             home = game.get('home_team')
             away = game.get('away_team')
             if home in TEAM_MAPPING and away in TEAM_MAPPING:
@@ -36,7 +54,6 @@ def get_pinnacle_odds(api_key):
                 away_abbr = TEAM_MAPPING[away]
                 matchup_key = f"{away_abbr}@{home_abbr}"
                 
-                # Prevents overwriting today's game with tomorrow's empty data
                 if matchup_key in odds_dict: continue
                 
                 game_odds = {'h2h': {}, 'totals': {}}
@@ -75,7 +92,7 @@ def calculate_ev(prob_pct, am_odds, push_pct=0.0):
 def get_pitcher_stats(pitcher_id, season):
     """Fetch 2026 season stats for a specific pitcher"""
     if not pitcher_id:
-        return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0}
+        return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0, "ip": 0.0}
 
     url = f"https://statsapi.mlb.com/api/v1/people/{pitcher_id}/stats?stats=season&group=pitching&season={season}"
     res = requests.get(url).json()
@@ -99,14 +116,15 @@ def get_pitcher_stats(pitcher_id, season):
 
         ra9 = (runs / ip * 9) if ip > 0 else era
 
-        return {"name": name, "era": era, "ra9": round(ra9, 2), "k9": k9}
+        return {"name": name, "era": era, "ra9": round(ra9, 2), "k9": k9, "ip": round(ip, 1)}
 
-    return {"name": name, "era": 4.50, "ra9": 4.50, "k9": 8.0}
+    return {"name": name, "era": 4.50, "ra9": 4.50, "k9": 8.0, "ip": 0.0}
 
-def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, total_line=None, iterations=10000):
-    """10,000-run Monte Carlo simulation using Poisson run generation"""
-    t1_exp = (t1_rs * t2_ra) / lg_rpg if lg_rpg > 0 else (t1_rs + t2_ra) / 2
-    t2_exp = (t2_rs * t1_ra) / lg_rpg if lg_rpg > 0 else (t2_rs + t1_ra) / 2
+def simulate_game(t1_rs, t1_ra, t2_rs, t2_ra, lg_rpg, total_line=None, park_factor=1.0, iterations=10000):
+    """10,000-run Monte Carlo simulation using Poisson run generation and Park Factors"""
+    # Multiply the baseline expectations by the Stadium's Park Factor
+    t1_exp = ((t1_rs * t2_ra) / lg_rpg) * park_factor if lg_rpg > 0 else ((t1_rs + t2_ra) / 2) * park_factor
+    t2_exp = ((t2_rs * t1_ra) / lg_rpg) * park_factor if lg_rpg > 0 else ((t2_rs + t1_ra) / 2) * park_factor
 
     t1_sims = np.random.poisson(t1_exp, iterations)
     t2_sims = np.random.poisson(t2_exp, iterations)
@@ -147,7 +165,6 @@ def generate_mlb_json():
     today_str = datetime.now().strftime('%Y-%m-%d')
     print(f"Fetching 2026 MLB stats and parsing schedule for {today_str}...")
 
-    # Fetch Odds API
     api_key = os.environ.get("ODDS_API_KEY")
     pinnacle_data = get_pinnacle_odds(api_key)
 
@@ -185,12 +202,29 @@ def generate_mlb_json():
 
     league_rpg = total_runs_scored / total_games_played if total_games_played > 0 else 4.5
 
+    # Fetch Team Pitching for Bullpen Integration
+    pitch_url = f"https://statsapi.mlb.com/api/v1/teams/stats?season={season}&stats=season&group=pitching&sportIds=1"
+    pitch_data = requests.get(pitch_url).json()
+    team_pitching_ra9 = {}
+    
+    if 'stats' in pitch_data and pitch_data['stats']:
+        for split in pitch_data['stats'][0]['splits']:
+            name = split['team']['name']
+            if name in TEAM_MAPPING:
+                abbr = TEAM_MAPPING[name]
+                r = int(split['stat'].get('runs', 0))
+                ip_str = str(split['stat'].get('inningsPitched', '0.0'))
+                ip_parts = ip_str.split('.')
+                ip = float(ip_parts[0])
+                if len(ip_parts) > 1: ip += float(ip_parts[1]) / 3.0
+                team_pitching_ra9[abbr] = (r / ip * 9) if ip > 0 else league_rpg
+
     schedule_url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={today_str}&hydrate=probablePitcher"
     schedule_data = requests.get(schedule_url).json()
 
     todays_games = []
 
-    print("Isolating starting pitching matchups...")
+    print("Isolating starting pitching matchups and applying regression...")
     if 'dates' in schedule_data and len(schedule_data['dates']) > 0:
         for game in schedule_data['dates'][0]['games']:
             away_name = game['teams']['away']['team']['name']
@@ -206,14 +240,31 @@ def generate_mlb_json():
                 away_pitcher = get_pitcher_stats(away_pitcher_id, season)
                 home_pitcher = get_pitcher_stats(home_pitcher_id, season)
                 
+                # Bayesian Regression (70 innings of league average)
+                away_ip, away_raw = away_pitcher["ip"], away_pitcher["ra9"]
+                home_ip, home_raw = home_pitcher["ip"], home_pitcher["ra9"]
+                
+                away_adj_ra9 = ((away_ip * away_raw) + (70 * league_rpg)) / (away_ip + 70)
+                home_adj_ra9 = ((home_ip * home_raw) + (70 * league_rpg)) / (home_ip + 70)
+                
+                # Bullpen Blend (62% SP / 38% BP)
+                away_bp_ra9 = team_pitching_ra9.get(away_abbr, league_rpg)
+                home_bp_ra9 = team_pitching_ra9.get(home_abbr, league_rpg)
+                
+                away_total_ra9 = (0.62 * away_adj_ra9) + (0.38 * away_bp_ra9)
+                home_total_ra9 = (0.62 * home_adj_ra9) + (0.38 * home_bp_ra9)
+                
+                # Retrieve Stadium Park Factor
+                park_factor = PARK_FACTORS.get(home_abbr, 1.00)
+                
                 matchup_key = f"{away_abbr}@{home_abbr}"
                 pinny = pinnacle_data.get(matchup_key, {})
                 total_line = pinny.get('totals', {}).get('point')
 
                 sim_res = simulate_game(
-                    teams[away_abbr]["RS_per_game"], away_pitcher["ra9"],
-                    teams[home_abbr]["RS_per_game"], home_pitcher["ra9"],
-                    league_rpg, total_line
+                    teams[away_abbr]["RS_per_game"], away_total_ra9,
+                    teams[home_abbr]["RS_per_game"], home_total_ra9,
+                    league_rpg, total_line, park_factor
                 )
                 
                 market_data = None
@@ -241,7 +292,6 @@ def generate_mlb_json():
                     "market_data": market_data
                 })
 
-    # --- AUTOMATED SCORE TRACKING CSV LOGIC ---
     csv_file = 'projections_history.csv'
     headers = [
         'Date', 'Away_Team', 'Home_Team', 'Game_Status', 'Lineups_Confirmed',
@@ -271,7 +321,7 @@ def generate_mlb_json():
             'Away_Team': game['away_team'],
             'Home_Team': game['home_team'],
             'Game_Status': prev.get('Game_Status', 'Scheduled'),
-            'Lineups_Confirmed': 'N/A', # Not applicable in this version
+            'Lineups_Confirmed': 'N/A',
             'Away_Win_Prob': sim['t1_win_prob'] if sim else 'N/A',
             'Home_Win_Prob': sim['t2_win_prob'] if sim else 'N/A',
             'Away_Proj_Runs': sim['t1_proj_runs'] if sim else 'N/A',
@@ -318,7 +368,6 @@ def generate_mlb_json():
         writer.writeheader()
         for key in sorted(existing_data.keys()):
             writer.writerow(existing_data[key])
-    # --- END SCORE TRACKING CSV LOGIC ---
 
     output_data = {
         "date": today_str,
@@ -330,7 +379,7 @@ def generate_mlb_json():
     with open('data.json', 'w') as f:
         json.dump(output_data, f, indent=4)
 
-    print(f"Success! Model updated with pitching splits for {len(todays_games)} games on the slate.")
+    print(f"Success! Model updated with pitching splits and regression for {len(todays_games)} games on the slate.")
 
 if __name__ == "__main__":
     generate_mlb_json()
