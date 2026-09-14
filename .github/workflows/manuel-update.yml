@@ -27,6 +27,9 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scraper.py
 
+      - name: Run MLB Backtest
+        run: python backtest.py
+
       - name: Commit and Push New Data
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
