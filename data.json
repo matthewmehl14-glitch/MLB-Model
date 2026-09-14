@@ -1,6 +1,6 @@
 {
     "date": "2026-09-14",
-    "last_updated": "2026-09-14T13:06:55.383509Z",
+    "last_updated": "2026-09-14T13:41:38.678905Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -592,10 +592,10 @@
                 "ip": 89.7
             },
             "simulation": {
-                "t1_win_prob": 79.7,
-                "t2_win_prob": 20.3,
-                "t1_proj_runs": 5.92,
-                "t2_proj_runs": 3.65,
+                "t1_win_prob": 79.1,
+                "t2_win_prob": 20.9,
+                "t1_proj_runs": 5.91,
+                "t2_proj_runs": 3.69,
                 "total_proj_runs": 9.6,
                 "ou_probs": {
                     "over_prob": 0,
@@ -633,11 +633,11 @@
                 "ip": 169.0
             },
             "simulation": {
-                "t1_win_prob": 59.9,
-                "t2_win_prob": 40.1,
-                "t1_proj_runs": 4.21,
-                "t2_proj_runs": 3.62,
-                "total_proj_runs": 7.8,
+                "t1_win_prob": 60.2,
+                "t2_win_prob": 39.8,
+                "t1_proj_runs": 4.25,
+                "t2_proj_runs": 3.63,
+                "total_proj_runs": 7.9,
                 "ou_probs": {
                     "over_prob": 0,
                     "under_prob": 0,
@@ -674,10 +674,10 @@
                 "ip": 163.0
             },
             "simulation": {
-                "t1_win_prob": 61.4,
-                "t2_win_prob": 38.6,
-                "t1_proj_runs": 4.04,
-                "t2_proj_runs": 3.33,
+                "t1_win_prob": 62.6,
+                "t2_win_prob": 37.4,
+                "t1_proj_runs": 4.07,
+                "t2_proj_runs": 3.32,
                 "total_proj_runs": 7.4,
                 "ou_probs": {
                     "over_prob": 0,
@@ -715,11 +715,11 @@
                 "ip": 15.0
             },
             "simulation": {
-                "t1_win_prob": 55.5,
-                "t2_win_prob": 44.5,
-                "t1_proj_runs": 4.42,
-                "t2_proj_runs": 4.08,
-                "total_proj_runs": 8.5,
+                "t1_win_prob": 55.0,
+                "t2_win_prob": 45.0,
+                "t1_proj_runs": 4.48,
+                "t2_proj_runs": 4.16,
+                "total_proj_runs": 8.6,
                 "ou_probs": {
                     "over_prob": 0,
                     "under_prob": 0,
@@ -756,10 +756,10 @@
                 "ip": 131.3
             },
             "simulation": {
-                "t1_win_prob": 49.9,
-                "t2_win_prob": 50.1,
-                "t1_proj_runs": 5.24,
-                "t2_proj_runs": 5.22,
+                "t1_win_prob": 49.4,
+                "t2_win_prob": 50.6,
+                "t1_proj_runs": 5.23,
+                "t2_proj_runs": 5.27,
                 "total_proj_runs": 10.5,
                 "ou_probs": {
                     "over_prob": 0,
@@ -797,10 +797,10 @@
                 "ip": 71.7
             },
             "simulation": {
-                "t1_win_prob": 62.1,
-                "t2_win_prob": 37.9,
-                "t1_proj_runs": 5.27,
-                "t2_proj_runs": 4.45,
+                "t1_win_prob": 61.8,
+                "t2_win_prob": 38.2,
+                "t1_proj_runs": 5.26,
+                "t2_proj_runs": 4.47,
                 "total_proj_runs": 9.7,
                 "ou_probs": {
                     "over_prob": 0,
@@ -838,10 +838,10 @@
                 "ip": 30.7
             },
             "simulation": {
-                "t1_win_prob": 43.8,
-                "t2_win_prob": 56.2,
-                "t1_proj_runs": 3.99,
-                "t2_proj_runs": 4.38,
+                "t1_win_prob": 43.9,
+                "t2_win_prob": 56.1,
+                "t1_proj_runs": 4.01,
+                "t2_proj_runs": 4.4,
                 "total_proj_runs": 8.4,
                 "ou_probs": {
                     "over_prob": 0,
@@ -879,10 +879,10 @@
                 "ip": 137.7
             },
             "simulation": {
-                "t1_win_prob": 63.0,
-                "t2_win_prob": 37.0,
-                "t1_proj_runs": 6.8,
-                "t2_proj_runs": 5.76,
+                "t1_win_prob": 62.0,
+                "t2_win_prob": 38.0,
+                "t1_proj_runs": 6.79,
+                "t2_proj_runs": 5.8,
                 "total_proj_runs": 12.6,
                 "ou_probs": {
                     "over_prob": 0,
@@ -920,11 +920,11 @@
                 "ip": 168.0
             },
             "simulation": {
-                "t1_win_prob": 44.9,
-                "t2_win_prob": 55.1,
+                "t1_win_prob": 45.7,
+                "t2_win_prob": 54.3,
                 "t1_proj_runs": 3.83,
-                "t2_proj_runs": 4.13,
-                "total_proj_runs": 8.0,
+                "t2_proj_runs": 4.08,
+                "total_proj_runs": 7.9,
                 "ou_probs": {
                     "over_prob": 0,
                     "under_prob": 0,
@@ -961,10 +961,10 @@
                 "ip": 3.0
             },
             "simulation": {
-                "t1_win_prob": 51.9,
-                "t2_win_prob": 48.1,
-                "t1_proj_runs": 4.28,
-                "t2_proj_runs": 4.16,
+                "t1_win_prob": 50.8,
+                "t2_win_prob": 49.2,
+                "t1_proj_runs": 4.24,
+                "t2_proj_runs": 4.17,
                 "total_proj_runs": 8.4,
                 "ou_probs": {
                     "over_prob": 0,
