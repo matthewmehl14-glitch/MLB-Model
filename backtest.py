@@ -2,19 +2,18 @@ import csv
 import os
 
 # --- BACKTEST CONFIGURATION ---
-BASE_UNIT_DOLLARS = 25.0
-KELLY_FRACTION = 0.25      # Quarter-Kelly staking
-MAX_STAKE_CAP = 3.0        # Max units allowed on any single bet
+FLAT_STAKE = 25.0
 
 # Edge Hurdles (filters out low-conviction noise)
 MIN_ML_EV = 5.0
 MAX_ML_EV = 35.0
 
-MIN_TOTAL_EV = 15.0        # Higher hurdle for totals
+MIN_TOTAL_EV = 15.0        
 MAX_TOTAL_EV = 45.0
-PLAY_UNDERS = False        # Toggle whether to take Under plays
+PLAY_UNDERS = False        
 
 def american_to_decimal(am_odds):
+    """Converts American odds to Decimal for payout calculations."""
     try:
         odds = float(am_odds)
         if odds > 0:
@@ -24,26 +23,8 @@ def american_to_decimal(am_odds):
     except (ValueError, TypeError):
         return 0.0
 
-def calc_kelly_units(prob_pct, am_odds, push_pct=0.0):
-    """Calculates Quarter-Kelly units with a strict upper cap."""
-    prob = prob_pct / 100.0
-    p_push = push_pct / 100.0
-    dec = american_to_decimal(am_odds)
-    b = dec - 1.0
-    
-    if b <= 0 or prob <= 0:
-        return 0.0
-    
-    q = 1.0 - prob - p_push
-    f_star = (b * prob - q) / b
-    
-    if f_star <= 0:
-        return 0.0
-        
-    fractional_units = f_star * KELLY_FRACTION * 10.0  # Normalized to unit size
-    return round(min(fractional_units, MAX_STAKE_CAP), 2)
-
 def evaluate_bet(market_type, pick, row, bet_amount):
+    """Grades the bet against actual historical outcomes."""
     actual_away = float(row['Actual_Away_Runs'])
     actual_home = float(row['Actual_Home_Runs'])
     actual_total = float(row['Actual_Total'])
@@ -65,7 +46,7 @@ def evaluate_bet(market_type, pick, row, bet_amount):
         profit = bet_amount * (100.0 / 110.0) if won else -bet_amount
         return profit, ('win' if won else 'loss')
 
-def run_backtest(target_date='ALL', base_unit_dollars=BASE_UNIT_DOLLARS):
+def run_backtest(target_date='ALL'):
     csv_file = 'projections_history.csv'
     if not os.path.exists(csv_file):
         print(f"Error: {csv_file} not found.")
@@ -80,7 +61,7 @@ def run_backtest(target_date='ALL', base_unit_dollars=BASE_UNIT_DOLLARS):
     results_summary = {'ML': {'W': 0, 'L': 0, 'P': 0}, 'TOTAL': {'W': 0, 'L': 0, 'P': 0}}
 
     print(f"\n=======================================================")
-    print(f"   MLB STRATEGY BACKTEST: {target_date} (QUARTER-KELLY)")
+    print(f"   MLB STRATEGY BACKTEST: {target_date} (FLAT ${FLAT_STAKE} STAKE)")
     print(f"=======================================================\n")
 
     for row in reader:
@@ -104,30 +85,24 @@ def run_backtest(target_date='ALL', base_unit_dollars=BASE_UNIT_DOLLARS):
             home_ev = float(row['Home_EV'])
             away_ml = float(row['Pinnacle_Away_ML'])
             home_ml = float(row['Pinnacle_Home_ML'])
-            away_prob = float(row['Away_Win_Prob'])
-            home_prob = float(row['Home_Win_Prob'])
 
             # Away Moneyline Bet
             if MIN_ML_EV <= away_ev <= MAX_ML_EV:
-                units = calc_kelly_units(away_prob, away_ml)
-                stake = units * base_unit_dollars
-                if stake > 0:
-                    profit, res = evaluate_bet('ML', 'away', row, stake)
-                    total_staked += stake
-                    total_profit += profit
-                    results_summary['ML'][res[0].upper()] += 1
-                    print(f"[{date}] BET ML: {away} ({away_ml:+.0f}) vs {home} | {res.upper()} | EV: +{away_ev:.1f}% | Stake: ${stake:.2f} ({units}u) | Profit: ${profit:+.2f}")
+                stake = FLAT_STAKE
+                profit, res = evaluate_bet('ML', 'away', row, stake)
+                total_staked += stake
+                total_profit += profit
+                results_summary['ML'][res[0].upper()] += 1
+                print(f"[{date}] BET ML: {away} ({away_ml:+.0f}) vs {home} | {res.upper()} | EV: +{away_ev:.1f}% | Stake: ${stake:.2f} | Profit: ${profit:+.2f}")
 
             # Home Moneyline Bet
             elif MIN_ML_EV <= home_ev <= MAX_ML_EV:
-                units = calc_kelly_units(home_prob, home_ml)
-                stake = units * base_unit_dollars
-                if stake > 0:
-                    profit, res = evaluate_bet('ML', 'home', row, stake)
-                    total_staked += stake
-                    total_profit += profit
-                    results_summary['ML'][res[0].upper()] += 1
-                    print(f"[{date}] BET ML: {home} ({home_ml:+.0f}) vs {away} | {res.upper()} | EV: +{home_ev:.1f}% | Stake: ${stake:.2f} ({units}u) | Profit: ${profit:+.2f}")
+                stake = FLAT_STAKE
+                profit, res = evaluate_bet('ML', 'home', row, stake)
+                total_staked += stake
+                total_profit += profit
+                results_summary['ML'][res[0].upper()] += 1
+                print(f"[{date}] BET ML: {home} ({home_ml:+.0f}) vs {away} | {res.upper()} | EV: +{home_ev:.1f}% | Stake: ${stake:.2f} | Profit: ${profit:+.2f}")
 
         except (ValueError, TypeError):
             pass
@@ -142,25 +117,21 @@ def run_backtest(target_date='ALL', base_unit_dollars=BASE_UNIT_DOLLARS):
 
             # Over Totals Bet
             if MIN_TOTAL_EV <= over_ev <= MAX_TOTAL_EV:
-                units = calc_kelly_units(50.0 + (over_ev / 2.0), -110)
-                stake = units * base_unit_dollars
-                if stake > 0:
-                    profit, res = evaluate_bet('TOTAL', 'over', row, stake)
-                    total_staked += stake
-                    total_profit += profit
-                    results_summary['TOTAL'][res[0].upper()] += 1
-                    print(f"[{date}] BET TOTAL: OVER {total_line} ({matchup}) | {res.upper()} | EV: +{over_ev:.1f}% | Stake: ${stake:.2f} ({units}u) | Profit: ${profit:+.2f}")
+                stake = FLAT_STAKE
+                profit, res = evaluate_bet('TOTAL', 'over', row, stake)
+                total_staked += stake
+                total_profit += profit
+                results_summary['TOTAL'][res[0].upper()] += 1
+                print(f"[{date}] BET TOTAL: OVER {total_line} ({matchup}) | {res.upper()} | EV: +{over_ev:.1f}% | Stake: ${stake:.2f} | Profit: ${profit:+.2f}")
 
             # Under Totals Bet (Optional toggle)
             elif PLAY_UNDERS and (MIN_TOTAL_EV <= under_ev <= MAX_TOTAL_EV):
-                units = calc_kelly_units(50.0 + (under_ev / 2.0), -110)
-                stake = units * base_unit_dollars
-                if stake > 0:
-                    profit, res = evaluate_bet('TOTAL', 'under', row, stake)
-                    total_staked += stake
-                    total_profit += profit
-                    results_summary['TOTAL'][res[0].upper()] += 1
-                    print(f"[{date}] BET TOTAL: UNDER {total_line} ({matchup}) | {res.upper()} | EV: +{under_ev:.1f}% | Stake: ${stake:.2f} ({units}u) | Profit: ${profit:+.2f}")
+                stake = FLAT_STAKE
+                profit, res = evaluate_bet('TOTAL', 'under', row, stake)
+                total_staked += stake
+                total_profit += profit
+                results_summary['TOTAL'][res[0].upper()] += 1
+                print(f"[{date}] BET TOTAL: UNDER {total_line} ({matchup}) | {res.upper()} | EV: +{under_ev:.1f}% | Stake: ${stake:.2f} | Profit: ${profit:+.2f}")
 
         except (ValueError, TypeError):
             pass
@@ -181,5 +152,4 @@ def run_backtest(target_date='ALL', base_unit_dollars=BASE_UNIT_DOLLARS):
     print("=======================================================\n")
 
 if __name__ == '__main__':
-    # Set to 'ALL' to analyze entire CSV, or a specific date like '2026-09-12'
     run_backtest(target_date='ALL')
