@@ -5,11 +5,11 @@ import os
 FLAT_STAKE = 25.0
 
 # Edge Hurdles (filters out low-conviction noise)
-MIN_ML_EV = 5.0
-MAX_ML_EV = 35.0
+MIN_ML_EV = 20.0
+MAX_ML_EV = 60.0
 
-MIN_TOTAL_EV = 15.0        
-MAX_TOTAL_EV = 45.0
+MIN_TOTAL_EV = 20.0        
+MAX_TOTAL_EV = 50.0
 PLAY_UNDERS = False        
 
 def american_to_decimal(am_odds):
