@@ -9,7 +9,7 @@ MIN_ML_EV = 20.0
 MAX_ML_EV = 60.0
 
 MIN_TOTAL_EV = 20.0        
-MAX_TOTAL_EV = 50.0
+MAX_TOTAL_EV = 60.0
 PLAY_UNDERS = False        
 
 def american_to_decimal(am_odds):
