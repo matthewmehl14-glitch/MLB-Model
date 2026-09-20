@@ -1,6 +1,6 @@
 {
     "date": "2026-09-20",
-    "last_updated": "2026-09-20T06:35:18.582734Z",
+    "last_updated": "2026-09-20T12:32:31.626455Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -592,27 +592,27 @@
                 "ip": 21.0
             },
             "simulation": {
-                "t1_win_prob": 62.8,
-                "t2_win_prob": 37.2,
-                "t1_proj_runs": 4.3,
-                "t2_proj_runs": 3.5,
+                "t1_win_prob": 61.8,
+                "t2_win_prob": 38.2,
+                "t1_proj_runs": 4.25,
+                "t2_proj_runs": 3.52,
                 "total_proj_runs": 7.8,
                 "ou_probs": {
-                    "over_prob": 0.3713,
-                    "under_prob": 0.4845,
-                    "push_prob": 0.1442
+                    "over_prob": 0.3802,
+                    "under_prob": 0.4835,
+                    "push_prob": 0.1363
                 }
             },
             "market_data": {
-                "away_ml": -162,
-                "home_ml": 145,
+                "away_ml": -166,
+                "home_ml": 152,
                 "total_line": 8.0,
-                "over_odds": -108,
-                "under_odds": -106,
-                "away_ev": 1.6,
-                "home_ev": -8.9,
-                "over_ev": -14.1,
-                "under_ev": 8.6
+                "over_odds": -107,
+                "under_odds": -105,
+                "away_ev": -1.0,
+                "home_ev": -3.7,
+                "over_ev": -12.8,
+                "under_ev": 8.0
             }
         },
         {
@@ -633,27 +633,27 @@
                 "ip": 82.3
             },
             "simulation": {
-                "t1_win_prob": 42.3,
-                "t2_win_prob": 57.7,
-                "t1_proj_runs": 3.91,
-                "t2_proj_runs": 4.38,
+                "t1_win_prob": 42.5,
+                "t2_win_prob": 57.5,
+                "t1_proj_runs": 3.92,
+                "t2_proj_runs": 4.39,
                 "total_proj_runs": 8.3,
                 "ou_probs": {
-                    "over_prob": 0,
-                    "under_prob": 0,
-                    "push_prob": 0
+                    "over_prob": 0.4536,
+                    "under_prob": 0.5464,
+                    "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": null,
-                "home_ml": null,
-                "total_line": null,
-                "over_odds": null,
-                "under_odds": null,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ml": -117,
+                "home_ml": 106,
+                "total_line": 8.5,
+                "over_odds": 100,
+                "under_odds": -114,
+                "away_ev": -21.2,
+                "home_ev": 18.4,
+                "over_ev": -9.3,
+                "under_ev": 2.6
             }
         },
         {
@@ -674,27 +674,27 @@
                 "ip": 124.3
             },
             "simulation": {
-                "t1_win_prob": 78.7,
-                "t2_win_prob": 21.3,
-                "t1_proj_runs": 6.84,
-                "t2_proj_runs": 4.4,
+                "t1_win_prob": 79.0,
+                "t2_win_prob": 21.0,
+                "t1_proj_runs": 6.78,
+                "t2_proj_runs": 4.38,
                 "total_proj_runs": 11.2,
                 "ou_probs": {
-                    "over_prob": 0,
-                    "under_prob": 0,
-                    "push_prob": 0
+                    "over_prob": 0.5603,
+                    "under_prob": 0.3237,
+                    "push_prob": 0.116
                 }
             },
             "market_data": {
-                "away_ml": null,
-                "home_ml": null,
-                "total_line": null,
-                "over_odds": null,
-                "under_odds": null,
-                "away_ev": null,
-                "home_ev": null,
-                "over_ev": null,
-                "under_ev": null
+                "away_ml": -155,
+                "home_ml": 140,
+                "total_line": 10.0,
+                "over_odds": -103,
+                "under_odds": -112,
+                "away_ev": 30.0,
+                "home_ev": -49.6,
+                "over_ev": 22.0,
+                "under_ev": -27.1
             }
         },
         {
@@ -715,27 +715,27 @@
                 "ip": 174.0
             },
             "simulation": {
-                "t1_win_prob": 29.7,
-                "t2_win_prob": 70.3,
-                "t1_proj_runs": 3.93,
+                "t1_win_prob": 30.4,
+                "t2_win_prob": 69.6,
+                "t1_proj_runs": 3.96,
                 "t2_proj_runs": 5.34,
                 "total_proj_runs": 9.3,
                 "ou_probs": {
-                    "over_prob": 0.7054,
-                    "under_prob": 0.2946,
+                    "over_prob": 0.7116,
+                    "under_prob": 0.2884,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": 201,
-                "home_ml": -228,
+                "away_ml": 204,
+                "home_ml": -226,
                 "total_line": 7.5,
-                "over_odds": 102,
-                "under_odds": -117,
-                "away_ev": -10.6,
-                "home_ev": 1.1,
-                "over_ev": 42.5,
-                "under_ev": -45.4
+                "over_odds": 108,
+                "under_odds": -122,
+                "away_ev": -7.6,
+                "home_ev": 0.4,
+                "over_ev": 48.0,
+                "under_ev": -47.5
             }
         },
         {
@@ -756,27 +756,27 @@
                 "ip": 104.3
             },
             "simulation": {
-                "t1_win_prob": 44.7,
-                "t2_win_prob": 55.3,
-                "t1_proj_runs": 4.14,
-                "t2_proj_runs": 4.47,
+                "t1_win_prob": 45.4,
+                "t2_win_prob": 54.6,
+                "t1_proj_runs": 4.17,
+                "t2_proj_runs": 4.45,
                 "total_proj_runs": 8.6,
                 "ou_probs": {
-                    "over_prob": 0.4919,
-                    "under_prob": 0.3707,
-                    "push_prob": 0.1374
+                    "over_prob": 0.4893,
+                    "under_prob": 0.3705,
+                    "push_prob": 0.1402
                 }
             },
             "market_data": {
-                "away_ml": 126,
-                "home_ml": -140,
+                "away_ml": 130,
+                "home_ml": -141,
                 "total_line": 8.0,
-                "over_odds": -115,
-                "under_odds": 101,
-                "away_ev": 1.0,
-                "home_ev": -5.2,
-                "over_ev": 5.7,
-                "under_ev": -11.7
+                "over_odds": -112,
+                "under_odds": 100,
+                "away_ev": 4.4,
+                "home_ev": -6.7,
+                "over_ev": 6.6,
+                "under_ev": -11.9
             }
         },
         {
@@ -797,27 +797,27 @@
                 "ip": 97.0
             },
             "simulation": {
-                "t1_win_prob": 60.3,
-                "t2_win_prob": 39.7,
-                "t1_proj_runs": 4.36,
-                "t2_proj_runs": 3.71,
+                "t1_win_prob": 62.2,
+                "t2_win_prob": 37.8,
+                "t1_proj_runs": 4.44,
+                "t2_proj_runs": 3.66,
                 "total_proj_runs": 8.1,
                 "ou_probs": {
-                    "over_prob": 0.4145,
-                    "under_prob": 0.4481,
-                    "push_prob": 0.1374
+                    "over_prob": 0.421,
+                    "under_prob": 0.442,
+                    "push_prob": 0.137
                 }
             },
             "market_data": {
-                "away_ml": 122,
-                "home_ml": -135,
+                "away_ml": 123,
+                "home_ml": -134,
                 "total_line": 8.0,
-                "over_odds": -111,
-                "under_odds": -103,
-                "away_ev": 33.9,
-                "home_ev": -30.9,
-                "over_ev": -7.5,
-                "under_ev": 2.1
+                "over_odds": -110,
+                "under_odds": -102,
+                "away_ev": 38.7,
+                "home_ev": -34.0,
+                "over_ev": -5.9,
+                "under_ev": 1.2
             }
         },
         {
@@ -838,27 +838,27 @@
                 "ip": 141.0
             },
             "simulation": {
-                "t1_win_prob": 56.3,
-                "t2_win_prob": 43.7,
-                "t1_proj_runs": 4.38,
-                "t2_proj_runs": 3.99,
+                "t1_win_prob": 57.0,
+                "t2_win_prob": 43.0,
+                "t1_proj_runs": 4.39,
+                "t2_proj_runs": 3.97,
                 "total_proj_runs": 8.4,
                 "ou_probs": {
-                    "over_prob": 0.4549,
-                    "under_prob": 0.4058,
-                    "push_prob": 0.1393
+                    "over_prob": 0.4625,
+                    "under_prob": 0.4037,
+                    "push_prob": 0.1338
                 }
             },
             "market_data": {
                 "away_ml": 104,
-                "home_ml": -115,
+                "home_ml": -113,
                 "total_line": 8.0,
-                "over_odds": -104,
-                "under_odds": -111,
-                "away_ev": 14.9,
-                "home_ev": -18.3,
-                "over_ev": 3.2,
-                "under_ev": -8.9
+                "over_odds": -103,
+                "under_odds": -109,
+                "away_ev": 16.3,
+                "home_ev": -18.9,
+                "over_ev": 4.5,
+                "under_ev": -9.2
             }
         },
         {
@@ -882,23 +882,23 @@
                 "t1_win_prob": 46.1,
                 "t2_win_prob": 53.9,
                 "t1_proj_runs": 4.74,
-                "t2_proj_runs": 5.0,
-                "total_proj_runs": 9.7,
+                "t2_proj_runs": 5.01,
+                "total_proj_runs": 9.8,
                 "ou_probs": {
-                    "over_prob": 0.5071,
-                    "under_prob": 0.3613,
-                    "push_prob": 0.1316
+                    "over_prob": 0.5095,
+                    "under_prob": 0.3636,
+                    "push_prob": 0.1269
                 }
             },
             "market_data": {
-                "away_ml": 127,
-                "home_ml": -141,
+                "away_ml": 129,
+                "home_ml": -139,
                 "total_line": 9.0,
-                "over_odds": -110,
+                "over_odds": -108,
                 "under_odds": -104,
-                "away_ev": 4.6,
-                "home_ev": -7.9,
-                "over_ev": 10.0,
+                "away_ev": 5.6,
+                "home_ev": -7.3,
+                "over_ev": 10.8,
                 "under_ev": -16.0
             }
         },
@@ -920,18 +920,28 @@
                 "ip": 154.3
             },
             "simulation": {
-                "t1_win_prob": 51.7,
-                "t2_win_prob": 48.3,
-                "t1_proj_runs": 3.73,
-                "t2_proj_runs": 3.61,
-                "total_proj_runs": 7.3,
+                "t1_win_prob": 52.9,
+                "t2_win_prob": 47.1,
+                "t1_proj_runs": 3.79,
+                "t2_proj_runs": 3.63,
+                "total_proj_runs": 7.4,
                 "ou_probs": {
-                    "over_prob": 0,
-                    "under_prob": 0,
-                    "push_prob": 0
+                    "over_prob": 0.3278,
+                    "under_prob": 0.5384,
+                    "push_prob": 0.1338
                 }
             },
-            "market_data": null
+            "market_data": {
+                "away_ml": 140,
+                "home_ml": -155,
+                "total_line": 8.0,
+                "over_odds": 100,
+                "under_odds": -115,
+                "away_ev": 27.0,
+                "home_ev": -22.5,
+                "over_ev": -21.1,
+                "under_ev": 14.0
+            }
         },
         {
             "away_team": "SEA",
@@ -951,27 +961,27 @@
                 "ip": 142.7
             },
             "simulation": {
-                "t1_win_prob": 53.0,
-                "t2_win_prob": 47.0,
-                "t1_proj_runs": 6.57,
+                "t1_win_prob": 53.9,
+                "t2_win_prob": 46.1,
+                "t1_proj_runs": 6.6,
                 "t2_proj_runs": 6.32,
                 "total_proj_runs": 12.9,
                 "ou_probs": {
-                    "over_prob": 0.7387,
-                    "under_prob": 0.2613,
+                    "over_prob": 0.741,
+                    "under_prob": 0.259,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": -155,
-                "home_ml": 140,
+                "away_ml": -154,
+                "home_ml": 141,
                 "total_line": 10.5,
-                "over_odds": -118,
-                "under_odds": 103,
-                "away_ev": -12.8,
-                "home_ev": 12.8,
-                "over_ev": 36.5,
-                "under_ev": -47.0
+                "over_odds": -117,
+                "under_odds": 104,
+                "away_ev": -11.1,
+                "home_ev": 11.1,
+                "over_ev": 37.4,
+                "under_ev": -47.2
             }
         },
         {
@@ -992,27 +1002,27 @@
                 "ip": 90.3
             },
             "simulation": {
-                "t1_win_prob": 54.4,
-                "t2_win_prob": 45.6,
-                "t1_proj_runs": 5.01,
-                "t2_proj_runs": 4.68,
-                "total_proj_runs": 9.7,
+                "t1_win_prob": 55.0,
+                "t2_win_prob": 45.0,
+                "t1_proj_runs": 4.98,
+                "t2_proj_runs": 4.65,
+                "total_proj_runs": 9.6,
                 "ou_probs": {
-                    "over_prob": 0.6357,
-                    "under_prob": 0.3643,
+                    "over_prob": 0.6233,
+                    "under_prob": 0.3767,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": -115,
-                "home_ml": 104,
+                "away_ml": -114,
+                "home_ml": 105,
                 "total_line": 8.5,
-                "over_odds": -110,
-                "under_odds": -104,
-                "away_ev": 1.7,
-                "home_ev": -7.0,
-                "over_ev": 21.4,
-                "under_ev": -28.5
+                "over_odds": -109,
+                "under_odds": -103,
+                "away_ev": 3.2,
+                "home_ev": -7.8,
+                "over_ev": 19.5,
+                "under_ev": -25.8
             }
         },
         {
@@ -1033,9 +1043,9 @@
                 "ip": 0.0
             },
             "simulation": {
-                "t1_win_prob": 29.8,
-                "t2_win_prob": 70.2,
-                "t1_proj_runs": 4.05,
+                "t1_win_prob": 29.6,
+                "t2_win_prob": 70.4,
+                "t1_proj_runs": 4.03,
                 "t2_proj_runs": 5.44,
                 "total_proj_runs": 9.5,
                 "ou_probs": {
@@ -1044,7 +1054,17 @@
                     "push_prob": 0
                 }
             },
-            "market_data": null
+            "market_data": {
+                "away_ml": null,
+                "home_ml": null,
+                "total_line": null,
+                "over_odds": null,
+                "under_odds": null,
+                "away_ev": null,
+                "home_ev": null,
+                "over_ev": null,
+                "under_ev": null
+            }
         },
         {
             "away_team": "MIA",
@@ -1064,27 +1084,27 @@
                 "ip": 143.3
             },
             "simulation": {
-                "t1_win_prob": 52.6,
-                "t2_win_prob": 47.4,
-                "t1_proj_runs": 4.2,
-                "t2_proj_runs": 4.04,
+                "t1_win_prob": 52.8,
+                "t2_win_prob": 47.2,
+                "t1_proj_runs": 4.21,
+                "t2_proj_runs": 4.03,
                 "total_proj_runs": 8.2,
                 "ou_probs": {
-                    "over_prob": 0.4436,
-                    "under_prob": 0.4211,
-                    "push_prob": 0.1353
+                    "over_prob": 0.4437,
+                    "under_prob": 0.4168,
+                    "push_prob": 0.1395
                 }
             },
             "market_data": {
                 "away_ml": 120,
-                "home_ml": -133,
+                "home_ml": -130,
                 "total_line": 8.0,
-                "over_odds": -106,
-                "under_odds": -108,
-                "away_ev": 15.7,
-                "home_ev": -17.0,
-                "over_ev": -0.3,
-                "under_ev": -5.4
+                "over_odds": -109,
+                "under_odds": -103,
+                "away_ev": 16.2,
+                "home_ev": -16.5,
+                "over_ev": -1.0,
+                "under_ev": -3.9
             }
         },
         {
@@ -1105,27 +1125,27 @@
                 "ip": 7.7
             },
             "simulation": {
-                "t1_win_prob": 57.1,
-                "t2_win_prob": 42.9,
-                "t1_proj_runs": 4.69,
-                "t2_proj_runs": 4.2,
+                "t1_win_prob": 56.8,
+                "t2_win_prob": 43.2,
+                "t1_proj_runs": 4.67,
+                "t2_proj_runs": 4.21,
                 "total_proj_runs": 8.9,
                 "ou_probs": {
-                    "over_prob": 0.5268,
-                    "under_prob": 0.4732,
+                    "over_prob": 0.5291,
+                    "under_prob": 0.4709,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": -110,
+                "away_ml": -109,
                 "home_ml": 100,
                 "total_line": 8.5,
-                "over_odds": -102,
-                "under_odds": -112,
-                "away_ev": 9.0,
-                "home_ev": -14.2,
-                "over_ev": 4.3,
-                "under_ev": -10.4
+                "over_odds": -101,
+                "under_odds": -111,
+                "away_ev": 8.9,
+                "home_ev": -13.6,
+                "over_ev": 5.3,
+                "under_ev": -10.5
             }
         },
         {
@@ -1146,27 +1166,27 @@
                 "ip": 145.7
             },
             "simulation": {
-                "t1_win_prob": 75.5,
-                "t2_win_prob": 24.5,
-                "t1_proj_runs": 4.89,
-                "t2_proj_runs": 3.19,
+                "t1_win_prob": 76.6,
+                "t2_win_prob": 23.4,
+                "t1_proj_runs": 4.94,
+                "t2_proj_runs": 3.17,
                 "total_proj_runs": 8.1,
                 "ou_probs": {
-                    "over_prob": 0.4125,
-                    "under_prob": 0.4456,
-                    "push_prob": 0.1419
+                    "over_prob": 0.5632,
+                    "under_prob": 0.4368,
+                    "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": -205,
-                "home_ml": 182,
-                "total_line": 8.0,
-                "over_odds": 101,
-                "under_odds": -116,
-                "away_ev": 12.3,
-                "home_ev": -30.9,
-                "over_ev": -2.9,
-                "under_ev": -2.8
+                "away_ml": -202,
+                "home_ml": 183,
+                "total_line": 7.5,
+                "over_odds": -114,
+                "under_odds": 101,
+                "away_ev": 14.5,
+                "home_ev": -33.8,
+                "over_ev": 5.7,
+                "under_ev": -12.2
             }
         }
     ]
