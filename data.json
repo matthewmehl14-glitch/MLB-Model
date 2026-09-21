@@ -1,6 +1,6 @@
 {
     "date": "2026-09-21",
-    "last_updated": "2026-09-21T19:38:18.905563Z",
+    "last_updated": "2026-09-21T22:18:50.586447Z",
     "teams": {
         "TBR": {
             "name": "Tampa Bay Rays",
@@ -592,27 +592,27 @@
                 "ip": 173.0
             },
             "simulation": {
-                "t1_win_prob": 51.3,
-                "t2_win_prob": 48.7,
-                "t1_proj_runs": 4.02,
-                "t2_proj_runs": 3.96,
+                "t1_win_prob": 49.1,
+                "t2_win_prob": 50.9,
+                "t1_proj_runs": 3.97,
+                "t2_proj_runs": 3.99,
                 "total_proj_runs": 8.0,
                 "ou_probs": {
-                    "over_prob": 0.5404,
-                    "under_prob": 0.4596,
+                    "over_prob": 0.5399,
+                    "under_prob": 0.4601,
                     "push_prob": 0.0
                 }
             },
             "market_data": {
-                "away_ml": -105,
-                "home_ml": -103,
+                "away_ml": -103,
+                "home_ml": -105,
                 "total_line": 7.5,
-                "over_odds": -103,
-                "under_odds": -109,
-                "away_ev": 0.2,
-                "home_ev": -4.0,
-                "over_ev": 6.5,
-                "under_ev": -11.9
+                "over_odds": 106,
+                "under_odds": -119,
+                "away_ev": -3.2,
+                "home_ev": -0.6,
+                "over_ev": 11.2,
+                "under_ev": -15.3
             }
         },
         {
@@ -633,14 +633,14 @@
                 "ip": 0.0
             },
             "simulation": {
-                "t1_win_prob": 54.5,
-                "t2_win_prob": 45.5,
-                "t1_proj_runs": 4.83,
-                "t2_proj_runs": 4.56,
+                "t1_win_prob": 54.4,
+                "t2_win_prob": 45.6,
+                "t1_proj_runs": 4.82,
+                "t2_proj_runs": 4.54,
                 "total_proj_runs": 9.4,
                 "ou_probs": {
-                    "over_prob": 0.5924,
-                    "under_prob": 0.4076,
+                    "over_prob": 0.5892,
+                    "under_prob": 0.4108,
                     "push_prob": 0.0
                 }
             },
@@ -650,10 +650,10 @@
                 "total_line": 8.5,
                 "over_odds": -111,
                 "under_odds": -101,
-                "away_ev": 19.4,
-                "home_ev": -19.2,
-                "over_ev": 12.6,
-                "under_ev": -18.9
+                "away_ev": 19.1,
+                "home_ev": -19.1,
+                "over_ev": 12.0,
+                "under_ev": -18.2
             }
         },
         {
@@ -674,27 +674,27 @@
                 "ip": 53.3
             },
             "simulation": {
-                "t1_win_prob": 51.7,
-                "t2_win_prob": 48.3,
+                "t1_win_prob": 51.4,
+                "t2_win_prob": 48.6,
                 "t1_proj_runs": 4.51,
                 "t2_proj_runs": 4.41,
                 "total_proj_runs": 8.9,
                 "ou_probs": {
-                    "over_prob": 0.5355,
-                    "under_prob": 0.4645,
-                    "push_prob": 0.0
+                    "over_prob": 0.5416,
+                    "under_prob": 0.3266,
+                    "push_prob": 0.1318
                 }
             },
             "market_data": {
-                "away_ml": -116,
-                "home_ml": 108,
-                "total_line": 8.5,
-                "over_odds": -102,
-                "under_odds": -110,
-                "away_ev": -3.7,
-                "home_ev": 0.5,
-                "over_ev": 6.0,
-                "under_ev": -11.3
+                "away_ml": -115,
+                "home_ml": 106,
+                "total_line": 8.0,
+                "over_odds": -109,
+                "under_odds": -103,
+                "away_ev": -3.9,
+                "home_ev": 0.1,
+                "over_ev": 17.0,
+                "under_ev": -22.5
             }
         }
     ]
