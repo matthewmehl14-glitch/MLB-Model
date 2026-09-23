@@ -208,9 +208,21 @@ def generate_mlb_json():
                 total_runs_scored += r
                 total_games_played += g
 
+                # ADDED: Full hitting stats payload required for the spider chart
                 teams[abbr] = {
                     "name": name, "abbr": abbr, "G": g, "R": r,
-                    "RS_per_game": r / g if g > 0 else 4.5
+                    "RS_per_game": r / g if g > 0 else 4.5,
+                    "H": int(s.get('hits', 0)),
+                    "2B": int(s.get('doubles', 0)),
+                    "3B": int(s.get('triples', 0)),
+                    "HR": int(s.get('homeRuns', 0)),
+                    "RBI": int(s.get('rbi', 0)),
+                    "BB": int(s.get('baseOnBalls', 0)),
+                    "SB": int(s.get('stolenBases', 0)),
+                    "AVG": float(s.get('avg', 0)),
+                    "OBP": float(s.get('obp', 0)),
+                    "SLG": float(s.get('slg', 0)),
+                    "OPS": float(s.get('ops', 0))
                 }
 
     league_rpg = total_runs_scored / total_games_played if total_games_played > 0 else 4.5
@@ -388,7 +400,8 @@ def generate_mlb_json():
 
     output_data = {
         "date": today_str,
-        "last_updated": datetime.now(timezone.utc).isoformat() + "Z",
+        # FIXED: Replaced standard ISO string with perfectly clean JavaScript-friendly UTC string
+        "last_updated": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         "teams": teams,
         "todays_games": todays_games
     }
