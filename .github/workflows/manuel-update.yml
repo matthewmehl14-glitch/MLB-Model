@@ -9,6 +9,10 @@ on:
 jobs:
   run-model:
     runs-on: ubuntu-latest
+    
+    # CRITICAL: This gives the bot permission to push the new data.json to your repo
+    permissions:
+      contents: write 
 
     steps:
       - name: Checkout Repository
@@ -25,11 +29,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests numpy
 
-      - name: Run MLB Projection Script
+      - name: Run MLB Projection Script (Scraper)
         env:
-          # Your key is hidden. Add it in GitHub > Settings > Secrets > Actions
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python mlb_model.py
+        run: python scraper.py
+
+      - name: Run Flat $25 Backtest
+        run: python backtest.py
 
       - name: Commit and Push Updated Data
         run: |
@@ -39,6 +45,3 @@ jobs:
           
           # Only commit if data changed to prevent workflow errors
           git diff --quiet && git diff --staged --quiet || (git commit -m "Automated daily MLB projections update" && git push)
-```I don't have access to the previous messages in our conversation right now, so I can't see the scripts we were modifying. 
-
-If you can paste the most recent versions or remind me what specific changes we made (such as your Google Apps Script, Python odds scraper, or Blackjack web app), I will gladly put together the complete, updated scripts for you.
