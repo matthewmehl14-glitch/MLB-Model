@@ -312,7 +312,7 @@ def generate_mlb_json():
         'Away_Win_Prob', 'Home_Win_Prob', 'Away_Proj_Runs', 'Home_Proj_Runs', 'Proj_Total',
         'Pinnacle_Away_ML', 'Pinnacle_Home_ML', 'Pinnacle_Total_Line',
         'Away_EV', 'Away_Kelly', 'Home_EV', 'Home_Kelly', 'Over_EV', 'Over_Kelly', 'Under_EV', 'Under_Kelly',
-        'Actual_Away_Runs', 'Actual_Home_Runs', 'Actual_Total'
+        'Actual_Away_Runs', 'Actual_Home_Runs', 'Actual_Total', 'Lineups_Confirmed'
     ]
 
     existing_data = {}
@@ -352,7 +352,8 @@ def generate_mlb_json():
             'Under_Kelly': mkt.get('under_kelly', 'N/A'),
             'Actual_Away_Runs': prev.get('Actual_Away_Runs', 'N/A'),
             'Actual_Home_Runs': prev.get('Actual_Home_Runs', 'N/A'),
-            'Actual_Total': prev.get('Actual_Total', 'N/A')
+            'Actual_Total': prev.get('Actual_Total', 'N/A'),
+            'Lineups_Confirmed': prev.get('Lineups_Confirmed', 'N/A')
         }
 
     dates_to_check = set([row.get('Date') for row in existing_data.values() if row.get('Game_Status') != 'Final' and row.get('Date')])
@@ -379,7 +380,6 @@ def generate_mlb_json():
         except Exception as e:
             print(f"Warning: Could not fetch final scores for {d} ({e})")
 
-    # The extrasaction='ignore' flag prevents the script from crashing if CSV headers ever mismatch
     with open(csv_file, mode='w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore')
         writer.writeheader()
