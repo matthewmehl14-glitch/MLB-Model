@@ -37,7 +37,6 @@ def implied_probability(am_odds):
     return 1 / dec
 
 def devig_pinnacle(away_odds, home_odds):
-    """Removes the vig from Pinnacle lines to find the true market probability."""
     if not away_odds or not home_odds: return None, None
     away_prob = implied_probability(away_odds)
     home_prob = implied_probability(home_odds)
@@ -45,27 +44,20 @@ def devig_pinnacle(away_odds, home_odds):
     return away_prob / total_implied, home_prob / total_implied
 
 def calculate_ev_and_kelly(model_prob_pct, am_odds, push_pct=0.0, kelly_multiplier=0.25):
-    """Calculates Expected Value and Quarter-Kelly bet sizing."""
     if not am_odds or model_prob_pct == 0: return None, 0.0
     prob = model_prob_pct / 100.0
     p_push = push_pct / 100.0
     dec = american_to_decimal(am_odds)
     
-    # EV Calculation
     ev = (prob * dec) - 1.0 + p_push
-    
-    # Kelly Criterion: f* = (bp - q) / b 
     b = dec - 1.0
     q = 1.0 - prob - p_push
     kelly_pct = ((b * prob) - q) / b if b > 0 else 0
-    
-    # Apply fractional Kelly cap
     kelly_pct = max(0, kelly_pct) * kelly_multiplier
     
     return round(ev * 100, 2), round(kelly_pct * 100, 2)
 
 def get_pinnacle_odds(api_key):
-    """Fetch live pre-game Pinnacle ML and Totals from The Odds API"""
     if not api_key: return {}
     url = f"https://api.the-odds-api.com/v4/sports/baseball_mlb/odds/?apiKey={api_key}&bookmakers=pinnacle&markets=h2h,totals&oddsFormat=american"
     odds_dict = {}
@@ -81,7 +73,7 @@ def get_pinnacle_odds(api_key):
             if time_str:
                 commence_time = datetime.fromisoformat(time_str).replace(tzinfo=None)
                 if commence_time < now_utc:
-                    continue  # Skip live games to prevent contaminated CSV EV flags
+                    continue 
 
             home = game.get('home_team')
             away = game.get('away_team')
@@ -107,6 +99,7 @@ def get_pinnacle_odds(api_key):
                                         game_odds['totals']['point'] = out.get('point')
                                     elif out['name'] == 'Under':
                                         game_odds['totals']['under'] = out['price']
+                                        
                 odds_dict[matchup_key] = game_odds
         return odds_dict
     except Exception as e:
@@ -114,7 +107,6 @@ def get_pinnacle_odds(api_key):
         return {}
 
 def get_pitcher_stats(pitcher_id, season):
-    """Fetch season stats for a specific pitcher"""
     if not pitcher_id:
         return {"name": "TBD", "era": 4.50, "ra9": 4.50, "k9": 8.0, "ip": 0.0}
 
@@ -146,7 +138,6 @@ def get_pitcher_stats(pitcher_id, season):
         return {"name": "Unknown", "era": 4.50, "ra9": 4.50, "k9": 8.0, "ip": 0.0}
 
 def simulate_game_advanced(t1rs, t1ra, t2rs, t2ra, lgrpg, total_line=None, park_factor=1.0, iterations=10000):
-    """10,000-run Monte Carlo using Negative Binomial distribution for MLB overdispersion"""
     t1_exp = ((t1rs * t2ra) / lgrpg) * park_factor if lgrpg > 0 else ((t1rs + t2ra) / 2) * park_factor
     t2_exp = ((t2rs * t1ra) / lgrpg) * park_factor if lgrpg > 0 else ((t2rs + t1ra) / 2) * park_factor
 
@@ -162,7 +153,6 @@ def simulate_game_advanced(t1rs, t1ra, t2rs, t2ra, lgrpg, total_line=None, park_
     t1_sims = generate_neg_binom(t1_exp, iterations)
     t2_sims = generate_neg_binom(t2_exp, iterations)
 
-    # Re-roll ties (extra innings)
     ties = t1_sims == t2_sims
     while np.any(ties):
         tie_count = np.sum(ties)
@@ -280,8 +270,8 @@ def generate_mlb_json():
                 total_line = pinny.get('totals', {}).get('point')
 
                 sim_res = simulate_game_advanced(
-                    teams[away_abbr]["RS_per_game"], away_total_ra9,
-                    teams[home_abbr]["RS_per_game"], home_total_ra9,
+                    teams.get(away_abbr, {}).get("RS_per_game", 4.5), away_total_ra9,
+                    teams.get(home_abbr, {}).get("RS_per_game", 4.5), home_total_ra9,
                     league_rpg, total_line, park_factor
                 )
 
@@ -292,7 +282,6 @@ def generate_mlb_json():
                     over_odds = pinny.get('totals', {}).get('over')
                     under_odds = pinny.get('totals', {}).get('under')
                     
-                    # Compute EV & Quarter-Kelly using the model probabilities vs market lines
                     away_ev, away_k = calculate_ev_and_kelly(sim_res["t1_win_prob"], away_ml)
                     home_ev, home_k = calculate_ev_and_kelly(sim_res["t2_win_prob"], home_ml)
                     
@@ -331,7 +320,7 @@ def generate_mlb_json():
         with open(csv_file, mode='r', newline='', encoding='utf-8') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                key = f"{row['Date']}_{row['Away_Team']}_{row['Home_Team']}"
+                key = f"{row.get('Date', '')}_{row.get('Away_Team', '')}_{row.get('Home_Team', '')}"
                 existing_data[key] = row
 
     for game in todays_games:
@@ -366,7 +355,7 @@ def generate_mlb_json():
             'Actual_Total': prev.get('Actual_Total', 'N/A')
         }
 
-    dates_to_check = set([row['Date'] for row in existing_data.values() if row.get('Game_Status') != 'Final'])
+    dates_to_check = set([row.get('Date') for row in existing_data.values() if row.get('Game_Status') != 'Final' and row.get('Date')])
 
     for d in dates_to_check:
         score_url = f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={d}"
@@ -390,8 +379,9 @@ def generate_mlb_json():
         except Exception as e:
             print(f"Warning: Could not fetch final scores for {d} ({e})")
 
+    # The extrasaction='ignore' flag prevents the script from crashing if CSV headers ever mismatch
     with open(csv_file, mode='w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
+        writer = csv.DictWriter(f, fieldnames=headers, extrasaction='ignore')
         writer.writeheader()
         for key in sorted(existing_data.keys()):
             writer.writerow(existing_data[key])
