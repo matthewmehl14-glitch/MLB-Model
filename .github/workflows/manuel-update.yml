@@ -1,16 +1,14 @@
-name: Manual Data Update
+name: Daily MLB Projection Model
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '30 * * * *'
+    # Runs at 14:00 UTC (9:00 AM CDT) every day to capture stable market lines
+    - cron: '0 14 * * *'
+  workflow_dispatch: # Adds a button in GitHub UI so you can trigger it manually anytime
 
 jobs:
-  update-data:
+  run-model:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write 
 
     steps:
       - name: Checkout Repository
@@ -19,23 +17,28 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
+          cache: 'pip'
 
       - name: Install Dependencies
-        run: pip install requests numpy
-
-      - name: Run Python Scraper
-        env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        run: python scraper.py
-
-      - name: Run MLB Backtest
-        run: python backtest.py
-
-      - name: Commit and Push New Data
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          python -m pip install --upgrade pip
+          pip install requests numpy
+
+      - name: Run MLB Projection Script
+        env:
+          # Your key is hidden. Add it in GitHub > Settings > Secrets > Actions
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python mlb_model.py
+
+      - name: Commit and Push Updated Data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
           git add data.json projections_history.csv
-          git commit -m "Automated data update" || echo "No changes to commit"
-          git push
+          
+          # Only commit if data changed to prevent workflow errors
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated daily MLB projections update" && git push)
+```I don't have access to the previous messages in our conversation right now, so I can't see the scripts we were modifying. 
+
+If you can paste the most recent versions or remind me what specific changes we made (such as your Google Apps Script, Python odds scraper, or Blackjack web app), I will gladly put together the complete, updated scripts for you.
