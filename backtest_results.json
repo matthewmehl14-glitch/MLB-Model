@@ -5,7 +5,121 @@
         "net_profit": 312.63,
         "total_roi": 7.4
     },
-    "buckets": [
+    "daily": [
+        {
+            "date": "2026-09-25",
+            "bets": 16,
+            "win_rate": 62.5,
+            "net_profit": 104.39,
+            "roi": 26.1
+        },
+        {
+            "date": "2026-09-24",
+            "bets": 17,
+            "win_rate": 52.9,
+            "net_profit": 22.7,
+            "roi": 5.34
+        },
+        {
+            "date": "2026-09-23",
+            "bets": 16,
+            "win_rate": 37.5,
+            "net_profit": -101.64,
+            "roi": -25.41
+        },
+        {
+            "date": "2026-09-22",
+            "bets": 15,
+            "win_rate": 40.0,
+            "net_profit": -100.51,
+            "roi": -26.8
+        },
+        {
+            "date": "2026-09-21",
+            "bets": 3,
+            "win_rate": 33.3,
+            "net_profit": -27.27,
+            "roi": -36.36
+        },
+        {
+            "date": "2026-09-20",
+            "bets": 1,
+            "win_rate": 100.0,
+            "net_profit": 12.38,
+            "roi": 49.5
+        },
+        {
+            "date": "2026-09-19",
+            "bets": 7,
+            "win_rate": 42.9,
+            "net_profit": -22.3,
+            "roi": -12.74
+        },
+        {
+            "date": "2026-09-18",
+            "bets": 18,
+            "win_rate": 47.1,
+            "net_profit": -35.44,
+            "roi": -7.88
+        },
+        {
+            "date": "2026-09-17",
+            "bets": 1,
+            "win_rate": 100.0,
+            "net_profit": 21.19,
+            "roi": 84.75
+        },
+        {
+            "date": "2026-09-16",
+            "bets": 6,
+            "win_rate": 66.7,
+            "net_profit": 61.45,
+            "roi": 40.97
+        },
+        {
+            "date": "2026-09-15",
+            "bets": 17,
+            "win_rate": 64.7,
+            "net_profit": 119.24,
+            "roi": 28.06
+        },
+        {
+            "date": "2026-09-14",
+            "bets": 13,
+            "win_rate": 69.2,
+            "net_profit": 114.98,
+            "roi": 35.38
+        },
+        {
+            "date": "2026-09-13",
+            "bets": 11,
+            "win_rate": 54.5,
+            "net_profit": 27.17,
+            "roi": 9.88
+        },
+        {
+            "date": "2026-09-12",
+            "bets": 9,
+            "win_rate": 55.6,
+            "net_profit": 13.43,
+            "roi": 5.97
+        },
+        {
+            "date": "2026-09-11",
+            "bets": 16,
+            "win_rate": 60.0,
+            "net_profit": 48.16,
+            "roi": 12.04
+        },
+        {
+            "date": "2026-09-10",
+            "bets": 3,
+            "win_rate": 100.0,
+            "net_profit": 54.71,
+            "roi": 72.95
+        }
+    ],
+    "buckets_total": [
         {
             "ev_range": "+5% to +10%",
             "bets": 33,
@@ -68,6 +182,129 @@
             "win_rate": 50.0,
             "net_profit": -4.55,
             "roi": -4.55
+        },
+        {
+            "ev_range": "+50% to +55%",
+            "bets": 2,
+            "win_rate": 50.0,
+            "net_profit": -2.27,
+            "roi": -4.55
+        }
+    ],
+    "buckets_ml": [
+        {
+            "ev_range": "+5% to +10%",
+            "bets": 33,
+            "win_rate": 51.5,
+            "net_profit": 12.34,
+            "roi": 1.5
+        },
+        {
+            "ev_range": "+10% to +15%",
+            "bets": 20,
+            "win_rate": 55.0,
+            "net_profit": 22.77,
+            "roi": 4.55
+        },
+        {
+            "ev_range": "+15% to +20%",
+            "bets": 12,
+            "win_rate": 16.7,
+            "net_profit": -190.39,
+            "roi": -63.46
+        },
+        {
+            "ev_range": "+20% to +25%",
+            "bets": 19,
+            "win_rate": 57.9,
+            "net_profit": 54.48,
+            "roi": 11.47
+        },
+        {
+            "ev_range": "+25% to +30%",
+            "bets": 6,
+            "win_rate": 50.0,
+            "net_profit": 14.93,
+            "roi": 9.95
+        },
+        {
+            "ev_range": "+30% to +35%",
+            "bets": 2,
+            "win_rate": 100.0,
+            "net_profit": 62.0,
+            "roi": 124.0
+        },
+        {
+            "ev_range": "+35% to +40%",
+            "bets": 1,
+            "win_rate": 100.0,
+            "net_profit": 31.25,
+            "roi": 125.0
+        },
+        {
+            "ev_range": "+40% to +45%",
+            "bets": 1,
+            "win_rate": 100.0,
+            "net_profit": 30.25,
+            "roi": 121.0
+        },
+        {
+            "ev_range": "+45% to +50%",
+            "bets": 1,
+            "win_rate": 0.0,
+            "net_profit": -25.0,
+            "roi": -100.0
+        }
+    ],
+    "buckets_totals": [
+        {
+            "ev_range": "+15% to +20%",
+            "bets": 14,
+            "win_rate": 69.2,
+            "net_profit": 104.55,
+            "roi": 29.87
+        },
+        {
+            "ev_range": "+20% to +25%",
+            "bets": 17,
+            "win_rate": 75.0,
+            "net_profit": 172.73,
+            "roi": 40.64
+        },
+        {
+            "ev_range": "+25% to +30%",
+            "bets": 12,
+            "win_rate": 75.0,
+            "net_profit": 129.55,
+            "roi": 43.18
+        },
+        {
+            "ev_range": "+30% to +35%",
+            "bets": 9,
+            "win_rate": 55.6,
+            "net_profit": 13.64,
+            "roi": 6.06
+        },
+        {
+            "ev_range": "+35% to +40%",
+            "bets": 11,
+            "win_rate": 45.5,
+            "net_profit": -36.36,
+            "roi": -13.22
+        },
+        {
+            "ev_range": "+40% to +45%",
+            "bets": 6,
+            "win_rate": 16.7,
+            "net_profit": -102.27,
+            "roi": -68.18
+        },
+        {
+            "ev_range": "+45% to +50%",
+            "bets": 3,
+            "win_rate": 66.7,
+            "net_profit": 20.45,
+            "roi": 27.27
         },
         {
             "ev_range": "+50% to +55%",
