@@ -63,8 +63,9 @@ def run_backtest(target_date='ALL'):
     games_evaluated = 0
     results_summary = {'ML': {'W': 0, 'L': 0, 'P': 0}, 'TOTAL': {'W': 0, 'L': 0, 'P': 0}}
     
-    # Initialize edge buckets
+    # Initialize trackers
     edge_buckets = {'ML': {}, 'TOTAL': {}}
+    daily_stats = {}
 
     print(f"\n=======================================================")
     print(f"   MLB STRATEGY BACKTEST: {target_date} (FLAT ${FLAT_STAKE} STAKE)")
@@ -89,7 +90,6 @@ def run_backtest(target_date='ALL'):
             away_ml = float(row['Pinnacle_Away_ML'])
             home_ml = float(row['Pinnacle_Home_ML'])
 
-            # Determine side
             bet_placed = False
             if MIN_ML_EV <= away_ev <= MAX_ML_EV:
                 stake, profit, res, ev = FLAT_STAKE, *evaluate_bet('ML', 'away', row, FLAT_STAKE), away_ev
@@ -105,13 +105,20 @@ def run_backtest(target_date='ALL'):
                 total_profit += profit
                 results_summary['ML'][res[0].upper()] += 1
                 
+                # Update Edge Buckets
                 bucket = get_ev_bucket(ev)
                 if bucket not in edge_buckets['ML']:
                     edge_buckets['ML'][bucket] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
-                
                 edge_buckets['ML'][bucket][res[0].upper()] += 1
                 edge_buckets['ML'][bucket]['Staked'] += stake
                 edge_buckets['ML'][bucket]['Profit'] += profit
+
+                # Update Daily Stats
+                if date not in daily_stats:
+                    daily_stats[date] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
+                daily_stats[date][res[0].upper()] += 1
+                daily_stats[date]['Staked'] += stake
+                daily_stats[date]['Profit'] += profit
 
                 print(f"[{date}] BET ML: {team} ({odds:+.0f}) vs {'Opponent'} | {res.upper()} | EV: +{ev:.1f}% | Profit: ${profit:+.2f}")
 
@@ -139,13 +146,20 @@ def run_backtest(target_date='ALL'):
                 total_profit += profit
                 results_summary['TOTAL'][res[0].upper()] += 1
                 
+                # Update Edge Buckets
                 bucket = get_ev_bucket(ev)
                 if bucket not in edge_buckets['TOTAL']:
                     edge_buckets['TOTAL'][bucket] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
-                
                 edge_buckets['TOTAL'][bucket][res[0].upper()] += 1
                 edge_buckets['TOTAL'][bucket]['Staked'] += stake
                 edge_buckets['TOTAL'][bucket]['Profit'] += profit
+
+                # Update Daily Stats
+                if date not in daily_stats:
+                    daily_stats[date] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
+                daily_stats[date][res[0].upper()] += 1
+                daily_stats[date]['Staked'] += stake
+                daily_stats[date]['Profit'] += profit
 
                 print(f"[{date}] BET TOTAL: {bet_type} {total_line} ({matchup}) | {res.upper()} | EV: +{ev:.1f}% | Profit: ${profit:+.2f}")
 
@@ -172,7 +186,7 @@ def run_backtest(target_date='ALL'):
     for bucket in sorted(edge_buckets['ML'].keys(), key=lambda x: float(x.split('%')[0].replace('+', ''))):
         b = edge_buckets['ML'][bucket]
         b_roi = (b['Profit'] / b['Staked'] * 100) if b['Staked'] > 0 else 0
-        print(f" {bucket:<15} | {b['W']}-{b['L']}-{b['P']} | Profit: ${b['Profit']:>7.2f} | ROI: {b_roi:>6.2f}%")
+        print(f" {bucket:<15} | {b['W']:>2}-{b['L']:>2}-{b['P']:>2} | Profit: ${b['Profit']:>7.2f} | ROI: {b_roi:>7.2f}%")
 
     print("\n-------------------------------------------------------")
     print("            TOTALS PERFORMANCE BY EV TIER              ")
@@ -180,7 +194,15 @@ def run_backtest(target_date='ALL'):
     for bucket in sorted(edge_buckets['TOTAL'].keys(), key=lambda x: float(x.split('%')[0].replace('+', ''))):
         b = edge_buckets['TOTAL'][bucket]
         b_roi = (b['Profit'] / b['Staked'] * 100) if b['Staked'] > 0 else 0
-        print(f" {bucket:<15} | {b['W']}-{b['L']}-{b['P']} | Profit: ${b['Profit']:>7.2f} | ROI: {b_roi:>6.2f}%")
+        print(f" {bucket:<15} | {b['W']:>2}-{b['L']:>2}-{b['P']:>2} | Profit: ${b['Profit']:>7.2f} | ROI: {b_roi:>7.2f}%")
+
+    print("\n-------------------------------------------------------")
+    print("                 DAILY PERFORMANCE                     ")
+    print("-------------------------------------------------------")
+    for date in sorted(daily_stats.keys()):
+        d = daily_stats[date]
+        d_roi = (d['Profit'] / d['Staked'] * 100) if d['Staked'] > 0 else 0.0
+        print(f" {date} | {d['W']:>2}-{d['L']:>2}-{d['P']:>2} | Staked: ${d['Staked']:>6.2f} | Profit: ${d['Profit']:>7.2f} | ROI: {d_roi:>7.2f}%")
     print("=======================================================\n")
 
 if __name__ == '__main__':
