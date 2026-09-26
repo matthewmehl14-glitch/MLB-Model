@@ -1,16 +1,12 @@
 name: Daily MLB Projection Model
 
 on:
-  schedule:
-    # Runs at 14:00 UTC (9:00 AM CDT) every day to capture stable market lines
-    - cron: '0 14 * * *'
-  workflow_dispatch: # Adds a button in GitHub UI so you can trigger it manually anytime
+  workflow_dispatch: # This is now the ONLY trigger
 
 jobs:
   run-model:
     runs-on: ubuntu-latest
     
-    # CRITICAL: This gives the bot permission to push the new data.json to your repo
     permissions:
       contents: write 
 
@@ -40,7 +36,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action Bot"
-          git add data.json projections_history.csv
+          git add data.json projections_history.csv backtest_results.json
           
-          # Only commit if data changed to prevent workflow errors
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated daily MLB projections update" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated manual trigger update" && git push)
