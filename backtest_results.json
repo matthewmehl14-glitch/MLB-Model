@@ -1,0 +1,80 @@
+{
+    "summary": {
+        "total_wagers": 169,
+        "total_risked": 4225.0,
+        "net_profit": 312.63,
+        "total_roi": 7.4
+    },
+    "buckets": [
+        {
+            "ev_range": "+5% to +10%",
+            "bets": 33,
+            "win_rate": 51.5,
+            "net_profit": 12.34,
+            "roi": 1.5
+        },
+        {
+            "ev_range": "+10% to +15%",
+            "bets": 20,
+            "win_rate": 55.0,
+            "net_profit": 22.77,
+            "roi": 4.55
+        },
+        {
+            "ev_range": "+15% to +20%",
+            "bets": 26,
+            "win_rate": 44.0,
+            "net_profit": -85.84,
+            "roi": -13.21
+        },
+        {
+            "ev_range": "+20% to +25%",
+            "bets": 36,
+            "win_rate": 65.7,
+            "net_profit": 227.2,
+            "roi": 25.24
+        },
+        {
+            "ev_range": "+25% to +30%",
+            "bets": 18,
+            "win_rate": 66.7,
+            "net_profit": 144.48,
+            "roi": 32.11
+        },
+        {
+            "ev_range": "+30% to +35%",
+            "bets": 11,
+            "win_rate": 63.6,
+            "net_profit": 75.64,
+            "roi": 27.5
+        },
+        {
+            "ev_range": "+35% to +40%",
+            "bets": 12,
+            "win_rate": 50.0,
+            "net_profit": -5.11,
+            "roi": -1.7
+        },
+        {
+            "ev_range": "+40% to +45%",
+            "bets": 7,
+            "win_rate": 28.6,
+            "net_profit": -72.02,
+            "roi": -41.16
+        },
+        {
+            "ev_range": "+45% to +50%",
+            "bets": 4,
+            "win_rate": 50.0,
+            "net_profit": -4.55,
+            "roi": -4.55
+        },
+        {
+            "ev_range": "+50% to +55%",
+            "bets": 2,
+            "win_rate": 50.0,
+            "net_profit": -2.27,
+            "roi": -4.55
+        }
+    ]
+}
