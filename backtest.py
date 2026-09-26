@@ -105,6 +105,12 @@ def run_backtest(target_date='ALL'):
                 edge_buckets['ML'][bucket]['Staked'] += stake
                 edge_buckets['ML'][bucket]['Profit'] += profit
 
+                if date not in daily_stats:
+                    daily_stats[date] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
+                daily_stats[date][res[0].upper()] += 1
+                daily_stats[date]['Staked'] += stake
+                daily_stats[date]['Profit'] += profit
+
         except (ValueError, TypeError):
             pass
 
@@ -133,6 +139,12 @@ def run_backtest(target_date='ALL'):
                 edge_buckets['TOTAL'][bucket]['Staked'] += stake
                 edge_buckets['TOTAL'][bucket]['Profit'] += profit
 
+                if date not in daily_stats:
+                    daily_stats[date] = {'W': 0, 'L': 0, 'P': 0, 'Staked': 0.0, 'Profit': 0.0}
+                daily_stats[date][res[0].upper()] += 1
+                daily_stats[date]['Staked'] += stake
+                daily_stats[date]['Profit'] += profit
+
         except (ValueError, TypeError):
             pass
 
@@ -140,6 +152,8 @@ def run_backtest(target_date='ALL'):
     total_bets = sum(results_summary['ML'].values()) + sum(results_summary['TOTAL'].values())
 
     # --- JSON WEBPAGE EXPORT LOGIC ---
+    
+    # 1. Compile Combined Buckets
     combined_buckets = {}
     for res_dict in [edge_buckets['ML'], edge_buckets['TOTAL']]:
         for b_name, b_data in res_dict.items():
@@ -151,20 +165,39 @@ def run_backtest(target_date='ALL'):
             combined_buckets[b_name]['Staked'] += b_data['Staked']
             combined_buckets[b_name]['Profit'] += b_data['Profit']
 
-    ui_buckets = []
-    for bucket in sorted(combined_buckets.keys(), key=lambda x: float(x.split('%')[0].replace('+', ''))):
-        b = combined_buckets[bucket]
-        bets = b['W'] + b['L'] + b['P']
-        win_rate = (b['W'] / (b['W'] + b['L']) * 100) if (b['W'] + b['L']) > 0 else 0
-        b_roi = (b['Profit'] / b['Staked'] * 100) if b['Staked'] > 0 else 0
-        ui_buckets.append({
-            "ev_range": bucket,
+    # Helper function to format buckets
+    def format_buckets(bucket_dict):
+        ui_list = []
+        for bucket in sorted(bucket_dict.keys(), key=lambda x: float(x.split('%')[0].replace('+', ''))):
+            b = bucket_dict[bucket]
+            bets = b['W'] + b['L'] + b['P']
+            win_rate = (b['W'] / (b['W'] + b['L']) * 100) if (b['W'] + b['L']) > 0 else 0
+            b_roi = (b['Profit'] / b['Staked'] * 100) if b['Staked'] > 0 else 0
+            ui_list.append({
+                "ev_range": bucket,
+                "bets": bets,
+                "win_rate": round(win_rate, 1),
+                "net_profit": round(b['Profit'], 2),
+                "roi": round(b_roi, 2)
+            })
+        return ui_list
+
+    # 2. Format Daily Stats (Reverse sorted so newest is on top)
+    ui_daily = []
+    for date_key in sorted(daily_stats.keys(), reverse=True):
+        d = daily_stats[date_key]
+        bets = d['W'] + d['L'] + d['P']
+        win_rate = (d['W'] / (d['W'] + d['L']) * 100) if (d['W'] + d['L']) > 0 else 0
+        d_roi = (d['Profit'] / d['Staked'] * 100) if d['Staked'] > 0 else 0
+        ui_daily.append({
+            "date": date_key,
             "bets": bets,
             "win_rate": round(win_rate, 1),
-            "net_profit": round(b['Profit'], 2),
-            "roi": round(b_roi, 2)
+            "net_profit": round(d['Profit'], 2),
+            "roi": round(d_roi, 2)
         })
 
+    # 3. Export to JSON
     with open('backtest_results.json', 'w') as f:
         json.dump({
             "summary": {
@@ -173,7 +206,10 @@ def run_backtest(target_date='ALL'):
                 "net_profit": round(total_profit, 2),
                 "total_roi": round(roi, 2)
             },
-            "buckets": ui_buckets
+            "daily": ui_daily,
+            "buckets_total": format_buckets(combined_buckets),
+            "buckets_ml": format_buckets(edge_buckets['ML']),
+            "buckets_totals": format_buckets(edge_buckets['TOTAL'])
         }, f, indent=4)
         
     print(f"Data saved to backtest_results.json")
