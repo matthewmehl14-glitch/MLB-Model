@@ -320,6 +320,7 @@
             border: 1px solid var(--card-border);
             padding: 20px;
             border-radius: 12px;
+            margin-bottom: 20px;
         }
 
         .bt-table-card h2 {
@@ -456,6 +457,8 @@
 
     <!-- ==================== BACKTEST VIEW ==================== -->
     <div id="backtest-view" style="display: none;">
+        
+        <!-- Summary Cards -->
         <div class="bt-cards">
             <div class="bt-card">
                 <div class="label">Total Wagers</div>
@@ -475,8 +478,28 @@
             </div>
         </div>
 
+        <!-- 1. Daily Performance -->
         <div class="bt-table-card">
-            <h2>EV% Bucket Performance</h2>
+            <h2>Daily Performance</h2>
+            <table class="bt-table">
+                <thead>
+                    <tr>
+                        <th>DATE</th>
+                        <th>BETS</th>
+                        <th>WIN RATE</th>
+                        <th>NET PROFIT ($25)</th>
+                        <th>ROI</th>
+                    </tr>
+                </thead>
+                <tbody id="bt-tbody-daily">
+                    <!-- Populated dynamically via JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 2. Overall Buckets -->
+        <div class="bt-table-card">
+            <h2>Overall EV% Bucket Performance</h2>
             <table class="bt-table">
                 <thead>
                     <tr>
@@ -487,11 +510,50 @@
                         <th>ROI</th>
                     </tr>
                 </thead>
-                <tbody id="bt-tbody">
+                <tbody id="bt-tbody-total">
                     <!-- Populated dynamically via JS -->
                 </tbody>
             </table>
         </div>
+
+        <!-- 3. Moneyline Buckets -->
+        <div class="bt-table-card">
+            <h2>Moneyline EV% Buckets</h2>
+            <table class="bt-table">
+                <thead>
+                    <tr>
+                        <th>EV RANGE</th>
+                        <th>BETS</th>
+                        <th>WIN RATE</th>
+                        <th>NET PROFIT ($25)</th>
+                        <th>ROI</th>
+                    </tr>
+                </thead>
+                <tbody id="bt-tbody-ml">
+                    <!-- Populated dynamically via JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. Totals Buckets -->
+        <div class="bt-table-card" style="margin-bottom: 0;">
+            <h2>Totals EV% Buckets</h2>
+            <table class="bt-table">
+                <thead>
+                    <tr>
+                        <th>EV RANGE</th>
+                        <th>BETS</th>
+                        <th>WIN RATE</th>
+                        <th>NET PROFIT ($25)</th>
+                        <th>ROI</th>
+                    </tr>
+                </thead>
+                <tbody id="bt-tbody-totals">
+                    <!-- Populated dynamically via JS -->
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -662,7 +724,6 @@
         const awayStats = globalData.teams[awayAbbr] || {};
         const homeStats = globalData.teams[homeAbbr] || {};
 
-        // Compute min & max across all teams to scale 0 - 100%
         const maxVals = {};
         const minVals = {};
         metrics.forEach(m => {
@@ -675,7 +736,7 @@
             const min = minVals[key];
             const max = maxVals[key];
             if (max === min) return 50;
-            return Math.round(((stat - min) / (max - min)) * 80 + 20); // Normalized 20-100 scale
+            return Math.round(((stat - min) / (max - min)) * 80 + 20); 
         };
 
         const awayData = metrics.map(m => scaleStat(awayStats[m] || 0, m));
@@ -743,40 +804,63 @@
         });
     }
 
+    // Helper to dynamically build table rows
+    function populateTable(tbodyId, dataList, isDaily) {
+        const tbody = document.getElementById(tbodyId);
+        tbody.innerHTML = '';
+        dataList.forEach(b => {
+            const tr = document.createElement('tr');
+            
+            const netProfit = parseFloat(b.net_profit);
+            const roiVal = parseFloat(b.roi);
+            
+            const pClass = netProfit > 0 ? 'text-green' : (netProfit < 0 ? 'text-red' : '');
+            const rClass = roiVal > 0 ? 'text-green' : (roiVal < 0 ? 'text-red' : '');
+            
+            const col1 = isDaily ? b.date : b.ev_range;
+            
+            let signP = '$';
+            if (netProfit > 0) signP = '+$';
+            else if (netProfit < 0) signP = '-$';
+
+            let signR = '';
+            if (roiVal > 0) signR = '+';
+
+            tr.innerHTML = `
+                <td>${col1}</td>
+                <td>${b.bets}</td>
+                <td>${b.win_rate.toFixed(1)}%</td>
+                <td class="${pClass}">${signP}${Math.abs(netProfit).toFixed(2)}</td>
+                <td class="${rClass}">${signR}${roiVal.toFixed(2)}%</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
     // Load Backtest Results from JSON
     function loadBacktestData() {
         fetch('backtest_results.json')
             .then(res => res.json())
             .then(data => {
+                // Update Top Cards
                 document.getElementById('bt-wagers').textContent = data.summary.total_wagers;
                 document.getElementById('bt-risked').textContent = '$' + data.summary.total_risked.toLocaleString();
 
-                const profitEl = document.getElementById('bt-profit');
                 const p = data.summary.net_profit;
+                const profitEl = document.getElementById('bt-profit');
                 profitEl.textContent = (p >= 0 ? '+$' : '-$') + Math.abs(p).toFixed(2);
-                profitEl.className = 'value ' + (p >= 0 ? 'green' : 'red');
+                profitEl.className = 'value ' + (p > 0 ? 'green' : (p < 0 ? 'red' : ''));
 
-                const roiEl = document.getElementById('bt-roi');
                 const r = data.summary.total_roi;
+                const roiEl = document.getElementById('bt-roi');
                 roiEl.textContent = (r >= 0 ? '+' : '') + r.toFixed(2) + '%';
-                roiEl.className = 'value ' + (r >= 0 ? 'green' : 'red');
+                roiEl.className = 'value ' + (r > 0 ? 'green' : (r < 0 ? 'red' : ''));
 
-                const tbody = document.getElementById('bt-tbody');
-                tbody.innerHTML = '';
-                data.buckets.forEach(b => {
-                    const tr = document.createElement('tr');
-                    const pClass = b.net_profit >= 0 ? 'text-green' : 'text-red';
-                    const rClass = b.roi >= 0 ? 'text-green' : 'text-red';
-
-                    tr.innerHTML = `
-                        <td>${b.ev_range}</td>
-                        <td>${b.bets}</td>
-                        <td>${b.win_rate.toFixed(1)}%</td>
-                        <td class="${pClass}">${b.net_profit >= 0 ? '+$' : '-$'}${Math.abs(b.net_profit).toFixed(2)}</td>
-                        <td class="${rClass}">${b.roi >= 0 ? '+' : ''}${b.roi.toFixed(2)}%</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
+                // Populate all four tables
+                populateTable('bt-tbody-daily', data.daily, true);
+                populateTable('bt-tbody-total', data.buckets_total, false);
+                populateTable('bt-tbody-ml', data.buckets_ml, false);
+                populateTable('bt-tbody-totals', data.buckets_totals, false);
             })
             .catch(err => console.error("Error loading backtest_results.json:", err));
     }
