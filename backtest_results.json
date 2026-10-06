@@ -1,11 +1,18 @@
 {
     "summary": {
-        "total_wagers": 193,
-        "total_risked": 4825.0,
-        "net_profit": 301.59,
-        "total_roi": 6.25
+        "total_wagers": 194,
+        "total_risked": 4850.0,
+        "net_profit": 276.59,
+        "total_roi": 5.7
     },
     "daily": [
+        {
+            "date": "2026-10-05",
+            "bets": 1,
+            "win_rate": 0.0,
+            "net_profit": -25.0,
+            "roi": -100.0
+        },
         {
             "date": "2026-09-27",
             "bets": 15,
@@ -136,10 +143,10 @@
     "buckets_total": [
         {
             "ev_range": "+5% to +10%",
-            "bets": 41,
-            "win_rate": 51.2,
-            "net_profit": 40.43,
-            "roi": 3.94
+            "bets": 42,
+            "win_rate": 50.0,
+            "net_profit": 15.43,
+            "roi": 1.47
         },
         {
             "ev_range": "+10% to +15%",
@@ -208,10 +215,10 @@
     "buckets_ml": [
         {
             "ev_range": "+5% to +10%",
-            "bets": 41,
-            "win_rate": 51.2,
-            "net_profit": 40.43,
-            "roi": 3.94
+            "bets": 42,
+            "win_rate": 50.0,
+            "net_profit": 15.43,
+            "roi": 1.47
         },
         {
             "ev_range": "+10% to +15%",
